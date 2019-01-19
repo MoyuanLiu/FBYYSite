@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q-g3f3^+c-@!e2u8#k6bnbk$!&=5=ha*z#mct-7*=bk&iy^2yh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,3 +124,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+ADMINS = (
+    ('Marvin Liu', '384848522@qq.com'),
+)
+
+TEMPLATE_DEBUG = False
+
+MANAGERS = (
+    ('Marvin Liu', '384848522@qq.com'),
+)
