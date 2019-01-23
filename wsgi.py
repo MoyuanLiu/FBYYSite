@@ -1,1 +1,0 @@
-from FBYYSite import * As application

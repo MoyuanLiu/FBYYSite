@@ -16,7 +16,7 @@ def upload(request):
             # print(os.path.exists('/temp_file/'))
             filenamepart = File.name.split(".")
             currenttimestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-            with open("./FileUpload/temp_file/%s" % (currenttimestamp +"." + filenamepart[-1]), 'wb+') as f:
+            with open("../FileUpload/temp_file/%s" % (currenttimestamp +"." + filenamepart[-1]), 'wb+') as f:
                 # 分块写入文件
                 for chunk in File.chunks():
                     f.write(chunk)
