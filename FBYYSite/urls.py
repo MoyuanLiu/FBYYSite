@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from FileUpload import views
+from FileUpload import views as fuview
+from SiteLogin import views as slview
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('fbyysite/fileupload',views.upload),
+    path('fbyysite/fileupload',fuview.upload),
+    path('fbyysite/login',slview.login),
 ]
