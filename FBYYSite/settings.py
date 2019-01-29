@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'FBYYSite.urls'
@@ -123,5 +124,76 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/' 
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+# log settings
+# 日志的文字日志级别,由低到高分别为：DEBUG -> INFO -> WARNING -> ERROR -> CRITICAL
+# 日志的数字日志级别,由低到高分别为: 10 -> 20 -> 30 -> 40 -> 50
+# formatters: 指定输出的格式，被handler使用
+# handlers：实际上来处理日志记录的地方。指定输出到控制台还是文件中还是其他..，以及输出的方式。被logger引用
+# loggers： 指定django中的每个模块使用哪个handlers。以及日志输出的级别
+# filters: 是在信息从logger传递到handler的过程中实施一些过滤行为,没有默认情况: 任何达到log level的日志信息都会被处理
+# 注意：日志的输出级别是由loggers中的每个模块中level选项定义。如果没有配置，那么默认为warning级别
+
+
+
+LOGGING = {
+ 'version': 1,
+ 'disable_existing_loggers': True,
+ 'formatters': {#日志格式
+ 'standard': {
+  'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'}
+ },
+ 'filters': {#过滤器
+ 'require_debug_false': {
+  '()': 'django.utils.log.RequireDebugFalse',
+  }
+ },
+ 'handlers': {#处理器
+ 'debug': {#记录到日志文件(需要创建对应的目录，否则会出错)
+  'level':'INFO',
+  'class':'logging.handlers.RotatingFileHandler',
+  'filename': os.path.join(BASE_DIR, "LogFile",'debug.log'),#日志输出文件
+  'maxBytes':1024*1024*5,#文件大小
+  'backupCount': 5,#备份份数
+  'formatter':'standard',#使用哪种formatters日志格式
+ },
+ 'console':{#输出到控制台
+  'level': 'INFO',
+  'class': 'logging.StreamHandler',
+  'formatter': 'standard',
+ },
+ },
+ 'loggers': {#logging管理器
+ 'django': {
+  'handlers': ['console','debug'],
+  'level': 'DEBUG',
+  'propagate': False
+ },
+ 'django.request': {
+  'handlers': ['debug'],
+  'level': 'INFO',
+  'propagate': True,
+ },
+ }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '384848522@qq.com'
+EMAIL_HOST_PASSWORD = 'semovtfxjwyebgig'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

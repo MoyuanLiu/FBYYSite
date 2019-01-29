@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block meta %}<meta http-equiv="refresh" content={{metacontent}}>{% endblock %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<p class="text-info">{{msgpre}}<mark class="text-muted">{{seconds}}</mark>{{msgsuf}}</p><br>
+<a href={{redirecturl}} class="btn btn-link">点我直接跳转</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}亦优贸易数据管理系统{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<body style="min-height: 660px; cursor: auto;">
+<nav class="nav navbar navbar-dark navbar-static-top bg-dark navbar-expand-sm" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">亦优贸易</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse in" id="collapsibleNavbar">
+            <ul class="nav navbar-nav ml-auto flex-row">
+                <li class="nav-item"><a href="#"><i class="icon-user"></i> 完善信息</a></li>
+                <li class="nav-item"><a href="about"><i class="icon-info-sign"></i> 关于</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    {% block main %}
+    {% endblock %}
+</div>
+
+
+</div>
+</body>
+{% endblock %}

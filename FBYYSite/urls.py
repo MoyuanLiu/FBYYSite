@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from FileUpload import views as fuview
 from SiteLogin import views as slview
 
@@ -22,4 +22,13 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('fbyysite/fileupload',fuview.upload),
     path('fbyysite/login',slview.login),
+    path('fbyysite/registe',slview.registe),
+    re_path(r'fbyysite/registe/ajaxstores?[^/]+',slview.registe_ajax_store),
+    path('fbyysite/index',slview.requires_login(slview.index)),
+    path('fbyysite/about',slview.requires_login(slview.about)),
+    re_path(r'fbyysite/active/(.*)',slview.activeaccount),
+    re_path(r'fbyysite/jump/(.*)',slview.tmpjump),
+    path('fbyysite/index/left',slview.index_left),
+    path('fbyysite/index/content',slview.index_content),
+    path('fbyysite/index/usermanage',slview.index_content),
 ]

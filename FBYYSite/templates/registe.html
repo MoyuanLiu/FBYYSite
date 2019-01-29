@@ -1,28 +1,107 @@
-{% extends "base.html" %}
+{% extends "base_login.html" %}
 
 {% block title %}注册用户{% endblock %}
+{% block script %}
+<script>
+var depart_code = $("#seldepart").val();
+if(depart_code===''){
 
-{% block content %}
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>亦优贸易数据管理系统</h1>
-</div>
+}else{
+      $.ajax({
+        url: 'registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var content='<option value='+'>非店铺</option>';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#selstore').html(content)
+        },
+      });
+}
+</script>
+{% endblock %}
+
+{% block main %}
 <div class="container" style="margin-top:100px; width:40em;">
-  <form action="">
+    {% if form.errors %}
+        <p class="text-danger">
+            请修改以下标出的错误
+        </p>
+    {% endif %}
+  <form action="" method="post">
+    {% csrf_token %}
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email">
+      {{ form.username.errors }}
+      <label for="username">用户名:</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="请输入真实姓名">
     </div>
     <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+      {{ form.usernickname.errors }}
+      <label for="usernickname">用户花名:</label>
+      <input type="text" class="form-control" id="usernickname" name="usernickname" placeholder="请输入公司内部花名">
     </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox"> Remember me
-      </label>
+    <div class="form-group">
+      {{ form.pwd.errors }}
+      <label for="pwd">密码:</label>
+      <input type="password" class="form-control" id="pwd" name="pwd" placeholder="请输入密码">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="registe.html" class="btn btn-secondary">Registe new account</a>
+    <div class="form-group">
+      {{ form.confirmpwd.errors }}
+      <label for="confirmpwd">确认密码:</label>
+      <input type="password" class="form-control" id="confirmpwd" name="confirmpwd" placeholder="请再次输入密码">
+    </div>
+    <div class="form-group">
+      {{ form.email.errors }}
+      <label for="email">邮箱:</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱">
+    </div>
+    <div class="form-group">
+      {{ form.seldepart.errors }}
+      <label for="seldepart">所在部门:</label>
+      <select class="form-control" id="seldepart" name="seldepart">
+        <option value=''>请选择部门</option>
+        {% for department in departments %}
+        <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      {{ form.selstore.errors }}
+      <label for="selstore">所在店铺:</label>
+      <select class="form-control" id="selstore" name="selstore">
+      </select>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
   </form>
+  <script>
+  $(.errorlist).addClass("list-group")
+  $(.errorlist li).addClass("list-group-item-danger")
+$("#seldepart").change(function() {
+      var depart_code = $(this).val();
+      $.ajax({
+        url: 'registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var content='<option value='+'Other'+'>非店铺</option>';
+                  content+='<option value='+'All'+'>全店铺'+'</option>'
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#selstore').html(content)
+        },
+
+      });
+    });
+
+</script>
 </div>
 {% endblock %}

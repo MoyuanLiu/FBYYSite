@@ -1,0 +1,1754 @@
+2019-01-26 10:02:37,765 [Thread-5:508] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 19, in login
+    if logincheck(a,p):
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 11, in logincheck
+    user = TbUserInfo.objects.get_password_by_account(account)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 6, in get_password_by_account
+    return self.get(tb_user_info_email=account)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 399, in get
+    self.model._meta.object_name
+SiteLogin.models.TbUserInfo.DoesNotExist: TbUserInfo matching query does not exist.
+2019-01-26 10:08:38,329 [Thread-5:11416] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 19, in login
+    if logincheck(a,p):
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 11, in logincheck
+    user = TbUserInfo.objects.get_password_by_account(account)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 6, in get_password_by_account
+    return self.get(tb_user_info_email=account)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 399, in get
+    self.model._meta.object_name
+SiteLogin.models.TbUserInfo.DoesNotExist: TbUserInfo matching query does not exist.
+2019-01-26 10:15:42,130 [Thread-2:13460] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 20, in login
+    if logincheck(a,p):
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 11, in logincheck
+    user = TbUserInfo.objects.get_password_by_account(account)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 6, in get_password_by_account
+    return self.get(tb_user_info_email=account)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 399, in get
+    self.model._meta.object_name
+SiteLogin.models.TbUserInfo.DoesNotExist: TbUserInfo matching query does not exist.
+2019-01-26 10:15:42,130 [Thread-2:13460] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 20, in login
+    if logincheck(a,p):
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 11, in logincheck
+    user = TbUserInfo.objects.get_password_by_account(account)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 6, in get_password_by_account
+    return self.get(tb_user_info_email=account)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 399, in get
+    self.model._meta.object_name
+SiteLogin.models.TbUserInfo.DoesNotExist: TbUserInfo matching query does not exist.
+2019-01-26 10:15:42,148 [Thread-2:13460] [django.server:124] [basehttp:log_message] [ERROR]- "POST /fbyysite/login HTTP/1.1" 500 83103
+2019-01-26 10:20:32,002 [Thread-2:6080] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1567
+2019-01-26 10:20:40,837 [Thread-3:5192] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 22, in login
+    if logincheck(a,p):
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 11, in logincheck
+    user = TbUserInfo.objects.get_password_by_account(account)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 6, in get_password_by_account
+    return self.get(tb_user_info_email=account)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 399, in get
+    self.model._meta.object_name
+SiteLogin.models.TbUserInfo.DoesNotExist: TbUserInfo matching query does not exist.
+2019-01-26 10:20:40,837 [Thread-3:5192] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 22, in login
+    if logincheck(a,p):
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 11, in logincheck
+    user = TbUserInfo.objects.get_password_by_account(account)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 6, in get_password_by_account
+    return self.get(tb_user_info_email=account)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 399, in get
+    self.model._meta.object_name
+SiteLogin.models.TbUserInfo.DoesNotExist: TbUserInfo matching query does not exist.
+2019-01-26 10:20:40,851 [Thread-3:5192] [django.server:124] [basehttp:log_message] [ERROR]- "POST /fbyysite/login HTTP/1.1" 500 83283
+2019-01-26 10:32:45,294 [Thread-2:3604] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1567
+2019-01-26 10:32:55,762 [Thread-4:4916] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 200 1567
+2019-01-26 10:33:58,592 [Thread-2:7252] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 200 1577
+2019-01-26 10:34:59,364 [Thread-4:6252] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1588
+2019-01-26 10:35:14,519 [Thread-7:5820] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 200 1588
+2019-01-26 10:37:24,167 [Thread-2:13436] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 13, in login
+    for key in request.Post:
+AttributeError: 'WSGIRequest' object has no attribute 'Post'
+2019-01-26 10:37:24,167 [Thread-2:13436] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 13, in login
+    for key in request.Post:
+AttributeError: 'WSGIRequest' object has no attribute 'Post'
+2019-01-26 10:37:24,182 [Thread-2:13436] [django.server:124] [basehttp:log_message] [ERROR]- "POST /fbyysite/login HTTP/1.1" 500 66937
+2019-01-26 10:37:56,719 [Thread-2:10852] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1588
+2019-01-26 10:38:12,937 [Thread-4:1844] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 200 1588
+2019-01-26 10:48:48,091 [Thread-2:10212] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 200 1612
+2019-01-26 10:51:56,443 [Thread-2:9264] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-26 10:51:56,460 [Thread-3:12800] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 302 0
+2019-01-26 10:51:56,494 [Thread-4:13192] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1614
+2019-01-26 10:52:01,644 [Thread-5:10192] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-26 10:52:01,659 [Thread-6:8100] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 302 0
+2019-01-26 10:52:01,677 [Thread-7:6984] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1614
+2019-01-26 11:05:10,116 [Thread-2:7052] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1608
+2019-01-26 11:05:18,396 [Thread-3:13276] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-26 11:05:18,425 [Thread-4:9736] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 302 0
+2019-01-26 11:05:18,443 [Thread-5:12124] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1608
+2019-01-26 11:09:28,405 [Thread-2:14296] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1608
+2019-01-26 11:09:35,457 [Thread-3:13280] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-26 11:09:35,498 [Thread-4:6176] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1357
+2019-01-26 11:12:08,471 [Thread-5:9276] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 302 0
+2019-01-26 11:12:08,481 [Thread-6:6800] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1608
+2019-01-26 11:14:15,634 [Thread-2:2216] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2284
+2019-01-26 14:34:44,371 [Thread-2:11844] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 30, in registe
+    departmentlist = registedepartments()
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 21, in registedepartments
+    departments = TbDepartmentInfo.objects.get_all_departments()
+AttributeError: 'Manager' object has no attribute 'get_all_departments'
+2019-01-26 14:34:44,371 [Thread-2:11844] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 30, in registe
+    departmentlist = registedepartments()
+  File "D:\GitHub\project\FBYYSite\SiteLogin\login_controller.py", line 21, in registedepartments
+    departments = TbDepartmentInfo.objects.get_all_departments()
+AttributeError: 'Manager' object has no attribute 'get_all_departments'
+2019-01-26 14:34:44,375 [Thread-2:11844] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe HTTP/1.1" 500 68668
+2019-01-26 14:35:25,333 [Thread-2:6864] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 31, in registe
+    return render(request,"registe.html",departments=departmentlist)
+TypeError: render() got an unexpected keyword argument 'departments'
+2019-01-26 14:35:25,333 [Thread-2:6864] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 31, in registe
+    return render(request,"registe.html",departments=departmentlist)
+TypeError: render() got an unexpected keyword argument 'departments'
+2019-01-26 14:35:25,347 [Thread-2:6864] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe HTTP/1.1" 500 66755
+2019-01-26 14:38:23,610 [Thread-2:1300] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 31, in registe
+    return render(request,"registe.html",departmentlist)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 59, in render
+    context = make_context(context, request, autoescape=self.backend.engine.autoescape)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\context.py", line 270, in make_context
+    raise TypeError('context must be a dict rather than %s.' % context.__class__.__name__)
+TypeError: context must be a dict rather than list.
+2019-01-26 14:38:23,610 [Thread-2:1300] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 31, in registe
+    return render(request,"registe.html",departmentlist)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 59, in render
+    context = make_context(context, request, autoescape=self.backend.engine.autoescape)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\context.py", line 270, in make_context
+    raise TypeError('context must be a dict rather than %s.' % context.__class__.__name__)
+TypeError: context must be a dict rather than list.
+2019-01-26 14:38:23,617 [Thread-2:1300] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe HTTP/1.1" 500 83892
+2019-01-26 14:39:40,179 [Thread-2:13884] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2921
+2019-01-26 14:43:36,675 [Thread-4:11732] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2856
+2019-01-26 15:09:04,372 [Thread-2:9696] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2807
+2019-01-26 15:11:46,728 [Thread-4:12456] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2835
+2019-01-26 15:16:31,004 [Thread-6:1944] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3507
+2019-01-26 15:16:35,416 [Thread-7:3616] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/fbyysite/registe/ajaxstores
+2019-01-26 15:16:35,416 [Thread-7:3616] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/fbyysite/registe/ajaxstores
+2019-01-26 15:16:35,420 [Thread-7:3616] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2662
+2019-01-26 15:25:23,739 [Thread-8:11180] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 33, in registe
+    return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 266, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 534, in invalid_block_tag
+    "or load this tag?" % (token.lineno, command)
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'endblock'. Did you forget to register or load this tag?
+2019-01-26 15:25:23,739 [Thread-8:11180] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 33, in registe
+    return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 266, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 534, in invalid_block_tag
+    "or load this tag?" % (token.lineno, command)
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'endblock'. Did you forget to register or load this tag?
+2019-01-26 15:25:23,758 [Thread-8:11180] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe HTTP/1.1" 500 146424
+2019-01-26 15:25:43,531 [Thread-10:10416] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2799
+2019-01-26 15:25:46,315 [Thread-11:11960] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-26 15:25:46,315 [Thread-11:11960] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-26 15:25:46,319 [Thread-11:11960] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 15282
+2019-01-26 15:28:05,014 [Thread-2:3936] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2799
+2019-01-26 15:28:06,841 [Thread-3:5784] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:28:06,841 [Thread-3:5784] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:28:06,843 [Thread-3:5784] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2642
+2019-01-26 15:28:54,519 [Thread-2:5412] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2799
+2019-01-26 15:28:56,873 [Thread-3:10936] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:28:56,873 [Thread-3:10936] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:28:56,876 [Thread-3:10936] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2642
+2019-01-26 15:29:08,551 [Thread-4:8420] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:29:08,551 [Thread-4:8420] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:29:08,553 [Thread-4:8420] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2642
+2019-01-26 15:32:18,266 [Thread-2:5088] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2799
+2019-01-26 15:32:20,942 [Thread-3:11956] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:32:20,942 [Thread-3:11956] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:32:20,945 [Thread-3:11956] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2642
+2019-01-26 15:32:32,654 [Thread-4:6240] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:32:32,654 [Thread-4:6240] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:32:32,670 [Thread-4:6240] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2642
+2019-01-26 15:33:13,034 [Thread-2:4940] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:33:13,034 [Thread-2:4940] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/registe/ajaxstores
+2019-01-26 15:33:13,042 [Thread-2:4940] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 404 2640
+2019-01-26 15:37:41,819 [Thread-2:10524] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 39, in registe_ajax_store
+    data = registestorebydepartment(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 9, in registestorebydepartment
+    stores = TbStoreInfo.objects.get_all_stores_by_dapart(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 41, in get_all_stores_by_dapart
+    return list(self.get(tb_store_info_department_code=dapartmentcode))
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 403, in get
+    (self.model._meta.object_name, num)
+SiteLogin.models.TbStoreInfo.MultipleObjectsReturned: get() returned more than one TbStoreInfo -- it returned 11!
+2019-01-26 15:37:41,819 [Thread-2:10524] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 39, in registe_ajax_store
+    data = registestorebydepartment(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 9, in registestorebydepartment
+    stores = TbStoreInfo.objects.get_all_stores_by_dapart(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 41, in get_all_stores_by_dapart
+    return list(self.get(tb_store_info_department_code=dapartmentcode))
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 403, in get
+    (self.model._meta.object_name, num)
+SiteLogin.models.TbStoreInfo.MultipleObjectsReturned: get() returned more than one TbStoreInfo -- it returned 11!
+2019-01-26 15:37:41,830 [Thread-2:10524] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 83661
+2019-01-26 15:43:00,414 [Thread-2:2676] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2799
+2019-01-26 15:43:02,165 [Thread-3:12336] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 39, in registe_ajax_store
+    data = registestorebydepartment(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 9, in registestorebydepartment
+    stores = TbStoreInfo.objects.get_all_stores_by_dapart(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 41, in get_all_stores_by_dapart
+    return list(self.objects.get(tb_store_info_department_code=dapartmentcode))
+AttributeError: 'TbStoreInfoManager' object has no attribute 'objects'
+2019-01-26 15:43:02,165 [Thread-3:12336] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 39, in registe_ajax_store
+    data = registestorebydepartment(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 9, in registestorebydepartment
+    stores = TbStoreInfo.objects.get_all_stores_by_dapart(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 41, in get_all_stores_by_dapart
+    return list(self.objects.get(tb_store_info_department_code=dapartmentcode))
+AttributeError: 'TbStoreInfoManager' object has no attribute 'objects'
+2019-01-26 15:43:02,172 [Thread-3:12336] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 15908
+2019-01-26 15:43:20,028 [Thread-4:11356] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 39, in registe_ajax_store
+    data = registestorebydepartment(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 9, in registestorebydepartment
+    stores = TbStoreInfo.objects.get_all_stores_by_dapart(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 41, in get_all_stores_by_dapart
+    return list(self.objects.get(tb_store_info_department_code=dapartmentcode))
+AttributeError: 'TbStoreInfoManager' object has no attribute 'objects'
+2019-01-26 15:43:20,028 [Thread-4:11356] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 39, in registe_ajax_store
+    data = registestorebydepartment(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 9, in registestorebydepartment
+    stores = TbStoreInfo.objects.get_all_stores_by_dapart(departcode)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 41, in get_all_stores_by_dapart
+    return list(self.objects.get(tb_store_info_department_code=dapartmentcode))
+AttributeError: 'TbStoreInfoManager' object has no attribute 'objects'
+2019-01-26 15:43:20,039 [Thread-4:11356] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 73751
+2019-01-26 15:44:26,056 [Thread-2:8100] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 40, in registe_ajax_store
+    return JsonResponse(data, safe=False)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\http\response.py", line 558, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\serializers\json.py", line 104, in default
+    return super().default(o)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type TbStoreInfo is not JSON serializable
+2019-01-26 15:44:26,056 [Thread-2:8100] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 40, in registe_ajax_store
+    return JsonResponse(data, safe=False)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\http\response.py", line 558, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\serializers\json.py", line 104, in default
+    return super().default(o)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type TbStoreInfo is not JSON serializable
+2019-01-26 15:44:26,067 [Thread-2:8100] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 95832
+2019-01-26 15:48:11,430 [Thread-2:9844] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 41, in registe_ajax_store
+    return JsonResponse(datadict, safe=False)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\http\response.py", line 558, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\serializers\json.py", line 104, in default
+    return super().default(o)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type TbStoreInfo is not JSON serializable
+2019-01-26 15:48:11,430 [Thread-2:9844] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 41, in registe_ajax_store
+    return JsonResponse(datadict, safe=False)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\http\response.py", line 558, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\serializers\json.py", line 104, in default
+    return super().default(o)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type TbStoreInfo is not JSON serializable
+2019-01-26 15:48:11,446 [Thread-2:9844] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 97904
+2019-01-26 16:18:11,663 [Thread-2:12532] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 484
+2019-01-26 16:18:31,913 [Thread-4:10468] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2781
+2019-01-26 16:18:33,287 [Thread-5:6804] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 484
+2019-01-26 16:19:21,276 [Thread-6:8368] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2780
+2019-01-26 16:19:48,370 [Thread-8:1652] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 484
+2019-01-26 16:20:51,857 [Thread-2:13688] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 472
+2019-01-26 16:20:58,945 [Thread-3:5768] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2780
+2019-01-26 16:21:57,184 [Thread-5:11880] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2780
+2019-01-26 16:21:58,937 [Thread-6:156] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 472
+2019-01-26 16:24:05,283 [Thread-7:13228] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2776
+2019-01-26 16:24:06,698 [Thread-8:9680] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 472
+2019-01-26 16:32:38,620 [Thread-2:744] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 41, in registe_ajax_store
+    result = json.dumps(data)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type QuerySet is not JSON serializable
+2019-01-26 16:32:38,620 [Thread-2:744] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 41, in registe_ajax_store
+    result = json.dumps(data)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type QuerySet is not JSON serializable
+2019-01-26 16:32:38,629 [Thread-2:744] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 500 88208
+2019-01-26 16:39:44,255 [Thread-2:8472] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 16:40:50,881 [Thread-4:5288] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2812
+2019-01-26 16:40:52,186 [Thread-5:11120] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 16:49:34,045 [Thread-6:12248] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 75, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'select'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 34, in registe
+    return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 86, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'select' is not a registered namespace
+2019-01-26 16:49:34,045 [Thread-6:12248] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 75, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'select'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 34, in registe
+    return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 86, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'select' is not a registered namespace
+2019-01-26 16:49:34,070 [Thread-6:12248] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe HTTP/1.1" 500 187011
+2019-01-26 16:50:58,834 [Thread-8:6924] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 75, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'select'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 34, in registe
+    return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 86, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'select' is not a registered namespace
+2019-01-26 16:50:58,834 [Thread-8:6924] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 75, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'select'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 34, in registe
+    return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\urls\base.py", line 86, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'select' is not a registered namespace
+2019-01-26 16:50:58,854 [Thread-8:6924] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe HTTP/1.1" 500 186875
+2019-01-26 16:53:22,547 [Thread-10:6620] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 17:02:29,213 [Thread-12:14184] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2811
+2019-01-26 17:02:31,707 [Thread-13:4276] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 17:06:08,170 [Thread-14:7392] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2789
+2019-01-26 17:06:09,699 [Thread-15:8024] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 17:07:56,959 [Thread-16:5584] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2802
+2019-01-26 17:07:58,887 [Thread-17:8384] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 17:09:01,665 [Thread-18:4492] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-26 17:09:05,652 [Thread-19:6804] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 17:09:43,770 [Thread-20:5084] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-26 17:09:45,254 [Thread-21:12124] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-26 17:24:55,043 [Thread-22:4836] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:39:51,484 [Thread-2:9684] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1605
+2019-01-27 10:39:53,106 [Thread-3:5812] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-27 10:39:53,106 [Thread-3:5812] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-27 10:39:53,112 [Thread-3:5812] [django.server:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 2578
+2019-01-27 10:39:57,209 [Thread-4:7300] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:40:23,345 [Thread-6:12128] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:40:33,033 [Thread-7:14036] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 41, in registe
+    form = RegisteForm(request.POST)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\forms\models.py", line 285, in __init__
+    raise ValueError('ModelForm has no model class specified.')
+ValueError: ModelForm has no model class specified.
+2019-01-27 10:40:33,033 [Thread-7:14036] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 41, in registe
+    form = RegisteForm(request.POST)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\forms\models.py", line 285, in __init__
+    raise ValueError('ModelForm has no model class specified.')
+ValueError: ModelForm has no model class specified.
+2019-01-27 10:40:33,044 [Thread-7:14036] [django.server:124] [basehttp:log_message] [ERROR]- "POST /fbyysite/registe HTTP/1.1" 500 73557
+2019-01-27 10:43:12,237 [Thread-2:600] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=%E6%97%A0 HTTP/1.1" 200 4
+2019-01-27 10:43:13,370 [Thread-3:3828] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:43:18,574 [Thread-4:6732] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe didn't return an HttpResponse object. It returned None instead.
+2019-01-27 10:43:18,574 [Thread-4:6732] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe didn't return an HttpResponse object. It returned None instead.
+2019-01-27 10:43:18,587 [Thread-4:6732] [django.server:124] [basehttp:log_message] [ERROR]- "POST /fbyysite/registe HTTP/1.1" 500 58280
+2019-01-27 10:45:21,931 [Thread-4:2328] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=%E6%97%A0 HTTP/1.1" 200 4
+2019-01-27 10:45:23,210 [Thread-5:7028] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:45:33,530 [Thread-6:8448] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 10:47:59,654 [Thread-2:984] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:48:04,433 [Thread-3:9392] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=%E6%97%A0 HTTP/1.1" 200 4
+2019-01-27 10:48:05,222 [Thread-4:3632] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:48:06,328 [Thread-5:5784] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 10:53:13,930 [Thread-2:8976] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:53:25,794 [Thread-4:10160] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=%E6%97%A0 HTTP/1.1" 200 4
+2019-01-27 10:53:26,676 [Thread-5:2208] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:53:29,694 [Thread-6:13544] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 10:53:52,034 [Thread-8:13648] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:54:07,440 [Thread-10:11508] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=%E6%97%A0 HTTP/1.1" 200 4
+2019-01-27 10:54:09,470 [Thread-11:8736] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:54:11,230 [Thread-12:10536] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 10:57:20,599 [Thread-14:11256] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:57:29,108 [Thread-15:1292] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:58:00,868 [Thread-17:11528] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=%E6%97%A0 HTTP/1.1" 200 4
+2019-01-27 10:58:00,870 [Thread-16:11152] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 10:58:32,870 [Thread-18:1008] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:58:51,104 [Thread-2:12464] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 10:59:27,683 [Thread-4:9696] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 10:59:30,003 [Thread-5:13344] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 11:01:12,210 [Thread-2:11296] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 11:01:21,003 [Thread-3:10632] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 11:01:52,913 [Thread-2:12460] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 11:02:24,554 [Thread-4:12344] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 2824
+2019-01-27 11:02:32,723 [Thread-5:5772] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 11:03:05,772 [Thread-2:2352] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 11:32:45,322 [Thread-2:5024] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 3543
+2019-01-27 13:33:34,468 [Thread-4:9580] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3083
+2019-01-27 13:35:02,359 [Thread-6:12284] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 3544
+2019-01-27 13:44:45,321 [Thread-8:13980] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3101
+2019-01-27 13:45:10,453 [Thread-10:1148] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 13:45:20,909 [Thread-11:12144] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 3562
+2019-01-27 13:47:09,818 [Thread-2:11112] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3101
+2019-01-27 13:47:18,514 [Thread-3:5808] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-27 13:47:18,514 [Thread-3:5808] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-27 13:47:19,492 [Thread-4:6200] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 13:48:07,982 [Thread-3:5808] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-27 13:48:08,053 [Thread-3:5808] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 59
+2019-01-27 13:48:38,731 [Thread-2:12588] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 3562
+2019-01-27 13:52:18,796 [Thread-4:12580] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1605
+2019-01-27 13:52:39,525 [Thread-7:11392] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-27 13:52:39,552 [Thread-8:13040] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1362
+2019-01-27 14:08:42,534 [Thread-9:4156] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3489
+2019-01-27 14:09:01,499 [Thread-12:10000] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 14:09:04,638 [Thread-13:9220] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 51, in registe
+    send_mail('注册激活邮件','以下是用户激活邮件，如非本人操作，请忽略。',settings.DEFAULT_FROM_EMAIL,cd['email'],fail_silently=False,html_message=msg)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\mail\__init__.py", line 56, in send_mail
+    mail = EmailMultiAlternatives(subject, message, from_email, recipient_list, connection=connection)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\mail\message.py", line 432, in __init__
+    headers, cc, reply_to,
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\mail\message.py", line 210, in __init__
+    raise TypeError('"to" argument must be a list or tuple')
+TypeError: "to" argument must be a list or tuple
+2019-01-27 14:09:04,638 [Thread-13:9220] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 51, in registe
+    send_mail('注册激活邮件','以下是用户激活邮件，如非本人操作，请忽略。',settings.DEFAULT_FROM_EMAIL,cd['email'],fail_silently=False,html_message=msg)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\mail\__init__.py", line 56, in send_mail
+    mail = EmailMultiAlternatives(subject, message, from_email, recipient_list, connection=connection)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\mail\message.py", line 432, in __init__
+    headers, cc, reply_to,
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\mail\message.py", line 210, in __init__
+    raise TypeError('"to" argument must be a list or tuple')
+TypeError: "to" argument must be a list or tuple
+2019-01-27 14:09:04,651 [Thread-13:9220] [django.server:124] [basehttp:log_message] [ERROR]- "POST /fbyysite/registe HTTP/1.1" 500 86648
+2019-01-27 14:15:00,146 [Thread-2:6568] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-27 14:15:00,146 [Thread-2:6568] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-27 14:15:00,154 [Thread-2:6568] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-27 14:15:01,685 [Thread-3:10340] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 14:15:05,131 [Thread-4:12776] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 3655
+2019-01-27 14:16:34,805 [Thread-2:11548] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3489
+2019-01-27 14:16:48,923 [Thread-5:13288] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-27 14:16:53,191 [Thread-6:7908] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-27 16:48:36,461 [Thread-2:3732] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1605
+2019-01-27 16:48:41,319 [Thread-3:3164] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 3489
+2019-01-28 09:36:40,392 [Thread-2:12800] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1610
+2019-01-28 09:36:50,447 [Thread-4:13284] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 4153
+2019-01-28 09:36:50,738 [Thread-5:1200] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-28 09:36:50,738 [Thread-5:1200] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-28 09:36:50,745 [Thread-5:1200] [django.server:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 2814
+2019-01-28 09:37:24,225 [Thread-6:9284] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 4172
+2019-01-28 09:37:24,305 [Thread-7:6388] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 09:37:24,305 [Thread-7:6388] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 09:37:24,311 [Thread-7:6388] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 09:37:28,109 [Thread-8:3496] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 09:37:53,217 [Thread-9:11696] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 09:38:07,251 [Thread-11:596] [django.request:228] [log:log_response] [WARNING]- Not Found: /active/537624cc-229d-11e9-a071-00e0701c9371
+2019-01-28 09:38:07,251 [Thread-11:596] [django.request:228] [log:log_response] [WARNING]- Not Found: /active/537624cc-229d-11e9-a071-00e0701c9371
+2019-01-28 09:38:07,258 [Thread-11:596] [django.server:124] [basehttp:log_message] [WARNING]- "GET /active/537624cc-229d-11e9-a071-00e0701c9371 HTTP/1.1" 404 2910
+2019-01-28 09:38:07,282 [Thread-12:12216] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-28 09:38:07,282 [Thread-12:12216] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-28 09:38:07,296 [Thread-12:12216] [django.server:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 2814
+2019-01-28 09:39:05,180 [Thread-2:10340] [django.request:228] [log:log_response] [WARNING]- Not Found: /active/537624cc-229d-11e9-a071-00e0701c9371
+2019-01-28 09:39:05,180 [Thread-2:10340] [django.request:228] [log:log_response] [WARNING]- Not Found: /active/537624cc-229d-11e9-a071-00e0701c9371
+2019-01-28 09:39:05,182 [Thread-2:10340] [django.server:124] [basehttp:log_message] [WARNING]- "GET /active/537624cc-229d-11e9-a071-00e0701c9371 HTTP/1.1" 404 2907
+2019-01-28 09:40:03,620 [Thread-2:224] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 4172
+2019-01-28 09:40:09,164 [Thread-3:10484] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 09:40:09,164 [Thread-3:10484] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 09:40:09,167 [Thread-3:10484] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-28 09:40:13,586 [Thread-4:13088] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 09:40:21,385 [Thread-5:7276] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4386
+2019-01-28 09:40:21,434 [Thread-6:8924] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 09:40:21,434 [Thread-6:8924] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 09:40:21,436 [Thread-6:8924] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 09:40:38,114 [Thread-7:11896] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 09:40:42,366 [Thread-8:9500] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 09:40:49,045 [Thread-10:10728] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/b84737cc-229d-11e9-ba8c-00e0701c9371
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 92, in activeaccount
+    registe_active_account(formdata)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 13, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['username'])
+TypeError: create_new_user() missing 8 required positional arguments: 'email', 'pwd', 'departcode', 'storecode', 'isactive', 'issuperuser', 'last_login', and 'datejoined'
+2019-01-28 09:40:49,045 [Thread-10:10728] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/b84737cc-229d-11e9-ba8c-00e0701c9371
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 92, in activeaccount
+    registe_active_account(formdata)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 13, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['username'])
+TypeError: create_new_user() missing 8 required positional arguments: 'email', 'pwd', 'departcode', 'storecode', 'isactive', 'issuperuser', 'last_login', and 'datejoined'
+2019-01-28 09:40:49,050 [Thread-10:10728] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/active/b84737cc-229d-11e9-ba8c-00e0701c9371 HTTP/1.1" 500 70478
+2019-01-28 10:31:15,594 [Thread-4:12092] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:31:15,594 [Thread-4:12092] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:31:15,600 [Thread-4:12092] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-28 10:31:16,845 [Thread-5:14232] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:31:23,644 [Thread-6:1300] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 10:32:41,655 [Thread-8:8316] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/active/cd2ed954-22a4-11e9-b0fa-00e0701c9371 HTTP/1.1" 302 0
+2019-01-28 10:32:41,710 [Thread-9:8900] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/jump
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: tmpjump() missing 1 required positional argument: 'argdict'
+2019-01-28 10:32:41,710 [Thread-9:8900] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/jump
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: tmpjump() missing 1 required positional argument: 'argdict'
+2019-01-28 10:32:41,719 [Thread-9:8900] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/jump HTTP/1.1" 500 62875
+2019-01-28 10:38:13,888 [Thread-4:13892] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:38:13,888 [Thread-4:13892] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:38:13,892 [Thread-4:13892] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-28 10:38:15,191 [Thread-5:8240] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:38:17,107 [Thread-6:6112] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4336
+2019-01-28 10:38:17,172 [Thread-7:13012] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:38:17,172 [Thread-7:13012] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:38:17,175 [Thread-7:13012] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 10:38:22,855 [Thread-8:1444] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:38:33,248 [Thread-9:11560] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4445
+2019-01-28 10:38:33,307 [Thread-10:9752] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:38:33,307 [Thread-10:9752] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:38:33,310 [Thread-10:9752] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 10:38:52,201 [Thread-11:13168] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:38:56,608 [Thread-12:11524] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 10:39:04,583 [Thread-14:7372] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/dae35802-22a5-11e9-a51b-00e0701c9371
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 198, in execute
+    res = self._query(query)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 304, in _query
+    db.query(q)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\connections.py", line 217, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '384848522@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 92, in activeaccount
+    registe_active_account(formdata)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 198, in execute
+    res = self._query(query)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 304, in _query
+    db.query(q)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\connections.py", line 217, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '384848522@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-28 10:39:04,583 [Thread-14:7372] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/dae35802-22a5-11e9-a51b-00e0701c9371
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 198, in execute
+    res = self._query(query)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 304, in _query
+    db.query(q)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\connections.py", line 217, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '384848522@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 92, in activeaccount
+    registe_active_account(formdata)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 198, in execute
+    res = self._query(query)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\cursors.py", line 304, in _query
+    db.query(q)
+  File "C:\Users\yymy\AppData\Roaming\Python\Python37\site-packages\MySQLdb\connections.py", line 217, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '384848522@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-28 10:39:04,597 [Thread-14:7372] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/active/dae35802-22a5-11e9-a51b-00e0701c9371 HTTP/1.1" 500 197457
+2019-01-28 10:42:11,606 [Thread-17:2352] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:42:11,606 [Thread-17:2352] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:42:11,608 [Thread-17:2352] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-28 10:42:12,496 [Thread-18:6568] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:42:15,966 [Thread-19:4076] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4326
+2019-01-28 10:42:16,022 [Thread-20:10652] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:42:16,022 [Thread-20:10652] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:42:16,025 [Thread-20:10652] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 10:42:32,998 [Thread-21:10556] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:42:36,767 [Thread-22:12004] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4336
+2019-01-28 10:42:36,821 [Thread-23:13828] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:42:36,821 [Thread-23:13828] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 10:42:36,824 [Thread-23:13828] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 10:42:57,874 [Thread-24:5280] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 10:43:03,774 [Thread-25:13000] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 10:43:32,142 [Thread-27:11244] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/active/6e61f38c-22a6-11e9-ab22-00e0701c9371 HTTP/1.1" 302 0
+2019-01-28 10:43:32,157 [Thread-28:972] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump HTTP/1.1" 200 748
+2019-01-28 10:43:47,854 [Thread-29:8164] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/class="btn
+2019-01-28 10:43:47,854 [Thread-29:8164] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/class="btn
+2019-01-28 10:43:47,856 [Thread-29:8164] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/class=%22btn HTTP/1.1" 404 2849
+2019-01-28 11:04:50,995 [Thread-4:6764] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:04:50,995 [Thread-4:6764] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:04:50,998 [Thread-4:6764] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-28 11:04:53,888 [Thread-5:6620] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 11:04:57,412 [Thread-6:576] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4336
+2019-01-28 11:04:57,476 [Thread-7:3548] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:04:57,476 [Thread-7:3548] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:04:57,478 [Thread-7:3548] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15262
+2019-01-28 11:05:07,404 [Thread-8:12956] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 4713
+2019-01-28 11:05:07,466 [Thread-9:1272] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:05:07,466 [Thread-9:1272] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:05:07,470 [Thread-9:1272] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 11:05:32,249 [Thread-10:13032] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 11:05:36,969 [Thread-11:12648] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 11:06:07,942 [Thread-13:7648] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/active/94fea6b6-22a9-11e9-9319-00e0701c9371 HTTP/1.1" 302 0
+2019-01-28 11:06:07,954 [Thread-14:7308] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:06:07,954 [Thread-14:7308] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:06:07,955 [Thread-14:7308] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/jump/success HTTP/1.1" 404 2841
+2019-01-28 11:06:25,685 [Thread-2:11440] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:06:25,685 [Thread-2:11440] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:06:25,688 [Thread-2:11440] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/jump/success HTTP/1.1" 404 2846
+2019-01-28 11:06:59,407 [Thread-4:11744] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:06:59,407 [Thread-4:11744] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:06:59,409 [Thread-4:11744] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/jump/success HTTP/1.1" 404 2846
+2019-01-28 11:07:00,283 [Thread-5:11328] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:07:00,283 [Thread-5:11328] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/jump/success
+2019-01-28 11:07:00,284 [Thread-5:11328] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/jump/success HTTP/1.1" 404 2846
+2019-01-28 11:07:29,897 [Thread-2:13472] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:07:35,032 [Thread-3:12276] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:07:40,110 [Thread-4:12896] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:07:45,168 [Thread-5:6716] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:07:50,236 [Thread-6:12044] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:07:55,295 [Thread-7:11172] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:00,337 [Thread-8:4924] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:05,389 [Thread-9:12792] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:10,459 [Thread-10:7780] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:15,507 [Thread-11:9060] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:20,558 [Thread-12:9556] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:25,663 [Thread-13:14044] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:30,781 [Thread-14:11388] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:35,901 [Thread-15:8652] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:41,004 [Thread-16:8696] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:46,141 [Thread-17:12876] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:51,248 [Thread-18:7528] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:56,375 [Thread-19:13112] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 802
+2019-01-28 11:08:57,367 [Thread-20:8308] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/jump/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.tmpjump didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:08:57,367 [Thread-20:8308] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/jump/login
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.tmpjump didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:08:57,371 [Thread-20:8308] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/jump/login HTTP/1.1" 500 57679
+2019-01-28 11:26:47,890 [Thread-4:5124] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:26:47,890 [Thread-4:5124] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:26:47,894 [Thread-4:5124] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores?depart_code= HTTP/1.1" 500 15291
+2019-01-28 11:26:48,960 [Thread-5:12760] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 11:27:06,301 [Thread-6:9524] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe HTTP/1.1" 200 4255
+2019-01-28 11:27:06,396 [Thread-7:1252] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:27:06,396 [Thread-7:1252] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-28 11:27:06,403 [Thread-7:1252] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/registe/ajaxstores HTTP/1.1" 500 15261
+2019-01-28 11:27:23,974 [Thread-8:11968] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/registe/ajaxstores?depart_code=FB HTTP/1.1" 200 2175
+2019-01-28 11:27:56,653 [Thread-9:4532] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/registe HTTP/1.1" 200 30
+2019-01-28 11:28:08,083 [Thread-11:8412] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/active/b37cf288-22ac-11e9-802c-00e0701c9371 HTTP/1.1" 302 0
+2019-01-28 11:28:08,101 [Thread-12:10192] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/jump/success HTTP/1.1" 200 820
+2019-01-28 11:28:11,276 [Thread-13:13616] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1610
+2019-01-28 11:28:21,580 [Thread-15:5372] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-28 11:28:21,609 [Thread-16:3864] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1367
+2019-01-28 13:34:23,110 [Thread-17:10816] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/about HTTP/1.1" 200 1331
+2019-01-28 14:12:42,344 [Thread-2:1560] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1365
+2019-01-28 14:12:52,783 [Thread-4:7116] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1610
+2019-01-28 14:13:04,090 [Thread-7:7852] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-28 14:13:04,122 [Thread-8:8796] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1365
+2019-01-28 14:16:50,729 [Thread-2:5532] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1610
+2019-01-28 14:17:00,586 [Thread-3:224] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-28 14:17:00,611 [Thread-4:3412] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1365
+2019-01-28 14:17:19,430 [Thread-5:3764] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1610
+2019-01-28 15:03:57,071 [Thread-2:11912] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1695
+2019-01-28 15:10:17,544 [Thread-4:4156] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1712
+2019-01-28 15:12:30,732 [Thread-6:2920] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1715
+2019-01-28 15:13:21,364 [Thread-8:9972] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1744
+2019-01-28 15:19:10,660 [Thread-10:13264] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1746
+2019-01-28 15:23:46,223 [Thread-12:13420] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1790
+2019-01-28 15:48:42,720 [Thread-14:7472] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1831
+2019-01-28 16:31:11,114 [Thread-16:7272] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1299
+2019-01-28 16:35:44,724 [Thread-18:6468] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1306
+2019-01-28 16:37:54,582 [Thread-20:7524] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1311
+2019-01-28 16:40:34,098 [Thread-22:9096] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1319
+2019-01-28 16:42:24,959 [Thread-24:10536] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1548
+2019-01-28 16:43:51,149 [Thread-26:9172] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1551
+2019-01-28 16:48:14,075 [Thread-28:11432] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1515
+2019-01-28 16:49:22,537 [Thread-30:10464] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1531
+2019-01-28 16:49:53,821 [Thread-32:11440] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1421
+2019-01-28 17:01:07,417 [Thread-34:4084] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1354
+2019-01-28 17:01:20,572 [Thread-36:6584] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1346
+2019-01-28 17:02:56,347 [Thread-38:13972] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1349
+2019-01-28 17:05:41,712 [Thread-40:13624] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1358
+2019-01-28 17:05:47,084 [Thread-41:10820] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1358
+2019-01-28 17:09:26,757 [Thread-43:6928] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1403
+2019-01-28 17:09:30,916 [Thread-44:10112] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1403
+2019-01-28 17:09:31,681 [Thread-45:1252] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1403
+2019-01-28 17:09:32,120 [Thread-46:6584] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1403
+2019-01-28 17:11:02,065 [Thread-48:11760] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1404
+2019-01-28 17:11:35,339 [Thread-50:10340] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1404
+2019-01-28 17:14:03,808 [Thread-52:14108] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1400
+2019-01-28 17:51:25,958 [Thread-2:7604] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1400
+2019-01-28 17:52:20,041 [Thread-4:1156] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1400
+2019-01-28 17:53:39,137 [Thread-6:6640] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1361
+2019-01-28 17:55:34,770 [Thread-8:10592] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1360
+2019-01-28 17:59:14,779 [Thread-10:10896] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1359
+2019-01-28 18:00:10,669 [Thread-12:8516] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1358
+2019-01-28 18:00:31,806 [Thread-14:7600] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1360
+2019-01-29 09:51:52,514 [Thread-2:6732] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/login HTTP/1.1" 200 1671
+2019-01-29 09:51:56,478 [Thread-3:4812] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-29 09:51:56,478 [Thread-3:4812] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-29 09:51:56,485 [Thread-3:4812] [django.server:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 2816
+2019-01-29 09:52:52,007 [Thread-5:11916] [django.server:124] [basehttp:log_message] [INFO]- "POST /fbyysite/login HTTP/1.1" 302 0
+2019-01-29 09:52:52,032 [Thread-6:11532] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1427
+2019-01-29 09:54:49,695 [Thread-7:1292] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1421
+2019-01-29 09:56:14,316 [Thread-9:11652] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1424
+2019-01-29 10:09:10,459 [Thread-11:10536] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1604
+2019-01-29 10:14:09,229 [Thread-13:2384] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1587
+2019-01-29 10:17:06,267 [Thread-15:6748] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1565
+2019-01-29 10:17:24,953 [Thread-17:6228] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1562
+2019-01-29 10:22:04,030 [Thread-19:13968] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1574
+2019-01-29 10:24:44,653 [Thread-21:14260] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1606
+2019-01-29 10:26:33,923 [Thread-23:3964] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1577
+2019-01-29 10:27:05,346 [Thread-25:13084] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1586
+2019-01-29 10:27:45,663 [Thread-27:10112] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1603
+2019-01-29 10:31:20,082 [Thread-29:12852] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1621
+2019-01-29 10:31:42,150 [Thread-31:10552] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1622
+2019-01-29 10:32:17,566 [Thread-33:372] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1625
+2019-01-29 10:40:04,790 [Thread-35:5324] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1535
+2019-01-29 10:42:14,896 [Thread-37:2688] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1518
+2019-01-29 10:44:22,486 [Thread-39:11868] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1537
+2019-01-29 11:04:20,919 [Thread-41:11424] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1831
+2019-01-29 11:07:24,261 [Thread-43:5576] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1840
+2019-01-29 11:19:49,456 [Thread-45:11908] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1721
+2019-01-29 11:19:49,582 [Thread-46:5812] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index_left.html
+2019-01-29 11:19:49,582 [Thread-46:5812] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index_left.html
+2019-01-29 11:19:49,584 [Thread-46:5812] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/index_left.html HTTP/1.1" 404 2855
+2019-01-29 11:19:49,587 [Thread-47:8864] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index_content.html
+2019-01-29 11:19:49,587 [Thread-47:8864] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index_content.html
+2019-01-29 11:19:49,589 [Thread-47:8864] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/index_content.html HTTP/1.1" 404 2864
+2019-01-29 11:28:21,498 [Thread-2:7840] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1895
+2019-01-29 11:28:21,580 [Thread-3:11652] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 939
+2019-01-29 11:28:21,704 [Thread-4:5652] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/index/content
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 105, in index_content
+    return render(request, "index_content.html")
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index_content.html
+2019-01-29 11:28:21,704 [Thread-4:5652] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/index/content
+Traceback (most recent call last):
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\GitHub\project\FBYYSite\SiteLogin\views.py", line 105, in index_content
+    return render(request, "index_content.html")
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\yymy\AppData\Local\Programs\Python\Python37\lib\site-packages\django-2.1.3-py3.7.egg\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index_content.html
+2019-01-29 11:28:21,710 [Thread-4:5652] [django.server:124] [basehttp:log_message] [ERROR]- "GET /fbyysite/index/content HTTP/1.1" 500 81171
+2019-01-29 12:20:00,924 [Thread-5:916] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1895
+2019-01-29 12:20:01,027 [Thread-6:11400] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 939
+2019-01-29 12:20:01,045 [Thread-7:12544] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 630
+2019-01-29 12:21:18,732 [Thread-8:9388] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 12:21:18,813 [Thread-9:2536] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 939
+2019-01-29 12:21:18,828 [Thread-10:6820] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 630
+2019-01-29 12:22:30,972 [Thread-11:9188] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 12:22:31,048 [Thread-12:6088] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 948
+2019-01-29 12:22:31,061 [Thread-13:5512] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 630
+2019-01-29 12:24:33,126 [Thread-14:6608] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 12:24:33,211 [Thread-15:11312] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 969
+2019-01-29 12:24:33,229 [Thread-16:2424] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 630
+2019-01-29 13:40:59,664 [Thread-17:7668] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 13:40:59,747 [Thread-18:8428] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 945
+2019-01-29 13:40:59,767 [Thread-19:1292] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 13:42:17,334 [Thread-20:3960] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 13:42:17,431 [Thread-21:9892] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 963
+2019-01-29 13:42:17,457 [Thread-22:12992] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 13:48:44,359 [Thread-23:11276] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 13:48:44,439 [Thread-24:524] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 1042
+2019-01-29 13:48:44,456 [Thread-25:11748] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 13:58:53,047 [Thread-26:1072] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 13:58:53,130 [Thread-27:9688] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 1862
+2019-01-29 13:58:53,143 [Thread-28:12776] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:02:38,794 [Thread-29:13220] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 14:02:38,879 [Thread-30:13824] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2171
+2019-01-29 14:02:38,896 [Thread-31:12500] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:02:46,255 [Thread-32:6484] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2171
+2019-01-29 14:05:02,925 [Thread-33:7936] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 14:05:03,010 [Thread-34:10744] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2290
+2019-01-29 14:05:03,028 [Thread-35:11996] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:05:04,256 [Thread-36:5040] [django.request:228] [log:log_response] [WARNING]- Not Found: /index/content
+2019-01-29 14:05:04,256 [Thread-36:5040] [django.request:228] [log:log_response] [WARNING]- Not Found: /index/content
+2019-01-29 14:05:04,257 [Thread-36:5040] [django.server:124] [basehttp:log_message] [WARNING]- "GET /index/content HTTP/1.1" 404 3063
+2019-01-29 14:05:28,723 [Thread-37:10084] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 14:05:28,804 [Thread-38:5716] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2314
+2019-01-29 14:05:28,816 [Thread-39:13508] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:05:30,006 [Thread-40:10364] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/fbyysite/index/content
+2019-01-29 14:05:30,006 [Thread-40:10364] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/fbyysite/index/content
+2019-01-29 14:05:30,008 [Thread-40:10364] [django.server:124] [basehttp:log_message] [WARNING]- "GET /fbyysite/index/fbyysite/index/content HTTP/1.1" 404 3135
+2019-01-29 14:06:05,474 [Thread-41:10980] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 14:06:05,572 [Thread-42:3200] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2269
+2019-01-29 14:06:05,599 [Thread-43:12416] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:06:06,477 [Thread-44:5020] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:06:07,533 [Thread-45:11964] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:06:08,092 [Thread-46:9484] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:30:27,709 [Thread-2:12120] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 14:30:27,789 [Thread-3:13856] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2106
+2019-01-29 14:30:27,807 [Thread-4:1188] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:32:40,207 [Thread-5:4668] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/about HTTP/1.1" 200 1316
+2019-01-29 14:33:24,933 [Thread-8:8736] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:33:32,417 [Thread-9:9808] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index HTTP/1.1" 200 1913
+2019-01-29 14:33:32,496 [Thread-10:6916] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2106
+2019-01-29 14:33:32,516 [Thread-11:11916] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-29 14:33:33,420 [Thread-12:6776] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
