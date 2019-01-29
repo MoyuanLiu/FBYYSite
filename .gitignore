@@ -1,3 +1,8 @@
 
 *.xml
 *.pyc
+.idea/workspace.xml
+FBYYSite/__pycache__/__init__.cpython-37.pyc
+FBYYSite/__pycache__/settings.cpython-37.pyc
+FBYYSite/__pycache__/wsgi.cpython-37.pyc
+*.pyc
