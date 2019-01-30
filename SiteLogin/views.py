@@ -37,13 +37,15 @@ def registe(request):
     logger = logging.getLogger(__name__)
     departmentlist = registe_departments()
     if request.method == 'GET':
-        return render(request,"registe.html",{'departments':departmentlist,'stores':{}})
+        form = RegisteForm()
+        return render(request,"registe.html",{'departments':departmentlist,'stores':{},'form':form})
     elif request.method == 'POST':
         form = RegisteForm(request.POST)
         if form.is_valid():
+
             cd = form.cleaned_data
             active_tocken = uuid.uuid1()
-            msg = '本邮件为系统用户激活邮件，如非本人操作，请忽略。<a href="http://127.0.0.1:8000/fbyysite/active/%s" target="_blank">点击激活</a>激活链接将在60秒后失效！！' %(active_tocken)
+            msg = '本邮件为系统用户激活邮件，如非本人操作，请忽略。<a href="http://%s/fbyysite/active/%s" target="_blank">点击激活</a>激活链接将在60秒后失效！！' %(request.get_host(),active_tocken)
             emaillist = []
             emaillist.append(cd['email'])
 
