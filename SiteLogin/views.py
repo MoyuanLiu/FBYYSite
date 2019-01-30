@@ -11,8 +11,10 @@ from django.core.mail import send_mail
 from django.conf import settings
 import uuid
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+@csrf_exempt
 def login(request):
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger(__name__)
@@ -31,7 +33,7 @@ def login(request):
     else:
         return render(request, "login.html")
 
-
+@csrf_exempt
 def registe(request):
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger(__name__)
@@ -54,7 +56,7 @@ def registe(request):
             return HttpResponse('已发送激活邮件请查收')
         else:
             return render(request,'registe.html', {'departments':departmentlist,'stores':{},'form': form})
-
+@csrf_exempt
 def registe_ajax_store(request):
     if request.method == 'GET':
         departcode = request.GET.get('depart_code', None)
@@ -62,13 +64,13 @@ def registe_ajax_store(request):
             data = registe_store_by_department(departcode)
             result = serializers.serialize('json', data)
             return JsonResponse(result, safe=False)
-
+@csrf_exempt
 def index(request):
     return render(request,"index.html")
-
+@csrf_exempt
 def about(request):
     return render(request,"about.html")
-
+@csrf_exempt
 def requires_login(view):
     def new_view(request, *args, **kwargs):
         username = request.session.get('usenname')
@@ -76,7 +78,7 @@ def requires_login(view):
             return HttpResponseRedirect('/fbyysite/login')
         return view(request, *args, **kwargs)
     return new_view
-
+@csrf_exempt
 def activeaccount(request,tocken):
     if cache.get(tocken) == None:
         return redirect('/fbyysite/jump/fail')
@@ -84,7 +86,7 @@ def activeaccount(request,tocken):
         formdata = cache.get(tocken)
         registe_active_account(formdata)
         return redirect('/fbyysite/jump/success')
-
+@csrf_exempt
 def tmpjump(request,flag):
     if flag=='fail':
         msgpre = '链接已失效'
@@ -100,13 +102,13 @@ def tmpjump(request,flag):
         redirecturl = '/fbyysite/login'
         metacontent = "%s;URL=%s" % (seconds, redirecturl)
         return render(request, 'jump.html',{'msgpre': msgpre, 'seconds': seconds, 'msgsuf': msgsuf, 'redirecturl': redirecturl,'metacontent':metacontent})
-
+@csrf_exempt
 def index_left(request):
     return render(request, "index_left.html")
-
+@csrf_exempt
 def index_content(request):
     return render(request, "index_content.html")
-
+@csrf_exempt
 def usermanage(request):
     pagenum = request.GET.get('pagenum')
     userlist = TbUserInfo.objects.get_userinfo_list()
