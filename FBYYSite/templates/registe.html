@@ -2,28 +2,7 @@
 
 {% block title %}注册用户{% endblock %}
 {% block script %}
-<script>
-var depart_code = $("#seldepart").val();
-if(depart_code===''){
 
-}else{
-      $.ajax({
-        url: 'registe/ajaxstores',
-        data: {
-          'depart_code': depart_code
-        },
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            var content='<option value='+'>非店铺</option>';
-            $.each($.parseJSON(data), function(i, item){
-                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
-                });
-            $('#selstore').html(content)
-        },
-      });
-}
-</script>
 {% endblock %}
 
 {% block main %}
@@ -81,6 +60,26 @@ if(depart_code===''){
   <script>
   $(.errorlist).addClass("list-group")
   $(.errorlist li).addClass("list-group-item-danger")
+  var depart_code = $("#seldepart").val();
+if(depart_code===''){
+
+}else{
+      $.ajax({
+        url: 'registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var content='<option value='+'Other'+'>非店铺</option>';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#selstore').html(content)
+        },
+      });
+}
 $("#seldepart").change(function() {
       var depart_code = $(this).val();
       $.ajax({
@@ -92,7 +91,6 @@ $("#seldepart").change(function() {
         dataType: 'json',
         success: function (data) {
             var content='<option value='+'Other'+'>非店铺</option>';
-                  content+='<option value='+'All'+'>全店铺'+'</option>'
             $.each($.parseJSON(data), function(i, item){
                   content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
                 });

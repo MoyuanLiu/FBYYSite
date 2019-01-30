@@ -30,5 +30,6 @@ urlpatterns = [
     re_path(r'fbyysite/jump/(.*)',slview.tmpjump),
     path('fbyysite/index/left',slview.index_left),
     path('fbyysite/index/content',slview.index_content),
-    path('fbyysite/index/usermanage',slview.index_content),
+    re_path('fbyysite/usermanage?pagenum=.+',slview.usermanage),
+    re_path('fbyysite/usermanage/edit?account=.+',slview.usermanage),
 ]

@@ -10,6 +10,7 @@ from SiteLogin.form.Forms import RegisteForm
 from django.core.mail import send_mail
 from django.conf import settings
 import uuid
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def login(request):
@@ -105,8 +106,16 @@ def index_content(request):
     return render(request, "index_content.html")
 
 def usermanage(request):
-
-    return render(request,"usermanage.html")
+    pagenum = request.GET.get('pagenum')
+    userlist = TbUserInfo.objects.get_userinfo_list()
+    paginator = Paginator(userlist, 8)
+    try:
+        users = paginator.page(pagenum)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request,"usermanage.html",{'users':users})
 
 
 
