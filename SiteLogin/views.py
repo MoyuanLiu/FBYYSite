@@ -109,8 +109,7 @@ def index_left(request):
 def index_content(request):
     return render(request, "index_content.html")
 @csrf_exempt
-def usermanage(request):
-    pagenum = request.GET.get('pagenum')
+def usermanage(request,pagenum):
     userlist = TbUserInfo.objects.get_userinfo_list()
     paginator = Paginator(userlist, 8)
     try:
@@ -120,7 +119,28 @@ def usermanage(request):
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
     return render(request,"usermanage.html",{'users':users})
+@csrf_exempt
+def useredit(request,account):
+    user = TbUserInfo.objects.get_user_by_account(account)
+    return render(request,"useredit.html",{'user':user})
+@csrf_exempt
+def usereditcheck(request):
+    if request.method == 'GET':
+        form = RegisteForm()
+        return render(request,"registe.html",{'departments':departmentlist,'stores':{},'form':form})
+    elif request.method == 'POST':
+        form = RegisteForm(request.POST)
+        if form.is_valid():
 
+            cd = form.cleaned_data
+            active_tocken = uuid.uuid1()
+            msg = '本邮件为系统用户激活邮件，如非本人操作，请忽略。<a href="http://%s/fbyysite/active/%s" target="_blank">点击激活</a>激活链接将在60秒后失效！！' %(request.get_host(),active_tocken)
+            emaillist = []
+            emaillist.append(cd['email'])
 
-
+            send_mail('注册激活邮件','以下是用户激活邮件，如非本人操作，请忽略。',settings.DEFAULT_FROM_EMAIL,emaillist,fail_silently=False,html_message=msg)
+            cache.set(active_tocken, cd, 60)
+            return HttpResponse('已发送激活邮件请查收')
+        else:
+            return render(request,'registe.html', {'departments':departmentlist,'stores':{},'form': form})
 

@@ -23,7 +23,7 @@ class TbUserInfoManager(models.Manager):
             if user.tb_user_info_store_code=='Other':
                 userinfo['tb_user_info_store_name'] = "非店铺"
             else:
-                userinfo['tb_user_info_store_name'] = TbStoreInfo.objects.get_storename_by_storecode_by_dapartcode(user.tb_user_info_store_code,user.tb_user_info_department_code)
+                userinfo['tb_user_info_store_name'] = TbStoreInfo.objects.get_storecode_by_storecode_by_dapartcode(user.tb_user_info_store_code,user.tb_user_info_department_code)
             userinfo['tb_user_info_isactive'] = user.tb_user_info_isactive
             if user.tb_user_info_isactive:
                 userinfo['tb_user_info_status'] = "已激活"
@@ -78,8 +78,9 @@ class TbDepartmentInfo(models.Model):
 class TbStoreInfoManager(models.Manager):
     def get_all_stores_by_dapart(self,dapartmentcode):
         return self.filter(tb_store_info_department_code=dapartmentcode)
-    def get_storename_by_storecode_by_dapartcode(self,storecode,dapartcode):
-        return self.get(tb_store_code = storecode,tb_store_info_department_code = dapartcode)
+    def get_storecode_by_storecode_by_dapartcode(self,storecode,dapartcode):
+        storeobj = self.get(tb_store_code = storecode,tb_store_info_department_code = dapartcode)
+        return storeobj.tb_store_code
 
 class TbStoreInfo(models.Model):
     idtb_store = models.AutoField(primary_key=True)
