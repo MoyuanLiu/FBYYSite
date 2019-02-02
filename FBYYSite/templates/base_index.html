@@ -3,7 +3,7 @@
 {% block style %}
 {% endblock %}
 {% block content %}
-<body style="min-height: 660px; cursor: auto;">
+<body style="height: 100%; cursor: auto;">
 <nav class="nav navbar navbar-dark navbar-static-top bg-dark navbar-expand-sm" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -21,12 +21,11 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<!--<div class="container-fluid" height="auto">-->
     {% block main %}
     {% endblock %}
-</div>
+<!--</div>-->
 
 
-</div>
 </body>
 {% endblock %}
