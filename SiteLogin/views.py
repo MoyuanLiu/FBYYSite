@@ -56,6 +56,7 @@ def registe(request):
             return HttpResponse('已发送激活邮件请查收')
         else:
             return render(request,'registe.html', {'departments':departmentlist,'stores':{},'form': form})
+
 @csrf_exempt
 def registe_ajax_store(request):
     if request.method == 'GET':
@@ -64,12 +65,15 @@ def registe_ajax_store(request):
             data = registe_store_by_department(departcode)
             result = serializers.serialize('json', data)
             return JsonResponse(result, safe=False)
+
 @csrf_exempt
 def index(request):
     return render(request,"index.html")
+
 @csrf_exempt
 def about(request):
     return render(request,"about.html")
+
 @csrf_exempt
 def requires_login(view):
     def new_view(request, *args, **kwargs):
@@ -78,6 +82,7 @@ def requires_login(view):
             return HttpResponseRedirect('/fbyysite/login')
         return view(request, *args, **kwargs)
     return new_view
+
 @csrf_exempt
 def activeaccount(request,tocken):
     if cache.get(tocken) == None:
@@ -86,6 +91,7 @@ def activeaccount(request,tocken):
         formdata = cache.get(tocken)
         registe_active_account(formdata)
         return redirect('/fbyysite/jump/success')
+
 @csrf_exempt
 def tmpjump(request,flag):
     if flag=='fail':
@@ -102,27 +108,35 @@ def tmpjump(request,flag):
         redirecturl = '/fbyysite/login'
         metacontent = "%s;URL=%s" % (seconds, redirecturl)
         return render(request, 'jump.html',{'msgpre': msgpre, 'seconds': seconds, 'msgsuf': msgsuf, 'redirecturl': redirecturl,'metacontent':metacontent})
+
 @csrf_exempt
 def index_left(request):
     return render(request, "index_left.html")
 @csrf_exempt
 def index_content(request):
     return render(request, "index_content.html")
+
 @csrf_exempt
 def usermanage(request,pagenum):
     userlist = TbUserInfo.objects.get_userinfo_list()
     paginator = Paginator(userlist, 8)
+    totalpages = paginator.num_pages
+    currentpage = pagenum
     try:
-        users = paginator.page(pagenum)
+        users = paginator.page(currentpage)
     except PageNotAnInteger:
-        users = paginator.page(1)
+        currentpage = 1
+        users = paginator.page(currentpage)
     except EmptyPage:
-        users = paginator.page(paginator.num_pages)
-    return render(request,"usermanage.html",{'users':users})
+        currentpage = totalpages
+        users = paginator.page(currentpage)
+    return render(request,"usermanage.html",{'users':users,'currentpage':currentpage,'totalpage':totalpages})
+
 @csrf_exempt
 def useredit(request,account):
     user = TbUserInfo.objects.get_user_by_account(account)
     return render(request,"useredit.html",{'user':user})
+
 @csrf_exempt
 def usereditcheck(request):
     if request.method == 'GET':
