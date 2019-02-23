@@ -1,19 +1,22 @@
 {% extends "base_index.html" %}
 {% block style %}
+
 <style>
 #iframeLeft{
             width: 15%;
-            height: 700px;
+            height: 100%;
             float: left;
         }
-        #iframeContent{
-            width: 84%;
-            height: 700px;
+#iframeContent{
+            width: 85%;
+            height: 100%;
         }
  </style>
+
 {% endblock %}
 {% block main %}
-<iframe id="iframeLeft" name="iframeLeft" frameborder="0" src="index/left"></iframe>
-<iframe id="iframeContent" name="iframeContent" frameborder="0" src="index/content"></iframe>
+<iframe id="iframeLeft"  name="iframeLeft" frameborder="0" src="/fbyysite/index/left" height="100%"></iframe>
+<iframe id="iframeContent"  name="iframeContent" frameborder="0" src="/fbyysite/index/content" height="100%" ></iframe>
+
 {% endblock %}
 

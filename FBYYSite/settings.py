@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'FileUpload',
-    'SiteLogin'
+    'SiteLogin',
+    'DataManage'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -197,3 +198,5 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = '384848522@qq.com'
 EMAIL_HOST_PASSWORD = 'semovtfxjwyebgig'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+DEFAULT_CHARSET = 'UTF-8'

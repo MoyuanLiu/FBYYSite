@@ -1,0 +1,454 @@
+{% extends "base.html" %}
+{% block style %}
+<style type="text/css">
+ tr td{
+		/* 不换行*/
+		word-break:keep-all;
+		/* 不换行*/
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		height:63px;
+	}
+        </style>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function(){
+  $("tbody tr").hover(function(){
+    var num = $(".table tbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $(".table tbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $('#uploadModal').on('show.bs.modal', function (event) {
+       $("#uploadFileLabel").text("请选择文件:仅限xlsx");
+       $("#uploadFile").empty()
+    })
+
+});
+</script>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="container-fluid d-inline-flex d-flex justify-content-between">
+        <div class="p-2">
+            <h2>商品维度列表</h2>
+        </div>
+
+        <div class="btn-group p-3 text-center">
+            <button class="btn btn-success text-white ml-auto" type="button" data-toggle="modal" data-target="#uploadModal" ><i class="fa fa-cloud-upload fa-lg"></i>上传数据</button>
+            <a class="btn btn-info text-white ml-auto" href="/fbyysite/datamanage/product/upload/taskquery/1"><i class="fa fa-table fa-lg"></i>查看任务列表</a>
+        </div>
+
+    </div>
+    <hr>
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>请修改以下错误</strong>
+        </div>
+    {% endif %}
+    <form id="id_queryform" action="/fbyysite/datamanage/product/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="id_productid">商品ID:&nbsp;&nbsp;</label>
+            {{ queryform.productid }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.productid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_productname">商品名称:&nbsp;&nbsp;</label>
+            {{ queryform.productname }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.productname.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_productnum">货号:&nbsp;&nbsp;</label>
+            {{ queryform.productnum }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.productnum.errors }}&nbsp;&nbsp;
+        <br>
+        <div class="form-group p-2 m-2">
+            <label for="queryproductdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryproductdepart" name="queryproductdepart">
+              <option value='default'>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="queryproductstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryproductstore" name="queryproductstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_querycaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.productcaldatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.productcaldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.productcaldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.productimportdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.productimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.productimportdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="fbyysite/datamanage/product/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
+        </div>
+    </form>
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+
+  var depart_code = $("#queryproductdepart").val();
+if(depart_code==='default'){
+$('#queryproductstore').empty();
+}else{
+alert('发送请求')
+      $.ajax({
+        url: '/fbyysite/registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#queryproductstore').empty();
+            var content='<option value='+'Other'+'>非店铺</option>';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#queryproductstore').html(content)
+        },
+      });
+}
+$("#queryproductdepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#queryproductstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#queryproductstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#queryproductstore').html(content)
+        },
+      });
+        }  
+    });
+
+</script>
+    <hr/>
+    {% if productlist %}
+    <div class="d-inline-flex table-responsive" style="width:100%;height:100%;position: relative;">
+        <table  class="table" style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >统计日期</th>
+                    <th >商品ID</th>
+                    <th >商品名称</th>
+                    <th >货号</th>
+                </tr>
+            </thead>
+            <tbody id="fixbody">
+            {% for product in productlist %}
+            <tr >
+                <td >{{product.tb_caldate}}</td>
+                <td>{{product.tb_product_id}}</td>
+                <td>{{product.tb_product_name}}</td>
+                <td>{{product.tb_product_num}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <table class="table " style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr >
+                    <th >商品状态</th>
+                    <th >商品标签</th>
+                    <th >商品访客数</th>
+                    <th >商品浏览量</th>
+                    <th >平均停留时长</th>
+                    <th >详情页跳出率</th>
+                    <th >商品收藏人数</th>
+                    <th >商品加购件数</th>
+                    <th >商品加购人数</th>
+                    <th >下单买家数</th>
+                    <th >下单件数</th>
+                    <th >下单金额</th>
+                    <th >下单转化率</th>
+                    <th >支付买家数</th>
+                    <th >支付件数</th>
+                    <th >支付金额</th>
+                    <th >支付转化率</th>
+                    <th >支付新买家数</th>
+                    <th >支付老买家数</th>
+                    <th >老买家支付金额</th>
+                    <th >聚划算支付金额</th>
+                    <th >访客平均价值</th>
+                    <th >售中售后成功退款金额</th>
+                    <th >竞争力评分</th>
+                    <th >年累计支付金额</th>
+                    <th >月累计支付金额</th>
+                    <th >月累计支付件数</th>
+                    <th >商品对应所在店铺id</th>
+                    <th >搜索引导支付转化率</th>
+                    <th >搜索引导访客数</th>
+                    <th >搜索引导支付买家数</th>
+                    <th >数据部门ID</th>
+                    <th >数据导入时间</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+            <tbody id="unfixbody">
+            {% for product in productlist %}
+            <tr >
+                <td >{{product.tb_product_product_status}}</td>
+                <td>{{product.tb_product_product_tag}}</td>
+                <td>{{product.tb_product_visitors}}</td>
+                <td>{{product.tb_product_views}}</td>
+                <td>{{product.tb_avg_stoptime}}</td>
+                <td>{{product.tb_detail_page_jump_percent}}</td>
+                <td>{{product.tb_product_collects}}</td>
+                <td>{{product.tb_product_join_items}}</td>
+                <td>{{product.tb_product_joins}}</td>
+                <td>{{product.tb_product_order_buyyers}}</td>
+                <td>{{product.tb_product_buy_order_items}}</td>
+                <td>{{product.tb_product_buy_order_money}}</td>
+                <td>{{product.tb_product_order_converse_percent}}</td>
+                <td>{{product.tb_product_payers}}</td>
+                <td>{{product.tb_product_pay_items}}</td>
+                <td>{{product.tb_product_pay_money}}</td>
+                <td>{{product.tb_product_pay_converse_percent}}</td>
+                <td>{{product.tb_product_new_payyers}}</td>
+                <td>{{product.tb_product_old_payyers}}</td>
+                <td>{{product.tb_product_old_payyer_money}}</td>
+                <td>{{product.tb_product_juhuasuan_money}}</td>
+                <td>{{product.tb_product_avg_value_visitors}}</td>
+                <td>{{product.tb_product_sell_return_money}}</td>
+                <td>{{product.tb_product_compare_score}}</td>
+                <td>{{product.tb_product_count_year_money}}</td>
+                <td>{{product.tb_product_count_month_money}}</td>
+                <td>{{product.tb_product_count_month_items}}</td>
+                <td>{{product.tb_product_store_id}}</td>
+                <td>{{product.tb_product_search_into_pay_percent}}</td>
+                <td>{{product.tb_product_search_into_visitors}}</td>
+                <td>{{product.tb_product_search_into_pay_buyyers}}</td>
+                <td>{{product.tb_product_depart_id}}</td>
+                <td>{{product.tb_product_import_time}}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-primary text-white" href="/fbyysite/usermanage/edit/account/{{user.tb_user_info_email}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this)" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+    {% block pageination %}
+
+        <div class="d-inline-flex p-3 container-fluid">
+                <ul class="pagination">
+                    {% if productlist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/product/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/product/pagenum/{{productlist.previous_page_number}}">上一页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/datamanage/product/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if productlist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/product/pagenum/{{productlist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/product/pagenum/{{totalpages}}">尾页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+                    {% endif %}
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+                    <li class="page-item">
+                            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+                    </li>
+                </ul>
+        </div>
+        <script>
+            $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                    window.location.href="/fbyysite/datamanage/product/pagenum/" + jumppagenum;
+                }
+             });
+        </script>
+        {% endblock %}
+    {% else %}
+    <div class="alert alert-danger w-100">
+        {% block emptymsg %}<strong>当前还没有任何数据</strong>{% endblock %}
+    </div>
+    <div class="d-inline-flex" style="width:100%;height:100%;position: relative;">
+
+        <table class="table table-hover " style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >统计日期</th>
+                    <th >商品ID</th>
+                    <th >商品名称</th>
+                    <th >货号</th>
+                </tr>
+            </thead>
+
+        </table>
+
+
+        <table class="table table-hover " style="position: absolute;overflow-x:scroll;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr class="" style="white-space:nowrap;">
+                    <th >商品状态</th>
+                    <th >商品标签</th>
+                    <th >商品访客数</th>
+                    <th >商品浏览量</th>
+                    <th >平均停留时长</th>
+                    <th >详情页跳出率</th>
+                    <th >商品收藏人数</th>
+                    <th >商品加购件数</th>
+                    <th >商品加购人数</th>
+                    <th >下单买家数</th>
+                    <th >下单件数</th>
+                    <th >下单金额</th>
+                    <th >下单转化率</th>
+                    <th >支付买家数</th>
+                    <th >支付件数</th>
+                    <th >支付金额</th>
+                    <th >支付转化率</th>
+                    <th >支付新买家数</th>
+                    <th >支付老买家数</th>
+                    <th >老买家支付金额</th>
+                    <th >聚划算支付金额</th>
+                    <th >访客平均价值</th>
+                    <th >售中售后成功退款金额</th>
+                    <th >年累计支付金额</th>
+                    <th >月累计支付金额</th>
+                    <th >月累计支付件数</th>
+                    <th >商品对应所在店铺id</th>
+                    <th >搜索引导支付转化率</th>
+                    <th >搜索引导访客数</th>
+                    <th >搜索引导支付买家数</th>
+                    <th >数据导入时间</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+
+        </table>
+
+    </div>
+    {% endif %}
+
+    <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">删除数据提示</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <p class="text-center text-justify">确定要删除当前数据记录吗？<br>商品名称为：<strong id="delname" class="text-danger"></strong><br>商品货号为：<strong id="delnickname" class="text-danger"></strong></p>
+            </div>
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+            <form action="/fbyysite/usermanage/delete/account/" method="post">
+                <input type="hidden" id="deluseremail" name="deluseremail">
+                <input type="hidden" id="delreferer" name="delreferer">
+                <button type="submit" id="delconfirm"  class="btn btn-danger text-white" >确认删除</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="uploadModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">上传数据</h4>
+          <button type="button" class="close" data-dismiss="modal" id="modalclose">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <form action="/fbyysite/datamanage/product/upload" method="post" enctype="multipart/form-data" target="ResultFrame" id="uploadFileForm">
+                    <div class="custom-file mb-3">
+                        {{ uploadform.uploadFile }}
+                        <label class="custom-file-label" for="id_uploadFile" id="uploadFileLabel" >请选择文件:仅限xlsx</label>
+                        {{uploadfilename}}
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary text-white ml-auto pull-right" id="submituploadfile">上传</button>
+                        <button type="button" class="btn btn-secondary ml-auto pull-right" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+          <script>
+$("#id_uploadFile").change(function() {
+            var filename = $("#id_uploadFile").val();
+            var arr=filename.split('\\');
+         $("#uploadFileLabel").text(arr[arr.length-1])
+            $("#id_uploadfilename").val(arr[arr.length-1])
+    });
+</script>
+
+
+
+
+        <div class="modal-footer p-0">
+            <iframe name="ResultFrame" id="ResultFrame"  width="100%" height="51px" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" class="p-0">
+
+            </iframe>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

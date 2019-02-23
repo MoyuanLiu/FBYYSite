@@ -3,30 +3,42 @@
 {% block style %}
 {% endblock %}
 {% block content %}
-<body style="min-height: 660px; cursor: auto;">
+<body style="height: 100%; cursor: auto;">
 <nav class="nav navbar navbar-dark navbar-static-top bg-dark navbar-expand-sm" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">亦优贸易</a>
+            <span class="navbar-text">
+                您好，{{rolename}}
+            </span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
         <div class="collapse navbar-collapse in" id="collapsibleNavbar">
             <ul class="nav navbar-nav ml-auto flex-row">
-                <li class="nav-item"><a href="#"><i class="fa fa-user"></i> 完善信息</a></li>
-                <li class="nav-item"><a href="about"><i class="fa fa-info-circle"></i> 关于</a></li>
+                <!--<li class="nav-item"><a href="#"><i class="fa fa-user"></i> 完善信息</a></li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                       <i class="fa fa-user mr-1"></i>用户中心
+                    </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">通知消息</a>
+                  <a class="dropdown-item" href="/fbyysite/accountmanage" target="iframeContent">账号信息</a>
+                  <a class="dropdown-item" href="/fbyysite/logout">退出</a>
+                </div>
+                </li>
+                <li class="nav-item"><a href="/fbyysite/about" target="iframeContent" class="nav-link"><i class="fa fa-info-circle"></i> 关于</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid">
+<!--<div class="container-fluid" height="auto">-->
     {% block main %}
     {% endblock %}
-</div>
+<!--</div>-->
 
 
-</div>
 </body>
 {% endblock %}
