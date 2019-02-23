@@ -1752,3 +1752,836 @@ django.template.exceptions.TemplateDoesNotExist: index_content.html
 2019-01-29 14:33:32,496 [Thread-10:6916] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/left HTTP/1.1" 200 2106
 2019-01-29 14:33:32,516 [Thread-11:11916] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
 2019-01-29 14:33:33,420 [Thread-12:6776] [django.server:124] [basehttp:log_message] [INFO]- "GET /fbyysite/index/content HTTP/1.1" 200 574
+2019-01-30 09:41:54,431 [MainThread:2076] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 09:41:54,431 [MainThread:2076] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 09:42:01,060 [Dummy-1:1436] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-30 09:42:01,060 [Dummy-1:1436] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-30 09:52:11,352 [MainThread:1528] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-30 09:52:11,352 [MainThread:1528] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/registe/ajaxstores
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 137, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view SiteLogin.views.registe_ajax_store didn't return an HttpResponse object. It returned None instead.
+2019-01-30 09:55:52,535 [MainThread:704] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 09:55:52,535 [MainThread:704] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 11:26:26,341 [MainThread:5748] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 11:26:26,341 [MainThread:5748] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 11:26:27,201 [Dummy-1:4944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/c6abfb0c-243e-11e9-8504-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry 'bysliumoyuan@outlook.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry 'bysliumoyuan@outlook.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 11:26:27,201 [Dummy-1:4944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/c6abfb0c-243e-11e9-8504-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry 'bysliumoyuan@outlook.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry 'bysliumoyuan@outlook.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 11:27:26,553 [MainThread:5748] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 11:27:26,553 [MainThread:5748] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 13:42:00,751 [Dummy-1:4944] [django.security.csrf:228] [log:log_response] [WARNING]- Forbidden (CSRF cookie not set.): /fbyysite/registe
+2019-01-30 13:42:46,739 [MainThread:5748] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 13:42:46,739 [MainThread:5748] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 13:43:28,572 [Dummy-1:4944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/eb2e8ac2-2451-11e9-9905-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:43:28,572 [Dummy-1:4944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/eb2e8ac2-2451-11e9-9905-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:43:43,070 [Dummy-2:2804] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/eb2e8ac2-2451-11e9-9905-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:43:43,070 [Dummy-2:2804] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/eb2e8ac2-2451-11e9-9905-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:44:29,518 [Dummy-1:4944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/11e8419c-2452-11e9-a01e-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:44:29,518 [Dummy-1:4944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/11e8419c-2452-11e9-a01e-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:44:31,174 [Dummy-3:5612] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/11e8419c-2452-11e9-a01e-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:44:31,174 [Dummy-3:5612] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /fbyysite/active/11e8419c-2452-11e9-a01e-000c291e5f74
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Service\FBYYSite\SiteLogin\views.py", line 85, in activeaccount
+    registe_active_account(formdata)
+  File "C:\Service\FBYYSite\SiteLogin\Logic\registe_controller.py", line 15, in registe_active_account
+    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+  File "C:\Service\FBYYSite\SiteLogin\models.py", line 10, in create_new_user
+    tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 413, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 718, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 748, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 831, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\base.py", line 869, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\query.py", line 1136, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\models\sql\compiler.py", line 1289, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\django-2.1.3-py3.7.egg\django\db\backends\mysql\base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 255, in execute
+    self.errorhandler(self, exc, value)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 252, in execute
+    res = self._query(query)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\cursors.py", line 378, in _query
+    db.query(q)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\python37\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '499299437@qq.com' for key 'tb_user_info_email_UNIQUE'")
+2019-01-30 13:44:44,887 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite
+2019-01-30 13:44:44,887 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite
+2019-01-30 13:46:24,709 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 13:46:24,709 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 13:46:27,193 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 13:46:27,193 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 13:46:30,325 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 13:46:30,325 [Dummy-2:2804] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 15:44:52,651 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:44:52,651 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:45:28,414 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:45:28,414 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:57:13,892 [MainThread:4276] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:57:13,892 [MainThread:4276] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:57:43,769 [Dummy-3:1420] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:57:43,769 [Dummy-3:1420] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:57:47,800 [MainThread:4276] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:57:47,800 [MainThread:4276] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:58:40,721 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 15:58:40,721 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 16:18:56,097 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 16:18:56,097 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-01-30 16:21:28,297 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-01-30 16:21:28,297 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-02-11 10:08:03,272 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-11 10:08:03,272 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-11 10:38:10,509 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-02-11 10:38:10,509 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /fbyysite/index/usermanage
+2019-02-12 18:28:43,446 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-12 18:28:43,446 [Dummy-1:5388] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-14 09:19:59,169 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-14 09:19:59,169 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-14 14:41:28,309 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+2019-02-14 14:41:28,309 [Dummy-2:2456] [django.request:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
