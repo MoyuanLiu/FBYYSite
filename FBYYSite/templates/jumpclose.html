@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block script %}
+<script>
+    //定义函数myClose关闭当前窗口
+    function myClose(){
+        //将id为time的元素的内容转为整数，保存在变量n中
+        var n=parseInt({{seconds}});
+        n--;//将n-1
+        //如果n==0,关闭页面
+        //否则, 将n+秒钟后自动关闭，再保存回time的内容中
+        if(n>0){
+            $("#seconds").innerHTML=n;
+            timer=setTimeout(myClose,1000);
+        }else{
+            close();
+        }
+    }
+    var timer=null;
+    //当页面加载后，启动周期性定时器，每个1秒执行myClose
+    window.onload=function(){
+        timer=setTimeout(myClose,1000);
+    }
+</script>
+{% endblock %}
+{% block content %}
+<body>
+<p class="text-info">{{msgpre}}<mark class="text-muted" id="seconds">{{seconds}}</mark>{{msgsuf}}</p><br>
+</body>
+
+{% endblock %}

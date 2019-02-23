@@ -12,4 +12,4 @@ def registe_store_by_department(departcode):
 
 def registe_active_account(formdata):
     currentdatetime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-    newuser = TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)
+    TbUserInfo.objects.create_new_user(formdata['username'],formdata['usernickname'],formdata['email'],formdata['pwd'],formdata['seldepart'],formdata['selstore'],1,0,currentdatetime)

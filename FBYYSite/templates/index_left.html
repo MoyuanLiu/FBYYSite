@@ -3,56 +3,28 @@
 {% block content %}
 <body class="bg-light">
 <div id="accordion">
-    <div class="card">
+    {% for module in modules %}
+      <div class="card">
       <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-          用户管理
+        <a class="card-link" data-toggle="collapse" href="#{{module.tb_module_code}}">
+          {{module.tb_module_name}}
         </a>
       </div>
-      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+      <div id="{{module.tb_module_code}}" class="collapse show" data-parent="#accordion">
         <div class="card-body">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/fbyysite/usermanage/pagenum/1" target="iframeContent">管理用户</a>
+            {% for function in functions %}
+            {% ifequal function.tb_function_module_code module.tb_module_code%}
+             <li class="nav-item">
+              <a class="nav-link" href="{{function.tb_function_href}}" target="iframeContent">{{function.tb_function_name}}</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="content" target="iframeContent">管理用户组</a>
-            </li>
+            {% endifequal %}
+            {% endfor %}
           </ul>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-        权限管理
-      </a>
-      </div>
-      <div id="collapseTwo" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/fbyysite/usermanage/pagenum/1" target="iframeContent">管理权限</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="content" target="iframeContent">管理组</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-          数据管理
-        </a>
-      </div>
-      <div id="collapseThree" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </body>
 {% endblock %}

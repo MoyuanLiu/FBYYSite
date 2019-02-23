@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 import logging
 from django.core import serializers
-from SiteLogin.form.Forms import RegisteForm
+from SiteLogin.Form.Forms import *
 from django.core.mail import send_mail
 from django.conf import settings
 import uuid
@@ -27,7 +27,7 @@ def login(request):
             request.session['usenname'] = a
             currentdatetime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
             login_update(a,currentdatetime)
-            return HttpResponseRedirect('/fbyysite/index')
+            return HttpResponseRedirect('/fbyysite/index/')
         else:
             return render(request, "login.html")
     else:
@@ -44,7 +44,6 @@ def registe(request):
     elif request.method == 'POST':
         form = RegisteForm(request.POST)
         if form.is_valid():
-
             cd = form.cleaned_data
             active_tocken = uuid.uuid1()
             msg = '本邮件为系统用户激活邮件，如非本人操作，请忽略。<a href="http://%s/fbyysite/active/%s" target="_blank">点击激活</a>激活链接将在60秒后失效！！' %(request.get_host(),active_tocken)
@@ -53,7 +52,12 @@ def registe(request):
 
             send_mail('注册激活邮件','以下是用户激活邮件，如非本人操作，请忽略。',settings.DEFAULT_FROM_EMAIL,emaillist,fail_silently=False,html_message=msg)
             cache.set(active_tocken, cd, 60)
-            return HttpResponse('已发送激活邮件请查收')
+            msgpre = '已发送激活邮件请查收'
+            seconds = 3
+            msgsuf = '秒后关闭'
+            metacontent = "%s" % (seconds)
+            return render(request, 'jumpclose.html',
+                          {'msgpre': msgpre, 'seconds': seconds, 'msgsuf': msgsuf,'metacontent': metacontent})
         else:
             return render(request,'registe.html', {'departments':departmentlist,'stores':{},'form': form})
 
@@ -68,7 +72,13 @@ def registe_ajax_store(request):
 
 @csrf_exempt
 def index(request):
-    return render(request,"index.html")
+    username = request.session.get('usenname')
+    if user_permission_check(username):
+        return render(request, "index.html",{'rolename':'超级管理员'})
+    else:
+        rolename = get_user_role_name(username)
+        return render(request, "index.html", {'rolename': rolename})
+
 
 @csrf_exempt
 def about(request):
@@ -111,50 +121,29 @@ def tmpjump(request,flag):
 
 @csrf_exempt
 def index_left(request):
-    return render(request, "index_left.html")
+    username = request.session.get('usenname')
+    if user_permission_check(username):
+        modulelist = get_all_modules()
+        functionlist = get_all_functions()
+        return render(request, "index_left.html", {'modules': modulelist,'functions':functionlist})
+    else:
+        modulelist = get_user_modules(username)
+        functionlist = get_user_functions(username)
+        return render(request, "index_left.html", {'modules': modulelist,'functions':functionlist})
+
+
 @csrf_exempt
 def index_content(request):
     return render(request, "index_content.html")
 
 @csrf_exempt
-def usermanage(request,pagenum):
-    userlist = TbUserInfo.objects.get_userinfo_list()
-    paginator = Paginator(userlist, 8)
-    totalpages = paginator.num_pages
-    currentpage = pagenum
-    try:
-        users = paginator.page(currentpage)
-    except PageNotAnInteger:
-        currentpage = 1
-        users = paginator.page(currentpage)
-    except EmptyPage:
-        currentpage = totalpages
-        users = paginator.page(currentpage)
-    return render(request,"usermanage.html",{'users':users,'currentpage':currentpage,'totalpage':totalpages})
+def logout(request):
+    cache.delete(request.session.get('usenname'),None)
+    #print(request.session.get('usenname'))
+    cursessionkey = request.session.session_key
+    request.session.delete(cursessionkey)
+    return redirect('/fbyysite/index/')
 
-@csrf_exempt
-def useredit(request,account):
-    user = TbUserInfo.objects.get_user_by_account(account)
-    return render(request,"useredit.html",{'user':user})
 
-@csrf_exempt
-def usereditcheck(request):
-    if request.method == 'GET':
-        form = RegisteForm()
-        return render(request,"registe.html",{'departments':departmentlist,'stores':{},'form':form})
-    elif request.method == 'POST':
-        form = RegisteForm(request.POST)
-        if form.is_valid():
 
-            cd = form.cleaned_data
-            active_tocken = uuid.uuid1()
-            msg = '本邮件为系统用户激活邮件，如非本人操作，请忽略。<a href="http://%s/fbyysite/active/%s" target="_blank">点击激活</a>激活链接将在60秒后失效！！' %(request.get_host(),active_tocken)
-            emaillist = []
-            emaillist.append(cd['email'])
-
-            send_mail('注册激活邮件','以下是用户激活邮件，如非本人操作，请忽略。',settings.DEFAULT_FROM_EMAIL,emaillist,fail_silently=False,html_message=msg)
-            cache.set(active_tocken, cd, 60)
-            return HttpResponse('已发送激活邮件请查收')
-        else:
-            return render(request,'registe.html', {'departments':departmentlist,'stores':{},'form': form})
 

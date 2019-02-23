@@ -57,7 +57,8 @@
       <select class="form-control" id="selstore" name="selstore">
       </select>
     </div>
-    <input type="submit" class="btn btn-primary" value="Submit">
+    <input type="submit" class="btn btn-primary" value="注册">
+    <a href="/fbyysite/login" class="btn btn-secondary" role="button">返回登录</a>
   </form>
   <script>
   $(".errorlist").addClass("list-group")
@@ -65,7 +66,7 @@
 
   var depart_code = $("#seldepart").val();
 if(depart_code===''){
-
+$('#selstore').empty();
 }else{
       $.ajax({
         url: 'registe/ajaxstores',
@@ -75,6 +76,7 @@ if(depart_code===''){
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+                  $('#selstore').empty();
             var content='<option value='+'Other'+'>非店铺</option>';
             $.each($.parseJSON(data), function(i, item){
                   content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
@@ -85,22 +87,26 @@ if(depart_code===''){
 }
 $("#seldepart").change(function() {
       var depart_code = $(this).val();
-      $.ajax({
-        url: 'registe/ajaxstores',
+      if(depart_code===''){
+            $('#selstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/registe/ajaxstores',
         data: {
           'depart_code': depart_code
         },
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+                  $('#selstore').empty();
             var content='<option value='+'Other'+'>非店铺</option>';
             $.each($.parseJSON(data), function(i, item){
                   content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
                 });
             $('#selstore').html(content)
         },
-
       });
+        }
     });
 
 </script>
