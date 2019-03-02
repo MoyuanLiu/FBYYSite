@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% block script %}
+<script>
+
+    function isExistRecord(id,valuearr) {
+    var isExist = false;
+    var funcname = valuearr[0]
+    var permissiontype = valuearr[1]
+    var count = $("#"+id).find('tr').each(function(){
+        var tdArr = $(this).children();
+        if(tdArr.eq(0).text()==funcname && tdArr.eq(1).text()==permissiontype){
+            isExist = true;
+        }
+    });
+        return isExist;
+}
+function addtablerow(id,valuearr){
+    var datarow = "<tr>"
+    datarow += "<td>"+valuearr[0]+"</td>"
+    datarow += "<td>"+valuearr[1]+"</td>"
+    datarow += "<td>"+valuearr[2]+"</td>"
+    datarow += "<td><input type='checkbox' class='' ></td>"
+    datarow += "</tr>"
+    $("#"+id+" tbody").append(datarow)
+}
+ function isExistOption(id,value) {
+    var isExist = false;
+    var count = $("#"+id).find('option').length;
+      for(var i=0;i<count;i++)
+      {
+         if($('#'+id).get(0).options[i].value == value)
+             {
+                   isExist = true;
+                        break;
+                  }
+        }
+        return isExist;
+}
+function addOptionValue(id,value,text) {
+    if(!isExistOption(id,value)){$('#'+id).append("<option value="+value+">"+text+"</option>");}
+}
+function addpermission(){
+    var funcnameval = $("#selfunction option:selected").text()
+    var permissionval = $("#selpermissiontype option:selected").text()
+    var permissionrange = $("#selrange").val()
+    var checkarr = new Array();
+    checkarr[0] = funcnameval
+    checkarr[1] = permissionval
+    if(funcnameval===''){
+        if($("#selrole").val()!=''){
+        alert("该角色可能没有功能，如果需要请自行添加")
+        }else{
+        $('#myModal').modal('show');
+        alert("请选择角色以及对应功能")
+        }
+    }else{
+      if(!isExistRecord("permissiontable",checkarr)){
+        if(permissionrange!=''){
+        checkarr[2] = permissionrange
+        addtablerow("permissiontable",checkarr)
+        var valuestr = $("#userid").val()+"|"+$("#selfunction option:selected").val()+"|"+$("#selpermissiontype option:selected").val()+"|" + permissionrange
+        var textstr = $("#userid").val()+"|"+funcnameval+"|" + permissionval +"|"+ permissionrange
+        addOptionValue("selpermission",valuestr,textstr)
+        }else{
+        alert("请选择权限范围")
+        }
+      }
+    }
+  }
+function removepermission(){
+  $("#permissiontable input:checkbox").each(function(){
+  if($(this).prop("checked")){
+  $(this).parent().parent().remove()
+  var trindex = $(this).parent().parent().index($(this).parent().parent())
+  $("#selpermission").find("option").get(trindex).remove()
+  }
+  });
+}
+function submitURP(){
+    var urparr = $("#selpermission").find('option')
+  if(urparr.length>=1){
+  $.each(urparr,function(i,urp){
+      urp.selected = true;
+  });
+  }
+  $("#permissioneditform").submit()
+}
+</script>
+{% endblock %}
+{% block content %}
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>分配用户权限</h1>
+</div>
+<div class="container" style="margin-top:100px; width:40em;">
+ <form action="/fbyysite/permissionmanage/permissioneditcheck" method="post" id="permissioneditform">
+    <!-- {% csrf_token %} -->
+     <div class="form-group">
+      <input type="hidden" id="userid" name="userid"  value="{{user.idtb_user_info}}">
+    </div>
+     <div class="form-group">
+      <input type="hidden" name="refererurl"  value="{{refererurl}}">
+    </div>
+    <div class="form-group">
+      <label >当前用户为:</label>
+        <div class="alert alert-info">
+            用户名：<span>{{user.tb_user_info_name}}</span><br>
+            用户花名：<span>{{user.tb_user_info_nickname}}</span><br>
+            用户所在部门：<span>{{user.tb_user_info_department_name}}</span><br>
+            用户所在店铺：<span>{{user.tb_user_info_store_name}}</span>
+        </div>
+    </div>
+     <div class="form-group">
+      <label for="selrole">角色:</label>
+      <select class="form-control" id="selrole" name="selrole">
+          <option value="">请选择角色</option>
+        {% for role in roles %}
+          {% ifequal role.idtb_role userrole.idtb_role %}
+            <option value={{ role.idtb_role }} selected="selected">{{ role.tb_role_name }}</option>
+          {% else %}
+            <option value={{ role.idtb_role }}>{{ role.tb_role_name }}</option>
+          {% endifequal %}
+        {% endfor %}
+      </select>
+    </div>
+     <div class="d-flex flex-row">
+
+    <div class="form-group flex-fill">
+      <label for="selfunction">功能:</label>
+      <select class="form-control" id="selfunction" name="selfunction" style="min-width:100px">
+      </select>
+    </div>
+      <div class="form-group flex-fill">
+      <label for="selpermissiontype">权限类型:</label>
+      <select class="form-control" id="selpermissiontype" name="selpermissiontype" style="min-width:100px">
+        {% for permissiontype in types %}
+          <option value={{ permissiontype.tb_permission_type_code }}>{{ permissiontype.tb_permission_type_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+          <div class="form-group flex-fill">
+        {{ form.selrole.errors }}
+      <label for="selrange">权限范围:</label><button type="button" id="btn_addpermission"  onclick="addpermission()" class="btn btn-success text-white btn-sm pull-right" ><i class="fa fa-plus-circle fa-sm"></i></button>
+      <select class="form-control" id="selrange" name="selrange" multiple style="min-width:200px">
+          {% for department in departments %}
+          <option value={{ department.tb_department_info_code }}-All>{{ department.tb_department_info_code }}-All</option>
+          {% endfor %}
+        {% for store in stores %}
+          <option value={{ store.tb_store_info_department_code }}-{{ store.tb_store_code }}>{{ store.tb_store_info_department_code }}-{{ store.tb_store_code }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+     </div>
+
+        <label >权限列表:</label><button type="button" id="btn_removepermission" onclick="removepermission()" class="btn btn-danger text-white btn-sm pull-right" ><i class="fa fa-minus-circle fa-sm"></i></button><br>
+          <div class="table-responsive">
+            <table class="table table-hover" id="permissiontable">
+                <thead class="thead-light">
+                    <tr>
+                        <th>功能名称</th>
+                        <th>权限类型</th>
+                        <th>权限范围</th>
+                        <th>选择</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for permissioninfo in permissionlist %}
+                    <tr>
+                        <td>{{permissioninfo.tb_user_role_permission_manage_function_name}}</td>
+                        <td>{{permissioninfo.tb_user_role_permission_manage_permission_type_name}}</td>
+                        <td>{{permissioninfo.tb_user_role_permission_manage_permission_range}}</td>
+                        <td><input type='checkbox' class='' ></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+          </div>
+     <select class="form-control" id="selpermission" name="selpermission" multiple style="min-width:200px"  hidden>
+        {% for permissioninfo in permissionlist %}
+         <option value={{permissioninfo.permission_info_value_str}}>
+             {{permissioninfo.permission_info_text_str}}
+         </option>
+         {% endfor %}
+      </select>
+
+     <button type="button" class="btn btn-primary" onclick="submitURP()">确认分配</button>
+    <a href="{{refererurl}}" class="btn btn-secondary" role="button">取消分配</a>
+  </form>
+
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+
+  var role_id = $("#selrole").val();
+if(role_id===''){
+$('#selfunction').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/role/ajaxfunctions',
+        data: {
+          'role_id': role_id
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selfunction').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                           content+='<option value='+item.fields.tb_function_code+'>'+item.fields.tb_function_name+'</option>'
+                });
+            $('#selfunction').html(content)
+        },
+      });
+}
+$("#selrole").change(function() {
+      var role_id = $("#selrole").val();
+         if(role_id===''){
+            $('#selfunction').empty();
+         }else{
+            $.ajax({
+        url: '/fbyysite/role/ajaxfunctions',
+        data: {
+          'role_id': role_id
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                   $('#selfunction').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_function_code+'>'+item.fields.tb_function_name+'</option>'
+                });
+            $('#selfunction').html(content)
+        },
+
+      });
+         }
+      
+    });
+
+</script>
+</div>
+</body>
+{% endblock %}

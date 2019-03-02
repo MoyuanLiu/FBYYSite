@@ -16,8 +16,7 @@ class TbUserInfoManager(models.Manager):
         self.create(tb_user_info_name = name,tb_user_info_nickname = nickname,tb_user_info_email = email,tb_user_info_pwd = pwd,tb_user_info_department_code = departcode,
                     tb_user_info_store_code = storecode,tb_user_info_isactive = isactive,tb_user_info_issuperuser = issuperuser,tb_user_info_datejoined = datejoined)
 
-    def get_userinfo_list(self):
-        userlist = self.all()
+    def get_userinfo_list(self,userlist):
         userinfolist=[]
         for user in userlist:
             userinfo = {}
@@ -109,17 +108,13 @@ class TbStoreInfo(models.Model):
         managed = False
         db_table = 'tb_store_info'
 
-class TbUserRolePermissionManageManager(models.Manager):
-    def get_roleid_by_userid(self,userid):
-        urpobj = self.get(tb_user_role_permission_manage_user_id=userid)
-        return urpobj.tb_user_role_permission_manage_role_id
 
 class TbUserRolePermissionManage(models.Model):
     idtb_user_role_permission_manage = models.AutoField(primary_key=True)
     tb_user_role_permission_manage_user_id = models.CharField(max_length=45)
-    tb_user_role_permission_manage_role_id = models.CharField(max_length=45)
-    tb_user_role_permission_manage_permission = models.CharField(max_length=200)
-    objects = TbUserRolePermissionManageManager()
+    tb_user_role_permission_manage_function_code = models.CharField(max_length=45)
+    tb_user_role_permission_manage_permission_type_code = models.CharField(max_length=45)
+    tb_user_role_permission_manage_permission_range = models.CharField(max_length=100)
 
     class Meta:
         managed = False
@@ -174,3 +169,16 @@ class TbFunction(models.Model):
     class Meta:
         managed = False
         db_table = 'tb_function'
+
+class TbUserRoleManager(models.Manager):
+    def get_user_role_by_user_id(self,userid):
+        return self.get(tb_user_role_userid=userid)
+
+class TbUserRole(models.Model):
+    idtb_user_role = models.AutoField(primary_key=True)
+    tb_user_role_userid = models.IntegerField()
+    tb_user_role_roleid = models.IntegerField()
+    objects = TbUserRoleManager()
+    class Meta:
+        managed = False
+        db_table = 'tb_user_role'

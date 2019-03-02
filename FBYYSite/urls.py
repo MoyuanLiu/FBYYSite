@@ -19,6 +19,7 @@ from FileUpload import views as fuview
 from SiteLogin import views as slview
 from UserManage import views as umview
 from DataManage import views as dmview
+from PermissionManage import views as pmview
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
@@ -43,6 +44,7 @@ urlpatterns = [
     path('fbyysite/accountpswchange',umview.accountpwdchange),
     path('fbyysite/accountemailchange',umview.accountemailchange),
     re_path('fbyysite/pwdchange/confirm/(.*)',umview.accountpwdchangeconfirm),
+    re_path('fbyysite/emailchange/confirm/(.*)',umview.accountemailchangeconfirm),
     path('fbyysite/pwdchange/change',umview.accountpwdnew),
     re_path(r'fbyysite/datamanage/ztc/pagenum/(\d+)',dmview.ztcmanage),
     re_path(r'fbyysite/datamanage/product/pagenum/(\d+)',dmview.productmanage),
@@ -50,5 +52,19 @@ urlpatterns = [
     path('fbyysite/datamanage/product/upload',dmview.productupload),
     re_path(r'fbyysite/datamanage/product/upload/taskquery/(\d+)',dmview.productuploadtaskquery),
     path('fbyysite/datamanage/product/upload/taskcancel', dmview.productuploadtaskcancel),
-
+    re_path(r'fbyysite/rolemanage/pagenum/(\d+)',pmview.rolemanage),
+    re_path(r'fbyysite/permission/ajaxfunctions?[^/]+',pmview.permission_ajax_function),
+    path('fbyysite/rolemanage/add/',pmview.roleadd),
+    re_path(r'fbyysite/rolemanage/edit/(.+)',pmview.roleedit),
+    path('fbyysite/rolemanage/roleeditcheck', pmview.roleeditcheck),
+    path('fbyysite/rolemanage/default/', pmview.roledefault),
+    path('fbyysite/rolemanage/delete/', pmview.roledelete),
+    re_path(r'fbyysite/rolemanage/query/(.+)',pmview.rolequery),
+    re_path(r'fbyysite/permissionmanage/pagenum/(\d+)',pmview.permissionmanage),
+    re_path(r'fbyysite/permissionmanage/edit/(.+)',pmview.assignpermission),
+    re_path(r'fbyysite/role/ajaxfunctions?[^/]+',pmview.role_ajax_function),
+    path('fbyysite/permissionmanage/permissioneditcheck', pmview.permissioneditcheck),
+    re_path(r'fbyysite/permissionmanage/ajaxpermisssiondetail?[^/]+',pmview.user_ajax_permission),
+    path('fbyysite/permissionmanage/delete/', pmview.permissiondelete),
+    re_path(r'fbyysite/permissionmanage/query/(.+)',pmview.querypermission),
 ]

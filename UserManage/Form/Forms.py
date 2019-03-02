@@ -66,4 +66,13 @@ class PwdChangeForm(forms.Form):
         if confirmpwd != pwd:
             raise forms.ValidationError("两次密码输入不一致！！")
 
+class EmailChangeUserForm(forms.Form):
+    userid = forms.CharField(required=True, widget=forms.HiddenInput())
+    pwd = forms.CharField(required=True, min_length=6, widget=forms.PasswordInput(attrs={'placeholder': '请输入密码', 'class': 'form-control'}))
+    email = forms.EmailField(required=True,widget=forms.EmailInput(attrs={'placeholder': '请输入新邮箱地址', 'class': 'form-control'}))
+
+class EmailChangeForm(forms.Form):
+    userid = forms.CharField(required=True, widget=forms.HiddenInput())
+    pwd = forms.CharField(required=True, min_length=6, widget=forms.PasswordInput(attrs={'placeholder': '请输入密码', 'class': 'form-control'}))
+    email = forms.EmailField(required=True,widget=forms.EmailInput(attrs={'placeholder': '请输入新邮箱地址', 'class': 'form-control'}))
 

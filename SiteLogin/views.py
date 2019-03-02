@@ -27,7 +27,7 @@ def login(request):
             request.session['usenname'] = a
             currentdatetime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
             login_update(a,currentdatetime)
-            return HttpResponseRedirect('/fbyysite/index/')
+            return redirect('/fbyysite/index/')
         else:
             return render(request, "login.html")
     else:
@@ -129,6 +129,8 @@ def index_left(request):
     else:
         modulelist = get_user_modules(username)
         functionlist = get_user_functions(username)
+        print(modulelist)
+        print(functionlist)
         return render(request, "index_left.html", {'modules': modulelist,'functions':functionlist})
 
 

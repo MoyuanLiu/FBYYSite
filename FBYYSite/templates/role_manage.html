@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+{% block style %}
+<style>
+    ul {list-style-type:none;}
+
+</style>
+{% endblock %}
+{% block script %}
+<script>
+    function delconfirm(obj,roleid){
+        var tr = $(obj).parent().parent().parent();
+        var rolecode = tr.children("td:nth-child(1)").text();
+        var rolename = tr.children("td:nth-child(2)").text();
+        $("#delrolecode").text(rolecode);
+        $("#delrolename").text(rolename);
+        $("#delroleid").val(roleid)
+        $("#delreferer").val(window.location.href);
+    }
+    function defaultconfirm(obj,roleid){
+        var tr = $(obj).parent().parent().parent();
+        var rolecode = tr.children("td:nth-child(1)").text();
+        var rolename = tr.children("td:nth-child(2)").text();
+        $("#defaultrolecode").text(rolecode);
+        $("#defaultrolename").text(rolename);
+        $("#defaultroleid").val(roleid)
+        $("#defaultreferer").val(window.location.href);
+    }
+</script>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="container-fluid d-inline-flex d-flex justify-content-between">
+        <div class="p-2">
+            <h2>角色信息列表</h2>
+        </div>
+        <div class="p-2">
+            <a class="btn btn-success text-white ml-auto" href="/fbyysite/rolemanage/add/"><i class="fa fa-plus-square-o fa-lg"></i>添加新角色</a>
+        </div>
+    </div>
+    <hr>
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>请修改以下错误</strong>
+        </div>
+        {% endif %}
+    <br>
+    <form id="id_queryform" action="/fbyysite/rolemanage/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="id_rolecode">角色编码:&nbsp;&nbsp;</label>
+            {{ queryform.rolecode }}
+        </div>
+         &nbsp;&nbsp;{{ queryform.rolecode.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_rolename">角色名称:&nbsp;&nbsp;</label>
+            {{ queryform.rolename }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.rolename.errors }}&nbsp;&nbsp;
+        <br>
+        <div class="form-group p-2 m-2">
+            <label for="selrolemodule">包含模块:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selrolemodule" name="selrolemodule">
+              <option value=''>请选择模块</option>
+                {% for module in modules %}
+                    <option value={{ module.tb_module_code }}>{{ module.tb_module_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="selrolefunction">包含功能:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selrolefunction" name="selrolefunction">
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label >是否为默认角色:&nbsp;&nbsp;</label>
+            <div class="input-group bg-light">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.roledefaultwhetherflag }}
+                    </div>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="defaultroletrue" name="roledefaultwhether" value="1" >
+                    <label class="custom-control-label" for="defaultroletrue">默认角色</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="defaultrolefalse" name="roledefaultwhether" value="0" checked="checked">
+                    <label class="custom-control-label" for="defaultrolefalse">非默认角色</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group p-2 m-2">
+            <label for="id_rolecreatedatewhetherflag">角色创建日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.rolecreatedatewhetherflag }}
+                    </div>
+                </div>
+                    {{queryform.rolecreatedate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.rolecreatedate.errors }}
+        </div>
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="fbyysite/rolemanage/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部角色</a>
+        </div>
+    </form>
+    <br>
+
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+  $(".list-group").removeClass("errorlist")
+
+  var module_code = $("#selrolemodule").val();
+if(module_code===''){
+$('#selrolefunction').empty();
+}else{
+      $.ajax({
+        url: 'permission/ajaxfunctions',
+        data: {
+          'module_code': module_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selrolefunction').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_function_code+'>'+item.fields.tb_function_name+'</option>'
+                });
+            $('#selrolefunction').html(content)
+        },
+      });
+}
+$("#selrolemodule").change(function() {
+      var module_code = $(this).val();
+        if(module_code===''){
+            $('#selrolefunction').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/permission/ajaxfunctions',
+        data: {
+          'module_code': module_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selrolefunction').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_function_code+'>'+item.fields.tb_function_name+'</option>'
+                });
+            $('#selrolefunction').html(content)
+        },
+      });
+        }  
+    });
+
+</script>
+    <hr/>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>角色编码</th>
+                    <th>角色名称</th>
+                    <th>模块列表</th>
+                    <th>功能列表</th>
+                    <th>是否默认</th>
+                    <th>创建日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if rolelist %}
+            {% for role in rolelist %}
+            <tr>
+                <td>{{role.tb_role_code}}</td>
+                <td>{{role.tb_role_name}}</td>
+                <td>
+                    <ul>
+                        {% for modulename in role.tb_role_module_name_list%}
+                        <li>{{modulename}}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for funcname in role.tb_role_function_name_list%}
+                        <li>{{funcname}}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {% ifequal role.tb_role_default_flag '默认角色'%}
+                    <mark><i class="fa fa-flag-o fa-sm text-warning">{{role.tb_role_default_flag}}</i></mark>
+                    {% else %}
+                    {{role.tb_role_default_flag}}
+                    {% endifequal %}
+
+                </td>
+                <td>{{role.tb_role_createtime}}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-primary text-white" href="/fbyysite/rolemanage/edit/{{role.idtb_role}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this,{{role.idtb_role}})" data-toggle="modal" data-target="#delModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        <button type="button" class="btn btn-default text-muted" onclick="defaultconfirm(this,{{role.idtb_role}})" data-toggle="modal" data-target="#defaultModal"><i class="fa fa-flag fa-lg"></i>设为默认</button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-danger">
+                {% block emptymsg %}<strong>当前还没有任何角色</strong>{% endblock %}
+            </div>
+            {% endif %}
+            </tbody>
+        </table>
+        {% block pageination %}
+        {% if rolelist %}
+        <div class="d-inline-flex p-3 container-fluid">
+                <ul class="pagination">
+                    {% if rolelist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/rolemanage/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/rolemanage/pagenum/{{rolelist.previous_page_number}}">上一页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/rolemanage/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if rolelist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/rolemanage/pagenum/{{rolelist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/rolemanage/pagenum/{{totalpages}}">尾页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+                    {% endif %}
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+                    <li class="page-item">
+                            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+                    </li>
+                </ul>
+        </div>
+        <script>
+            $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                    window.location.href="/fbyysite/rolemanage/pagenum/" + jumppagenum;
+                }
+             });
+        </script>
+        {% endif %}
+        {% endblock %}
+    </div>
+    <div class="modal fade" id="delModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">删除角色提示</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <p class="text-center text-justify">确定要删除当前角色吗？<br>角色编码为：<strong id="delrolecode" class="text-danger"></strong><br>角色名称为：<strong id="delrolename" class="text-danger"></strong></p>
+            </div>
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+            <form action="/fbyysite/rolemanage/delete/" method="post">
+                <input type="hidden" id="delroleid" name="delroleid">
+                <input type="hidden" id="delreferer" name="delreferer">
+                <button type="submit" id="delconfirm"  class="btn btn-danger text-white" >确认删除</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="defaultModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">默认角色提示</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <p class="text-center text-justify">确定要设置当前角色为默认吗？<br>角色编码为：<strong id="defaultrolecode" class="text-danger"></strong><br>角色名称为：<strong id="defaultrolename" class="text-danger"></strong></p>
+                <p class="bg-warning">设置当前角色为默认后，将取消其他角色默认状态！！！</p>
+            </div>
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+            <form action="/fbyysite/rolemanage/default/" method="post">
+                <input type="hidden" id="defaultroleid" name="defaultroleid">
+                <input type="hidden" id="defaultreferer" name="defaultreferer">
+                <button type="submit" id="defaultconfirm"  class="btn btn-danger text-white" >确认设为默认</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
