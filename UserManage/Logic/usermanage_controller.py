@@ -59,3 +59,16 @@ def renew_user_pwd(formdata):
     renew_user = TbUserInfo.objects.get_user_by_account(formdata['email'])
     renew_user.tb_user_info_pwd = formdata['pwd']
     renew_user.save()
+
+def user_list(userlist):
+    return TbUserInfo.objects.get_userinfo_list(userlist)
+
+def eamil_change_check(formdata):
+    changeuser = TbUserInfo.objects.get_user_by_id(formdata['userid'])
+    if changeuser.tb_user_info_pwd == formdata['pwd']:
+        return True
+    else:
+        return False
+
+
+

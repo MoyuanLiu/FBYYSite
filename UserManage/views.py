@@ -15,7 +15,7 @@ from SiteLogin.views import logout
 # Create your views here.
 @csrf_exempt
 def usermanage(request,pagenum):
-        userlist = TbUserInfo.objects.get_userinfo_list()
+        userlist = TbUserInfo.objects.all()
         paginator = Paginator(userlist, 8)
         totalpages = paginator.num_pages
         queryform = UserQueryForm()
@@ -29,6 +29,7 @@ def usermanage(request,pagenum):
         except EmptyPage:
             currentpage = totalpages
             userlist = paginator.page(currentpage)
+        userlist = user_list(userlist)
         return render(request,"user_manage.html",locals())
 
 
@@ -68,14 +69,15 @@ def useradd(request):
     departmentlist = get_all_departments()
     if request.method == 'GET':
         form = UserAddForm()
-        return render(request,"user_add.html",{'departments':departmentlist,'stores':{},'form':form})
+        return render(request,"user_add.html",locals())
     elif request.method == 'POST':
         form = UserAddForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             user_add(cd)
+            return redirect("fbyysite/usermanage/pagenum/1")
         else:
-            return render(request,'user_add.html', {'departments':departmentlist,'stores':{},'form': form})
+            return render(request,'user_add.html', locals())
 
 @csrf_exempt
 def userquery(request,pagenum):
@@ -95,6 +97,7 @@ def userquery(request,pagenum):
             except EmptyPage:
                 currentpage = totalpages
                 userlist = paginator.page(currentpage)
+            userlist = user_list(userlist)
             return render(request,'user_query.html',locals())
         else:
             return render(request,'user_query.html',locals())
@@ -162,6 +165,53 @@ def accountpwdnew(request):
             renew_user_pwd(cd)
             logout(request)
 
+
 @csrf_exempt
 def accountemailchange(request):
-    return
+    if request.method == 'POST':
+        form = EmailChangeForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if eamil_change_check(cd):
+                active_tocken = uuid.uuid1()
+                msg = '本邮件为密保邮箱更换确认邮件，如非本人操作，请忽略。<a href="http://%s/fbyysite/emailchange/confirm/%s" target="_blank">激活当前邮箱</a>此链接将在60秒后失效！！' % (
+                    request.get_host(), active_tocken)
+                emaillist = []
+                emaillist.append(cd['email'])
+                send_mail('更换本人确认邮件', '本邮件为邮箱更换确认邮件，如非本人操作，请忽略。', settings.DEFAULT_FROM_EMAIL, emaillist,
+                          fail_silently=False,
+                          html_message=msg)
+                cache.set(active_tocken, cd, 60)
+                msgpre = '已发送新邮箱激活邮件请查收'
+                seconds = 3
+                msgsuf = '秒后,跳转回用户中心'
+                redirecturl = '/fbyysite/accountmanage'
+                metacontent = "%s;URL=%s" % (seconds, redirecturl)
+                return render(request, 'jump.html',
+                              {'msgpre': msgpre, 'seconds': seconds, 'msgsuf': msgsuf, 'metacontent': metacontent,
+                               'redirecturl': redirecturl})
+            else:
+                logout(request)
+        else:
+            return render(request,'email_change.html',locals())
+
+@csrf_exempt
+def accountemailchangeconfirm(request,tocken):
+    if cache.get(tocken) == None:
+        msgpre = '链接已失效'
+        seconds = 3
+        msgsuf = '秒后跳转回用户中心'
+        redirecturl = '/fbyysite/accountmanage'
+        metacontent = "%s;URL=%s" % (seconds, redirecturl)
+        return render(request, 'jump.html',
+                      {'msgpre': msgpre, 'seconds': seconds, 'msgsuf': msgsuf, 'redirecturl': redirecturl,
+                       'metacontent': metacontent})
+    else:
+        cd = cache.get(tocken)
+        renew_user_eamil(cd)
+        return
+
+
+def renew_user_eamil(formdata):
+    user = TbUserInfo.objects.get_user_by_id(formdata['userid'])
+    user.tb_user_info_email = formdata['email']

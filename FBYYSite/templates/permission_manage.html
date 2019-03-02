@@ -1,0 +1,522 @@
+{% extends "base.html" %}
+{% block style %}
+<style type="text/css">
+ tr td{
+		/* 不换行*/
+		word-break:keep-all;
+		/* 不换行*/
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		height:63px;
+	}
+	ul {list-style-type:none;}
+        </style>
+{% endblock %}
+{% block script %}
+<script>
+function delconfirm(obj,userid){
+        var tr = $(obj).parent().parent().parent();
+        var num = $("#unfixbody").index(tr);
+        var delname = $("#fixbody tr").eq(num).children("td:nth-child(2)").text();
+        var delnickname = $("#fixbody tr").eq(num).children("td:nth-child(3)").text();
+        $("#delname").text(delname);
+        $("#delnickname").text(delnickname);
+        $("#deluserid").val(userid)
+        $("#delreferer").val(window.location.href);
+    }
+function addtablerow(id,valuearr){
+    var datarow = "<tr>"
+    datarow += "<td>"+valuearr[0]+"</td>"
+    datarow += "<td>"+valuearr[1]+"</td>"
+    datarow += "<td>"+valuearr[2]+"</td>"
+    datarow += "</tr>"
+    $("#"+id+" tbody").append(datarow)
+}
+    $(document).ready(function(){
+  $("#fixbody tr").hover(function(){
+    var num = $("#fixbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $("#fixbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $("#unfixbody tr").hover(function(){
+    var num = $("#unfixbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $("#unfixbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $("#fixbody tr").click(function(){
+    var num = $("#fixbody tr").index(this)
+    $("#fixbody tr").removeClass('table-primary');
+    $("#unfixbody tr").removeClass('table-primary');
+    $("#fixbody tr").eq(num).addClass('table-primary');
+    $("#unfixbody tr").eq(num).addClass('table-primary');
+    var userid = $("#fixbody tr").eq(num).children("td:nth-child(1)").text()
+    $.ajax({
+        url: '/fbyysite/permissionmanage/ajaxpermisssiondetail',
+        data: {
+          'userid': userid
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#detailtable tbody').empty();
+            $.each($.parseJSON(data), function(i, item){
+                            var dataarr = new Array();
+                            dataarr[0] = item.tb_user_role_permission_manage_function_name
+                            dataarr[1] = item.tb_user_role_permission_manage_permission_type_name
+                            dataarr[2] = item.tb_user_role_permission_manage_permission_range
+                            addtablerow('detailtable',dataarr)
+                });
+        },
+      });
+    });
+    $("#unfixbody tr").click(function(){
+    var num = $("#unfixbody tr").index(this)
+    $("#fixbody tr").removeClass('table-primary');
+    $("#unfixbody tr").removeClass('table-primary');
+    $("#fixbody tr").eq(num).addClass('table-primary');
+    $("#unfixbody tr").eq(num).addClass('table-primary');
+    var userid = $("#fixbody tr").eq(num).children("td:nth-child(1)").text()
+    $.ajax({
+        url: '/fbyysite/permissionmanage/ajaxpermisssiondetail',
+        data: {
+          'userid': userid
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#detailtable tbody').empty();
+            $.each($.parseJSON(data), function(i, item){
+                            var dataarr = new Array();
+                            dataarr[0] = item.tb_user_role_permission_manage_function_name
+                            dataarr[1] = item.tb_user_role_permission_manage_permission_type_name
+                            dataarr[2] = item.tb_user_role_permission_manage_permission_range
+                            addtablerow('detailtable',dataarr)
+                });
+        },
+      });
+    });
+})
+</script>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="container-fluid d-inline-flex d-flex justify-content-between">
+        <div class="p-2">
+            <h2>用户权限分配列表</h2>
+        </div>
+
+    </div>
+    <hr>
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>请修改以下错误</strong>
+        </div>
+    {% endif %}
+    <form id="id_queryform" action="/fbyysite/permissionmanage/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="id_username">用户名:&nbsp;&nbsp;</label>
+            {{ queryform.username }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.username.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_usernickname">用户花名:&nbsp;&nbsp;</label>
+            {{ queryform.usernickname }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.usernickname.errors }}&nbsp;&nbsp;
+        <br>
+        <div class="form-group p-2 m-2">
+            <label for="seldepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="seldepart" name="seldepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="selstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selstore" name="selstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label >是否为超级管理员:&nbsp;&nbsp;</label>
+            <div class="input-group bg-light">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.querysuperuserwhetherflag }}
+                    </div>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="querysuperusertrue" name="querysuperuserwhether" value="1" >
+                    <label class="custom-control-label" for="querysuperusertrue">超级管理员</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="querysuperuserfalse" name="querysuperuserwhether" value="0" checked="checked">
+                    <label class="custom-control-label" for="querysuperuserfalse">非超级管理员</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="selrole">角色:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selrole" name="selrole">
+              <option value=''>请选择角色</option>
+                {% for role in roles %}
+                    <option value={{ role.idtb_role }}>{{ role.tb_role_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        &nbsp;&nbsp;{{ queryform.rolename.errors }}&nbsp;&nbsp;
+         <div class="form-group p-2 m-2">
+            <label for="selrolemodule">包含模块:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selrolemodule" name="selrolemodule">
+              <option value=''>请选择模块</option>
+                {% for module in modules %}
+                    <option value={{ module.tb_module_code }}>{{ module.tb_module_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="selrolefunction">包含功能:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selrolefunction" name="selrolefunction">
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="selpermissiontype">包含权限类型:&nbsp;&nbsp;</label>
+            <select class="form-control" id="selpermissiontype" name="selpermissiontype">
+              <option value=''>请选择权限类型</option>
+                {% for permissiontype in types %}
+                    <option value={{ permissiontype.tb_permission_type_code }}>{{ permissiontype.tb_permission_type_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="fbyysite/permissionmanage/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
+        </div>
+    </form>
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+
+  var depart_code = $("#seldepart").val();
+if(depart_code===''){
+$('#selstore').empty();
+}else{
+alert('发送请求')
+      $.ajax({
+        url: '/fbyysite/registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selstore').empty();
+            var content='<option value='+'Other'+'>非店铺</option>';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#selstore').html(content)
+        },
+      });
+}
+$("#seldepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#queryproductstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/registe/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#selstore').html(content)
+        },
+      });
+        }  
+    });
+ var module_code = $("#selrolemodule").val();
+if(module_code===''){
+$('#selrolefunction').empty();
+}else{
+      $.ajax({
+        url: 'permission/ajaxfunctions',
+        data: {
+          'module_code': module_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selrolefunction').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_function_code+'>'+item.fields.tb_function_name+'</option>'
+                });
+            $('#selrolefunction').html(content)
+        },
+      });
+}
+$("#selrolemodule").change(function() {
+      var module_code = $(this).val();
+        if(module_code===''){
+            $('#selrolefunction').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/permission/ajaxfunctions',
+        data: {
+          'module_code': module_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selrolefunction').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_function_code+'>'+item.fields.tb_function_name+'</option>'
+                });
+            $('#selrolefunction').html(content)
+        },
+      });
+        }  
+    });
+</script>
+    <hr/>
+    {% if userlist %}
+    <div class="d-inline-flex table-responsive" style="width:100%;height:100%;position: relative;">
+        <table  class="table" style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th hidden>用户ID</th>
+                    <th >用户名</th>
+                    <th >用户花名</th>
+                    <th >部门</th>
+                    <th >店铺</th>
+                    <th >是否为超级管理员</th>
+                </tr>
+            </thead>
+            <tbody id="fixbody">
+            {% for user in userlist %}
+            <tr >
+                <td hidden>{{user.idtb_user_info}}</td>
+                <td >{{user.tb_user_info_name}}</td>
+                <td>{{user.tb_user_info_nickname}}</td>
+                <td>{{user.tb_user_info_department_name}}</td>
+                <td>{{user.tb_user_info_store_name}}</td>
+                <td>{{user.tb_user_info_superuser}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <table class="table " style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr >
+                    <th >角色</th>
+                    <th >模块列表</th>
+                    <th >功能列表</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+            <tbody id="unfixbody">
+            {% for user in userlist %}
+            <tr >
+                <td >{{user.tb_user_info_role_name}}</td>
+                <td>
+                     <ul>
+                        {% for modulename in user.tb_user_info_module_name_list%}
+                        <li>{{modulename}}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for funcname in user.tb_user_info_function_name_list%}
+                        <li>{{funcname}}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        {% ifequal user.tb_user_info_issuperuser 1 %}
+                        <a class="btn btn-primary text-white disabled" href="#"><i class="fa fa-edit fa-lg"></i>分配</a>
+                        <button type="button" class="btn btn-danger text-white disabled" ><i class="fa fa-trash-o fa-lg"></i>清除</button>
+                        {% else %}
+                        <a class="btn btn-primary text-white" href="/fbyysite/permissionmanage/edit/{{user.idtb_user_info}}"><i class="fa fa-edit fa-lg"></i>分配</a>
+                        {% if user.tb_user_info_role_name %}
+                        <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this,{{user.idtb_user_info}})" data-toggle="modal" data-target="#delModal"><i class="fa fa-trash-o fa-lg"></i>清除</button>
+                        {% else %}
+                        <button type="button" class="btn btn-danger text-white disabled" ><i class="fa fa-trash-o fa-lg"></i>清除</button>
+                        {% endif %}
+                        {% endifequal %}
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+    {% block pageination %}
+
+        <div class="d-inline-flex p-3 container-fluid">
+                <ul class="pagination">
+                    {% if userlist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/permissionmanage/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/permissionmanage/pagenum/{{userlist.previous_page_number}}">上一页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/permissionmanage/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if userlist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/permissionmanage/pagenum/{{userlist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/permissionmanage/pagenum/{{totalpages}}">尾页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+                    {% endif %}
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+                    <li class="page-item">
+                            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+                    </li>
+                </ul>
+        </div>
+        <script>
+            $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                    window.location.href="/fbyysite/permissionmanage/pagenum/" + jumppagenum;
+                }
+             });
+        </script>
+        {% endblock %}
+    {% else %}
+    <div class="alert alert-danger w-100">
+        {% block emptymsg %}<strong>当前还没有任何数据</strong>{% endblock %}
+    </div>
+    <div class="d-inline-flex" style="width:100%;height:100%;position: relative;">
+
+        <table class="table table-hover " style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >统计日期</th>
+                    <th >商品ID</th>
+                    <th >商品名称</th>
+                    <th >货号</th>
+                </tr>
+            </thead>
+
+        </table>
+
+
+        <table class="table table-hover " style="position: absolute;overflow-x:scroll;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr class="" style="white-space:nowrap;">
+                    <th >商品状态</th>
+                    <th >商品标签</th>
+                    <th >商品访客数</th>
+                    <th >商品浏览量</th>
+                    <th >平均停留时长</th>
+                    <th >详情页跳出率</th>
+                    <th >商品收藏人数</th>
+                    <th >商品加购件数</th>
+                    <th >商品加购人数</th>
+                    <th >下单买家数</th>
+                    <th >下单件数</th>
+                    <th >下单金额</th>
+                    <th >下单转化率</th>
+                    <th >支付买家数</th>
+                    <th >支付件数</th>
+                    <th >支付金额</th>
+                    <th >支付转化率</th>
+                    <th >支付新买家数</th>
+                    <th >支付老买家数</th>
+                    <th >老买家支付金额</th>
+                    <th >聚划算支付金额</th>
+                    <th >访客平均价值</th>
+                    <th >售中售后成功退款金额</th>
+                    <th >年累计支付金额</th>
+                    <th >月累计支付金额</th>
+                    <th >月累计支付件数</th>
+                    <th >商品对应所在店铺id</th>
+                    <th >搜索引导支付转化率</th>
+                    <th >搜索引导访客数</th>
+                    <th >搜索引导支付买家数</th>
+                    <th >数据导入时间</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+
+        </table>
+
+    </div>
+    {% endif %}
+
+    <div class="modal fade" id="delModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">清除角色权限提示</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <p class="text-center text-justify">确定要清除当前用户所分配的角色和权限吗？<br>用户名为：<strong id="delname" class="text-danger"></strong><br>用户花名为：<strong id="delnickname" class="text-danger"></strong></p>
+            </div>
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+            <form action="/fbyysite/permissionmanage/delete/" method="post">
+                <input type="hidden" id="deluserid" name="deluserid">
+                <input type="hidden" id="delreferer" name="delreferer">
+                <button type="submit" id="delconfirm" class="btn btn-danger text-white" >清除</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    <hr/>
+    <table id="detailtable" class="table table-hover">
+        <thead class="thead-light">
+            <th>功能名称</th>
+            <th>权限类型</th>
+            <th>权限范围</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <!--
+<iframe name="DetailFrame" id="DetailFrame"  width="100%" height="51px" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" class="p-0">
+
+</iframe>-->
+</body>
+{% endblock %}
