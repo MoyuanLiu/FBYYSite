@@ -1,0 +1,173 @@
+{% extends "order_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% block pageination %}
+{% if ztclist %}
+<form id="curform" action="" hidden="hidden" method="post">
+   <div class="form-group p-2 m-2">
+            <label for="id_orderid">订单ID:&nbsp;&nbsp;</label>
+            {{ queryform.orderid }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.orderid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_ordersysid">系统单号:&nbsp;&nbsp;</label>
+            {{ queryform.ordersysid }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.ordersysid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_onlineproductcode">线上商品编码:&nbsp;&nbsp;</label>
+            {{ queryform.onlineproductcode }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.onlineproductcode.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_orderdetailstatus">明细状态:&nbsp;&nbsp;</label>
+            {{ queryform.orderdetailstatus }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.orderdetailstatus.errors }}&nbsp;&nbsp;
+        <br>
+        <div class="form-group p-2 m-2">
+            <label for="queryorderdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryorderdepart" name="queryorderdepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="queryorderstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryorderstore" name="queryorderstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_orderclickfirmflag">是否刷单:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.orderclickfirmflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="orderclickfirmtrue" name="orderclickfirm" value="1" >
+                    <label class="custom-control-label" for="orderclickfirmtrue">刷单</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="orderclickfirmfalse" name="orderclickfirm" value="0">
+                    <label class="custom-control-label" for="orderclickfirmfalse">非刷单</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryorderdate">下单日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryorderdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryorderdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryorderdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_querypaydate">付款日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.querypaydatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.querypaydate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.querypaydate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryprintdate">打单日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryprintdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryprintdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryprintdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_querysenddate">发货日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.querysenddatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.querysenddate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.querysenddate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryoverdate">完成日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryoverdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryoverdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryoverdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryimportdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryimportdate.errors }}&nbsp;&nbsp;
+        </div>
+</form>
+<div class="d-inline-flex p-3 container-fluid">
+<ul class="pagination">
+    {% if orderlist.has_previous %}
+    <li class="page-item"><a class="page-link" href="#" onclick="queryorder(1)">首页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="queryorder({{orderlist.previous_page_number}})">上一页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#" onclick="queryorder({{currentpage}})">{{currentpage}}</a></li>
+    {% if orderlist.has_next %}
+    <li class="page-item"><a class="page-link" href="#" onclick="queryorder({{orderlist.next_page_number}})">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="queryorder({{totalpages}})">尾页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+    {% endif %}
+    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+    <li class="page-item">
+        <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+    </li>
+</ul>
+</div>
+<script>
+    function queryorder(querypage){
+        $("#curform").attr("action","fbyysite/datamanage/order/query/"+querypage);
+        $("#curform").submit();
+    }
+    $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   queryztc(jumppagenum);
+                }
+             });
+</script>
+{% endif %}
+{% endblock %}

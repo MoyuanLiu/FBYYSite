@@ -26,6 +26,8 @@
   $('#uploadModal').on('show.bs.modal', function (event) {
        $("#uploadFileLabel").text("请选择文件:仅限xlsx");
        $("#uploadFile").empty()
+       $('#ResultFrame').attr('src', '').on('load',function(){
+    });
     })
 
 });
@@ -71,7 +73,7 @@
         <div class="form-group p-2 m-2">
             <label for="queryproductdepart">部门:&nbsp;&nbsp;</label>
             <select class="form-control" id="queryproductdepart" name="queryproductdepart">
-              <option value='default'>请选择部门</option>
+              <option value=''>请选择部门</option>
                 {% for department in departments %}
                     <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
                 {% endfor %}
@@ -84,7 +86,7 @@
             </select>
         </div>
         <div class="form-group p-2 m-2">
-            <label for="id_querycaldate">统计日期:&nbsp;&nbsp;</label>
+            <label for="id_productcaldate">统计日期:&nbsp;&nbsp;</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -96,7 +98,7 @@
             &nbsp;&nbsp;{{ queryform.productcaldate.errors }}&nbsp;&nbsp;
         </div>
         <div class="form-group p-2 m-2">
-            <label for="id_queryimportdate">导入日期:&nbsp;&nbsp;</label>
+            <label for="id_productimportdate">导入日期:&nbsp;&nbsp;</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -110,7 +112,7 @@
         <div class="btn-group">
             <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
             <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
-            <a class="btn btn-info" href="fbyysite/datamanage/product/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
+            <a class="btn btn-info" href="/fbyysite/datamanage/product/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
         </div>
     </form>
     <script>
@@ -118,12 +120,11 @@
   $(".errorlist li").addClass("list-group-item-danger")
 
   var depart_code = $("#queryproductdepart").val();
-if(depart_code==='default'){
+if(depart_code===''){
 $('#queryproductstore').empty();
 }else{
-alert('发送请求')
       $.ajax({
-        url: '/fbyysite/registe/ajaxstores',
+        url: '/fbyysite/productmanage/ajaxstores',
         data: {
           'depart_code': depart_code
         },
@@ -131,7 +132,7 @@ alert('发送请求')
         dataType: 'json',
         success: function (data) {
                   $('#queryproductstore').empty();
-            var content='<option value='+'Other'+'>非店铺</option>';
+            var content='';
             $.each($.parseJSON(data), function(i, item){
                   content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
                 });
@@ -145,7 +146,7 @@ $("#queryproductdepart").change(function() {
             $('#queryproductstore').empty();
         }else{
         $.ajax({
-        url: '/fbyysite/registe/ajaxstores',
+        url: '/fbyysite/productmanage/ajaxstores',
         data: {
           'depart_code': depart_code
         },
@@ -264,8 +265,17 @@ $("#queryproductdepart").change(function() {
                 <td>{{product.tb_product_import_time}}</td>
                 <td>
                     <div class="btn-group">
+                        {% if product.tb_product_store_id in editpermissionstorecodelist %}
                         <a class="btn btn-primary text-white" href="/fbyysite/usermanage/edit/account/{{user.tb_user_info_email}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% else %}
+                        <a class="btn btn-primary text-white disabled" href="#" ><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% endif %}
+                        {% if product.tb_product_store_id in delpermissionstorecodelist %}
                         <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this)" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% else %}
+                        <button type="button" class="btn btn-danger text-white disabled" ><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% endif %}
+
                     </div>
                 </td>
             </tr>
@@ -413,6 +423,22 @@ $("#queryproductdepart").change(function() {
         <div class="modal-body">
             <div class="container">
                 <form action="/fbyysite/datamanage/product/upload" method="post" enctype="multipart/form-data" target="ResultFrame" id="uploadFileForm">
+                    <div class="d-flex flex-row">
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadproductdepart">部门:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadproductdepart" name="uploadproductdepart">
+                            {% for department in departments %}
+                                <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadproductstore">店铺:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadproductstore" name="uploadproductstore">
+
+                        </select>
+                    </div>
+                        </div>
                     <div class="custom-file mb-3">
                         {{ uploadform.uploadFile }}
                         <label class="custom-file-label" for="id_uploadFile" id="uploadFileLabel" >请选择文件:仅限xlsx</label>
@@ -429,6 +455,50 @@ $("#queryproductdepart").change(function() {
         </div>
 
           <script>
+           var depart_code = $("#uploadproductdepart").val();
+if(depart_code===''){
+$('#uploadproductstore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/productmanage/uploadajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#uploadproductstore').empty();
+            var content="";
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#uploadproductstore').html(content)
+        },
+      });
+}
+$("#uploadproductdepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#uploadproductstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/productmanage/uploadajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#uploadproductstore').empty();
+            var content="";
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#uploadproductstore').html(content)
+        },
+      });
+        }  
+    });
 $("#id_uploadFile").change(function() {
             var filename = $("#id_uploadFile").val();
             var arr=filename.split('\\');

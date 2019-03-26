@@ -121,21 +121,6 @@ class TbUserRolePermissionManage(models.Model):
         db_table = 'tb_user_role_permission_manage'
 
 
-class TbRoleManager(models.Manager):
-    def get_role_name_by_role_id(self,roleid):
-        roleobj = self.get(idtb_role=roleid)
-        return roleobj.tb_role_name
-
-class TbRole(models.Model):
-    idtb_role = models.AutoField(primary_key=True)
-    tb_role_code = models.CharField(max_length=45)
-    tb_role_name = models.CharField(max_length=45)
-    tb_role_function_list = models.CharField(max_length=100)
-    tb_role_module_list = models.CharField(max_length=100)
-    objects = TbRoleManager()
-    class Meta:
-        managed = False
-        db_table = 'tb_role'
 
 
 class TbModuleManager(models.Manager):
@@ -182,3 +167,5 @@ class TbUserRole(models.Model):
     class Meta:
         managed = False
         db_table = 'tb_user_role'
+
+

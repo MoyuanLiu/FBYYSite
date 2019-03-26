@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block style %}
+<style type="text/css">
+#ContentFrame{
+            height: 100%;
+        }
+ </style>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function(){
+  $('#uploadModal').on('show.bs.modal', function (event) {
+       $("#uploadFileLabel").text("请选择文件:仅限xlsx");
+       $("#uploadFile").empty()
+       $('#ResultFrame').attr('src', '').on('load',function(){
+    });
+    })
+});
+</script>
+{% endblock %}
+{% block content %}
+<body style="height:100%">
+    <div class="container-fluid d-inline-flex d-flex justify-content-between">
+        <div class="p-2">
+            <h2>店铺数据列表</h2>
+        </div>
+        <div class="btn-group p-3 text-center">
+            <button class="btn btn-success text-white ml-auto" type="button" data-toggle="modal" data-target="#uploadModal" ><i class="fa fa-cloud-upload fa-lg"></i>上传数据</button>
+            <a class="btn btn-info text-white ml-auto" href="/fbyysite/datamanage/store/upload/taskquery/1"><i class="fa fa-table fa-lg"></i>查看任务列表</a>
+        </div>
+
+    </div>
+    <div class="tabs-container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active storecategory" href="/fbyysite/datamanage/store/storecost/pagenum/1" target="ContentFrame" data-toggle="tab">店铺推广</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storeflow/pagenum/1" target="ContentFrame" data-toggle="tab">店铺流量</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storeinteraction/pagenum/1" target="ContentFrame" data-toggle="tab">店铺互动</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storelogistic/pagenum/1" target="ContentFrame" data-toggle="tab">店铺物流</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storereview/pagenum/1" target="ContentFrame" data-toggle="tab">店铺评价</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storeservice/pagenum/1" target="ContentFrame" data-toggle="tab">店铺服务</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storetrade/pagenum/1" target="ContentFrame" data-toggle="tab">店铺交易</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link storecategory" href="/fbyysite/datamanage/store/storeturn/pagenum/1" target="ContentFrame" data-toggle="tab">店铺转化</a>
+            </li>
+        </ul>
+
+
+
+    </div>
+        <iframe height="100%" src="/fbyysite/datamanage/store/storecost/pagenum/1" name="ContentFrame" id="ContentFrame" width="100%"  class="p-0" marginwidth="0" marginheight="0" frameborder="0" >
+
+                </iframe>
+<script>
+    $(".storecategory").on('click',function(){
+    var target = $('#ContentFrame');
+    var url = $(this).attr('href');
+    target.attr('src', url).on('load',function(){
+    });
+    });
+</script>
+
+<div class="modal fade" id="uploadModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">上传数据</h4>
+          <button type="button" class="close" data-dismiss="modal" id="modalclose">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <form action="/fbyysite/datamanage/store/upload" method="post" enctype="multipart/form-data" target="ResultFrame" id="uploadFileForm">
+                    <div class="d-flex flex-row">
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadstoredepart">部门:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadstoredepart" name="uploadstoredepart">
+                            {% for department in departments %}
+                                <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadstorestore">店铺:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadstorestore" name="uploadstorestore">
+
+                        </select>
+                    </div>
+                        </div>
+                    <div class="custom-file mb-3">
+                        {{ uploadform.uploadFile }}
+                        <label class="custom-file-label" for="id_uploadFile" id="uploadFileLabel" >请选择文件:仅限xlsx</label>
+                        {{uploadfilename}}
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary text-white ml-auto pull-right" id="submituploadfile">上传</button>
+                        <button type="button" class="btn btn-secondary ml-auto pull-right" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+         <script>
+           var depart_code = $("#uploadstoredepart").val();
+if(depart_code===''){
+$('#uploadstorestore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/storemanage/uploadajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#uploadstorestore').empty();
+            var content="";
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#uploadstorestore').html(content)
+        },
+      });
+}
+$("#uploadstoredepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#uploadstorestore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/storemanage/uploadajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#uploadstorestore').empty();
+            var content="";
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#uploadstorestore').html(content)
+        },
+      });
+        }  
+    });
+$("#id_uploadFile").change(function() {
+            var filename = $("#id_uploadFile").val();
+            var arr=filename.split('\\');
+         $("#uploadFileLabel").text(arr[arr.length-1])
+            $("#id_uploadfilename").val(arr[arr.length-1])
+    });
+</script>
+        <div class="modal-footer p-0">
+            <iframe name="ResultFrame" id="ResultFrame"  width="100%" height="51px" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" class="p-0">
+
+            </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

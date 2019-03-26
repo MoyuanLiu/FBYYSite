@@ -1,0 +1,144 @@
+{% extends "ztc_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% block pageination %}
+{% if ztclist %}
+<form id="curform" action="" hidden="hidden" method="post">
+    <div class="form-group p-2 m-2">
+            <label for="id_ztcplanname">推广计划名称:&nbsp;&nbsp;</label>
+            {{ queryform.ztcplanname }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.ztcplanname.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_ztcsearchtype">宝贝名称:&nbsp;&nbsp;</label>
+            {{ queryform.ztcproductname }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.ztcproductname.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_ztcsearchtypeflag">搜索类型:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.ztcsearchtypeflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztcsearchtypetrue" name="ztcsearchtype" value="搜索" >
+                    <label class="custom-control-label" for="ztcsearchtypetrue">搜索</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztcsearchtypefalse" name="ztcsearchtype" value="定向投放" checked="checked">
+                    <label class="custom-control-label" for="ztcsearchtypefalse">定向投放</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_ztctrafficsouceflag">流量来源:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2" >
+                    <div class="input-group-text">
+                      {{ queryform.ztctrafficsouceflag }}
+                    </div>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce1" name="ztctrafficsouce" value="计算机站内" >
+                    <label class="custom-control-label" for="ztctrafficsouce1">计算机站内</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce2" name="ztctrafficsouce" value="移动站内" checked="checked">
+                    <label class="custom-control-label" for="ztctrafficsouce2">移动站内</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce3" name="ztctrafficsouce" value="计算机站外" >
+                    <label class="custom-control-label" for="ztctrafficsouce3">计算机站外</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce4" name="ztctrafficsouce" value="移动站外" >
+                    <label class="custom-control-label" for="ztctrafficsouce4">移动站外</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group p-2 m-2">
+            <label for="queryztcdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryztcdepart" name="queryztcdepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="queryztcstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryztcstore" name="queryztcstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_ztccaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.ztccaldateflag }}
+                    </div>
+                </div>
+            {{queryform.ztccaldate}}
+            </div>
+            &nbsp;&nbsp;{{queryform.ztccaldate.errors}}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.ztcimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.ztcimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.ztcimportdate.errors }}&nbsp;&nbsp;
+        </div>
+</form>
+<div class="d-inline-flex p-3 container-fluid">
+<ul class="pagination">
+    {% if ztclist.has_previous %}
+    <li class="page-item"><a class="page-link" href="#" onclick="queryztc(1)">首页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="queryztc({{ztclist.previous_page_number}})">上一页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#" onclick="queryztc({{currentpage}})">{{currentpage}}</a></li>
+    {% if ztclist.has_next %}
+    <li class="page-item"><a class="page-link" href="#" onclick="queryztc({{ztclist.next_page_number}})">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="queryztc({{totalpages}})">尾页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+    {% endif %}
+    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+    <li class="page-item">
+        <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+    </li>
+</ul>
+</div>
+<script>
+    function queryztc(querypage){
+        $("#curform").attr("action","fbyysite/datamanage/ztc/query/"+querypage);
+        $("#curform").submit();
+    }
+    $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   queryztc(jumppagenum);
+                }
+             });
+</script>
+{% endif %}
+{% endblock %}

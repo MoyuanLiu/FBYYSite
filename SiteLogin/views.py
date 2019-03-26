@@ -129,8 +129,6 @@ def index_left(request):
     else:
         modulelist = get_user_modules(username)
         functionlist = get_user_functions(username)
-        print(modulelist)
-        print(functionlist)
         return render(request, "index_left.html", {'modules': modulelist,'functions':functionlist})
 
 

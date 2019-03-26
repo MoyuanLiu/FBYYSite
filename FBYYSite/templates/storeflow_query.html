@@ -1,0 +1,104 @@
+{% extends "storeflow_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% block pageination %}
+{% if storeflowlist %}
+<form id="curform" action="" hidden="hidden" method="post">
+   <div class="form-group p-2 m-2">
+            <label for="querystoreflowdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreflowdepart" name="querystoreflowdepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="querystoreflowstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreflowstore" name="querystoreflowstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeflowstoresourceflag">店铺来源:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.storeflowstoresourceflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="storeflowstoresource1" name="storeflowstoresource" value="无线端" >
+                    <label class="custom-control-label" for="storeflowstoresource1">无线端</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="storeflowstoresource2" name="storeflowstoresource" value="PC端">
+                    <label class="custom-control-label" for="storeflowstoresource2">PC端</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeflowcaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeflowcaldateflag }}
+                    </div>
+                </div>
+            {{queryform.storeflowcaldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeflowcaldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeflowimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeflowimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.storeflowimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeflowimportdate.errors }}&nbsp;&nbsp;
+        </div>
+</form>
+<div class="d-inline-flex p-3 container-fluid">
+<ul class="pagination">
+    {% if storeflowlist.has_previous %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreflow(1)">首页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreflow({{storeflowlist.previous_page_number}})">上一页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#" onclick="querystoreflow({{currentpage}})">{{currentpage}}</a></li>
+    {% if storeflowlist.has_next %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreflow({{storeflowlist.next_page_number}})">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreflow({{totalpages}})">尾页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+    {% endif %}
+    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+    <li class="page-item">
+        <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+    </li>
+</ul>
+</div>
+<script>
+    function querystoreflow(querypage){
+        $("#curform").attr("action","fbyysite/datamanage/store/storeflow/query/"+querypage);
+        $("#curform").submit();
+    }
+    $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   querystoreflow(jumppagenum);
+                }
+             });
+</script>
+{% endif %}
+{% endblock %}

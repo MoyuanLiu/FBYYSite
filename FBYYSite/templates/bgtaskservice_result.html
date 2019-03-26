@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    {% ifequal alertmsg 'success'%}
+        <div class="container-fluid alert alert-success">
+            <strong>启动成功</strong>
+        </div>
+    {% endifequal %}
+    {% ifequal alertmsg 'warning'%}
+        <div class="container-fluid alert alert-warning">
+            <strong>进程已启动</strong>
+        </div>
+    {% endifequal %}
+    {% ifequal alertmsg 'success'%}
+        <div class="container-fluid alert alert-danger">
+            <strong>启动失败</strong>
+        </div>
+    {% endifequal %}
+
+
+    <script>
+    setTimeout(function(){ window.parent.$('#modalclose').click();window.parent.location.reload() }, 1500)
+    </script>
+<!--
+$(setTimeout(function(){
+
+        // $(window.parent.document).find('#GetResultBtn').click();     //两种写法都可以，下面的那种简洁一点
+        window.parent.$('#modalclose').click();
+    }, 3000);
+    );
+-->
+</body>
+{% endblock %}

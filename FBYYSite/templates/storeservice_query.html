@@ -1,0 +1,86 @@
+{% extends "storeservice_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% block pageination %}
+{% if storeservicelist %}
+<form id="curform" action="" hidden="hidden" method="post">
+        <div class="form-group p-2 m-2">
+            <label for="querystoreservicedepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreservicedepart" name="querystoreservicedepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="querystoreservicestore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreservicestore" name="querystoreservicestore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeservicecaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeservicecaldateflag }}
+                    </div>
+                </div>
+            {{queryform.storeservicecaldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeservicecaldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeserviceimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeserviceimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.storeserviceimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeserviceimportdate.errors }}&nbsp;&nbsp;
+        </div>
+</form>
+<div class="d-inline-flex p-3 container-fluid">
+<ul class="pagination">
+    {% if storeservicelist.has_previous %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreservice(1)">首页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreservice({{storeservicelist.previous_page_number}})">上一页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#" onclick="querystoreservice({{currentpage}})">{{currentpage}}</a></li>
+    {% if storeservicelist.has_next %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreservice({{storeservicelist.next_page_number}})">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreservice({{totalpages}})">尾页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+    {% endif %}
+    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+    <li class="page-item">
+        <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+    </li>
+</ul>
+</div>
+<script>
+    function querystoreservice(querypage){
+        $("#curform").attr("action","fbyysite/datamanage/store/storeservice/query/"+querypage);
+        $("#curform").submit();
+    }
+    $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   querystoreservice(jumppagenum);
+                }
+             });
+</script>
+{% endif %}
+{% endblock %}

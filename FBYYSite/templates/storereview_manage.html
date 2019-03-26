@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+{% block style %}
+<style type="text/css">
+ tr td{
+		/* 不换行*/
+		word-break:keep-all;
+		/* 不换行*/
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		height:63px;
+	}
+        </style>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function(){
+  $("tbody tr").hover(function(){
+    var num = $(".table tbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $(".table tbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $('#uploadModal').on('show.bs.modal', function (event) {
+       $("#uploadFileLabel").text("请选择文件:仅限xlsx");
+       $("#uploadFile").empty()
+    })
+
+});
+</script>
+{% endblock %}
+{% block content %}
+<body>
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>请修改以下错误</strong>
+        </div>
+    {% endif %}
+    <form id="id_queryform" action="/fbyysite/datamanage/store/storereview/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="querystorereviewdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystorereviewdepart" name="querystorereviewdepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="querystorereviewstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystorereviewstore" name="querystorereviewstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storereviewcaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storereviewcaldateflag }}
+                    </div>
+                </div>
+            {{queryform.storereviewcaldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storereviewcaldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storereviewimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storereviewimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.storereviewimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storereviewimportdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="fbyysite/datamanage/store/storereview/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
+        </div>
+    </form>
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+
+  var depart_code = $("#querystorereviewdepart").val();
+if(depart_code===''){
+$('#querystorereviewstore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/storemanage/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#querystorereviewstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#querystorereviewstore').html(content)
+        },
+      });
+}
+$("#querystorereviewdepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#queryproductstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/storemanage/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#querystorereviewstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#querystorereviewstore').html(content)
+        },
+      });
+        }  
+    });
+
+</script>
+    <hr/>
+    {% if storereviewlist %}
+    <div class="d-inline-flex table-responsive" style="width:100%;height:100%;position: relative;">
+        <table  class="table" style="width:20%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >统计日期</th>
+                    <th >部门编码</th>
+                    <th >店铺代码</th>
+                </tr>
+            </thead>
+            <tbody id="fixbody">
+            {% for storereview in storereviewlist %}
+            <tr >
+                <td>{{storereview.tb_store_review_cal_date}}</td>
+                <td>{{storereview.tb_store_review_depart_code}}</td>
+                <td>{{storereview.tb_store_review_store_code}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <table class="table" style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:20%;display:block;width:80%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr >
+                    <th >评价数</th>
+                    <th >有图评价数</th>
+                    <th >正面评价数</th>
+                    <th >负面评价数</th>
+                    <th >老买家正面评价数</th>
+                    <th >老买家负面评价数</th>
+                    <th >描述相符评分</th>
+                    <th >物流服务评分</th>
+                    <th >服务态度评分</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+            <tbody id="unfixbody">
+            {% for storereview in storereviewlist %}
+            <tr >
+                <td>{{storereview.tb_store_review_reviews}}</td>
+                <td>{{storereview.tb_store_review_picture_reviews}}</td>
+                <td>{{storereview.tb_store_review_positive_reviews}}</td>
+                <td>{{storereview.tb_store_review_critical_reviews}}</td>
+                <td>{{storereview.tb_store_review_positive_reviews_old}}</td>
+                <td>{{storereview.tb_store_review_critical_reviews_old}}</td>
+                <td>{{storereview.tb_store_review_description_score}}</td>
+                <td>{{storereview.tb_store_review_logistics_score}}</td>
+                <td>{{storereview.tb_store_review_attitude_score}}</td>
+                <td>
+                    <div class="btn-group">
+                        {% if storereview.tb_store_review_store_code in editpermissionstorecodelist %}
+                        <a class="btn btn-primary text-white" href="/fbyysite/usermanage/edit/account/{{user.tb_user_info_email}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% else %}
+                        <a class="btn btn-primary text-white disabled" href="#" ><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% endif %}
+                        {% if storereview.tb_store_review_store_code in delpermissionstorecodelist %}
+                        <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this)" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% else %}
+                        <button type="button" class="btn btn-danger text-white disabled" ><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% block pageination %}
+        <div class="d-inline-flex p-3 container-fluid">
+                <ul class="pagination">
+                    {% if storereviewlist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/store/storereview/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/store/storereview/pagenum/{{storereviewlist.previous_page_number}}">上一页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/datamanage/store/storereview/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if storereviewlist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/store/storereview/pagenum/{{storereviewlist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/store/storereview/pagenum/{{totalpages}}">尾页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+                    {% endif %}
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+                    <li class="page-item">
+                            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+                    </li>
+                </ul>
+        </div>
+        <script>
+            $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                    window.location.href="/fbyysite/datamanage/store/storereview/pagenum/" + jumppagenum;
+                }
+             });
+        </script>
+        {% endblock %}
+    {% else %}
+    <div class="alert alert-danger w-100">
+        {% block emptymsg %}<strong>当前还没有任何数据</strong>{% endblock %}
+    </div>
+    <div class="d-inline-flex" style="width:100%;height:100%;position: relative;">
+
+        <table class="table table-hover " style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >统计日期</th>
+                    <th >店铺代码</th>
+                    <th >部门编码</th>
+                </tr>
+            </thead>
+
+        </table>
+
+
+        <table class="table table-hover " style="position: absolute;overflow-x:scroll;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr class="" style="white-space:nowrap;">
+                    <th >评价数</th>
+                    <th >有图评价数</th>
+                    <th >正面评价数</th>
+                    <th >负面评价数</th>
+                    <th >老买家正面评价数</th>
+                    <th >老买家负面评价数</th>
+                    <th >描述相符评分</th>
+                    <th >物流服务评分</th>
+                    <th >服务态度评分</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+    {% endif %}
+</body>
+{% endblock %}

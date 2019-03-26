@@ -1,10 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/FBYYSite/templates/base_index.html" line="22" />
+    <bookmark url="file://$PROJECT_DIR$/FBYYSite/templates/order_manage.html" line="253" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="34e86228-776a-4e11-abf3-bef7ac3ff0bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/DataManage/Logic/ordermanage_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataManage/Logic/storagemanage_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataManage/Logic/storemanage_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataManage/Logic/ztcmanage_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/bgtaskservice_result.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/order_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/order_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storage_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storage_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/store_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storecost_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storecost_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeflow_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeflow_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeinteraction_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeinteraction_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storelogistic_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storelogistic_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storereview_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storereview_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeservice_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeservice_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storetrade_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storetrade_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeturn_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/storeturn_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/task_manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FBYYSite/templates/ztc_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StartService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TaskManage/Form/Forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TaskManage/Logic/backgroundtask_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TaskManage/Logic/taskmanager_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/StringTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/FileOptUtil.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/ProcessCallUtil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataManage/Form/Forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManage/Form/Forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataManage/Logic/productmanage_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManage/Logic/productmanage_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataManage/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManage/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataManage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManage/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/index_left.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/index_left.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/permission_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/permission_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/permission_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/permission_manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/product_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/product_manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/task_upload_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/task_upload_manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/templates/ztc_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/templates/ztc_manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FBYYSite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FBYYSite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/BloomFilter/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Conf/project.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/temp_file/20190102175351.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/temp_file/20190103093752.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileUpload/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFile/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/LogFile/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PermissionManage/Logic/permission_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/PermissionManage/Logic/permission_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PermissionManage/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/PermissionManage/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PermissionManage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/PermissionManage/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SiteLogin/Logic/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/SiteLogin/Logic/login_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SiteLogin/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SiteLogin/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SiteLogin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SiteLogin/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserManage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserManage/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/StringUtil.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/StringUtil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,97 +84,84 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/templates/file_upload.html">
+        <entry file="file://$PROJECT_DIR$/DataManage/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1596">
-              <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="28" column="14" lean-forward="true" selection-start-line="3" selection-end-line="28" selection-end-column="14" />
+            <state relative-caret-position="7695">
+              <caret line="418" column="47" selection-start-line="418" selection-start-column="47" selection-end-line="418" selection-end-column="47" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#24#68#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataManage/Logic/ordermanage_controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FBYYSite/templates/task_manage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4218">
+              <caret line="222" column="16" selection-start-line="222" selection-start-column="16" selection-end-line="222" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FBYYSite/templates/order_manage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2280">
+              <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TaskManage/Logic/taskmanager_controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TaskManage/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" column="35" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataManage/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1102">
+              <caret line="60" column="24" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="24" />
+              <folding>
+                <element signature="e#24#52#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/templates/registe.html">
+        <entry file="file://$PROJECT_DIR$/TaskManage/Logic/backgroundtask_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+            <state relative-caret-position="492">
+              <caret line="523" column="91" lean-forward="true" selection-start-line="523" selection-start-column="91" selection-end-line="523" selection-end-column="91" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/settings_production.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FileUpload/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FBYYSite/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SiteLogin/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,8 +172,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -125,7 +181,33 @@
     <findStrings>
       <find>DEBUG</find>
       <find>ADMIN</find>
+      <find>4.7</find>
+      <find>icon-user</find>
+      <find>icon-info-sign</find>
+      <find>TbUserINfo</find>
+      <find>username</find>
+      <find>form</find>
+      <find>empty</find>
+      <find>endblock</find>
+      <find>myModal</find>
+      <find>tb_product_id</find>
+      <find>{currentpage}}</find>
+      <find>currentpage</find>
+      <find>functions</find>
+      <find>function</find>
+      <find>ajax</find>
+      <find>default</find>
+      <find>fbyysite/accountemailchange</find>
+      <find>TbRole</find>
+      <find>role_list</find>
+      <find>get_permission_by_account</find>
+      <find>submituploadfile</find>
+      <find>.*task.*</find>
+      <find>j</find>
     </findStrings>
+    <replaceStrings>
+      <replace>i</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,25 +215,65 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FileUpload/models.py" />
-        <option value="$PROJECT_DIR$/FileUpload/template/file_upload.html" />
-        <option value="$PROJECT_DIR$/FBYYSite/templates/file_upload.html" />
-        <option value="$PROJECT_DIR$/FileUpload/views.py" />
-        <option value="$PROJECT_DIR$/FBYYSite/templates/404.html" />
-        <option value="$PROJECT_DIR$/FBYYSite/templates/500.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storereview_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeflow_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeinteraction_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeinteraction_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storelogistic_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storelogistic_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storereview_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeservice_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeservice_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storetrade_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeturn_query.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeturn_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storeflow_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storetrade_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/ztc_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/store_manage.html" />
+        <option value="$PROJECT_DIR$/DataManage/Form/Forms.py" />
+        <option value="$PROJECT_DIR$/BackgroundService/models.py" />
+        <option value="$PROJECT_DIR$/Utils/FileOptUtil.py" />
+        <option value="$PROJECT_DIR$/BackgroundService/Logic/BGService_controller.py" />
+        <option value="$PROJECT_DIR$/Script/StartService.py" />
+        <option value="$PROJECT_DIR$/Utils/ProcessCallUtil.py" />
+        <option value="$PROJECT_DIR$/StartService.py" />
+        <option value="$PROJECT_DIR$/TaskManager/views.py" />
+        <option value="$PROJECT_DIR$/TaskManage/models.py" />
+        <option value="$PROJECT_DIR$/TaskManage/Form/Forms.py" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/product_manage.html" />
+        <option value="$PROJECT_DIR$/BackgroundService/Main/ServiceMain.py" />
+        <option value="$PROJECT_DIR$/UserManage/views.py" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/index_left.html" />
+        <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/DataManage/Logic/storagemanage_controller.py" />
+        <option value="$PROJECT_DIR$/DataManage/models.py" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/bgtaskservice_result.html" />
+        <option value="$PROJECT_DIR$/DataManage/Logic/productmanage_controller.py" />
+        <option value="$PROJECT_DIR$/DataManage/Logic/ztcmanage_controller.py" />
+        <option value="$PROJECT_DIR$/DataManage/Logic/storemanage_controller.py" />
+        <option value="$PROJECT_DIR$/Test/StringTest.py" />
+        <option value="$PROJECT_DIR$/Conf/project.conf" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/task_upload_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/storage_manage.html" />
+        <option value="$PROJECT_DIR$/DataManage/Logic/ordermanage_controller.py" />
+        <option value="$PROJECT_DIR$/TaskManage/views.py" />
         <option value="$PROJECT_DIR$/FBYYSite/settings.py" />
+        <option value="$PROJECT_DIR$/Utils/StringUtil.py" />
         <option value="$PROJECT_DIR$/FBYYSite/urls.py" />
-        <option value="$PROJECT_DIR$/FBYYSite/templates/base.html" />
-        <option value="$PROJECT_DIR$/SiteLogin/views.py" />
-        <option value="$PROJECT_DIR$/FBYYSite/templates/login.html" />
-        <option value="$PROJECT_DIR$/FBYYSite/templates/registe.html" />
+        <option value="$PROJECT_DIR$/TaskManage/Logic/taskmanager_controller.py" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/task_manage.html" />
+        <option value="$PROJECT_DIR$/FBYYSite/templates/order_manage.html" />
+        <option value="$PROJECT_DIR$/DataManage/views.py" />
+        <option value="$PROJECT_DIR$/TaskManage/Logic/backgroundtask_controller.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -172,6 +294,26 @@
             <path>
               <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
               <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="BloomFilter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="Conf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="DataManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="ETC" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
               <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -183,12 +325,54 @@
             <path>
               <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
               <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
-              <item name="FileUpload" type="462c0819:PsiDirectoryNode" />
+              <item name="TaskManage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
               <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
-              <item name="SiteLogin" type="462c0819:PsiDirectoryNode" />
+              <item name="TaskManage" type="462c0819:PsiDirectoryNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="TmpFile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="TmpFile" type="462c0819:PsiDirectoryNode" />
+              <item name="Order" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="TmpFile" type="462c0819:PsiDirectoryNode" />
+              <item name="Order" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="TmpFile" type="462c0819:PsiDirectoryNode" />
+              <item name="OrderClickFirm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="TmpFile" type="462c0819:PsiDirectoryNode" />
+              <item name="OrderClickFirm" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="UserManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FBYYSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FBYYSite" type="462c0819:PsiDirectoryNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -198,14 +382,21 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Service\FBYYSite\FBYYSite" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitHub\project\FBYYSite\FBYYSite\static\css" />
+      <recent name="D:\GitHub\project\FBYYSite\FBYYSite\static" />
       <recent name="D:\GitHub\project\FBYYSite\FBYYSite" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GitHub\project\FBYYSite" />
+      <recent name="D:\GitHub\project\FBYYSite\ETC\CheckList" />
+      <recent name="D:\GitHub\project\FBYYSite\FBYYSite\templates" />
+      <recent name="D:\GitHub\project\FBYYSite\UserManage\Logic" />
+      <recent name="D:\GitHub\project\FBYYSite\SiteLogin\Logic" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -219,6 +410,78 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="Python.StringTest">
+    <configuration name="DateTimeTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FBYYSite" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/DateTimeTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ServiceMain" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FBYYSite" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BackgroundService/Main" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BackgroundService/Main/ServiceMain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="StringTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FBYYSite" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/StringTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.StringTest" />
+        <item itemvalue="Python.ServiceMain" />
+        <item itemvalue="Python.DateTimeTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -234,16 +497,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1227608" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19336143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -256,118 +518,396 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FileUpload/models.py">
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/ztc_manage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="516">
+          <caret line="28" column="62" lean-forward="true" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FileUpload/apps.py">
+    <entry file="file://$PROJECT_DIR$/BackgroundService/models.py" />
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/store_manage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/500.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FileUpload/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="25" />
+        <state relative-caret-position="264">
+          <caret line="86" column="56" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
           <folding>
-            <element signature="e#24#59#0" expanded="true" />
+            <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/file_upload.html">
+    <entry file="file://$PROJECT_DIR$/ETC/CheckList/productimportchecklist" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.3-py3.7.egg/django/utils/tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        <state relative-caret-position="1425">
+          <caret line="77" column="33" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/settings.py">
+    <entry file="file://$PROJECT_DIR$/Utils/DateTimeUtil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+        <state relative-caret-position="228">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
+    <entry file="file://$PROJECT_DIR$/FBYYSite/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="209">
+          <caret line="13" column="57" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/base.html">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.3-py3.7.egg/django/core/management/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        <state relative-caret-position="6859">
+          <caret line="377" column="29" selection-start-line="377" selection-start-column="4" selection-end-line="377" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/settings_production.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FileUpload/admin.py">
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/django_rundirect/management/commands/rundirect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="399">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/urls.py">
+    <entry file="file://$PROJECT_DIR$/StartService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/ProcessCallUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="17" selection-start-line="14" selection-start-column="4" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PermissionManage/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3517">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/Form/Forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskManage/Form/Forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="85" selection-start-line="10" selection-start-column="85" selection-end-line="10" selection-end-column="85" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SiteLogin/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        <state relative-caret-position="-456">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1938" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/upload_result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="32" column="14" lean-forward="true" selection-start-line="1" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackgroundService/Logic/BGService_controller.py" />
+    <entry file="file://$PROJECT_DIR$/BackgroundService/Main/ServiceMain.py" />
+    <entry file="file://$PROJECT_DIR$/SiteLogin/Logic/login_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="35" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/login.html">
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/product_manage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="14" lean-forward="true" selection-start-line="3" selection-end-line="28" selection-end-column="14" />
+        <state relative-caret-position="570">
+          <caret line="30" column="6" selection-start-line="25" selection-start-column="2" selection-end-line="30" selection-end-column="6" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#div#5;n#body#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/registe.html">
+    <entry file="file://$PROJECT_DIR$/ETC/CheckList/storageimportchecklist.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserManage/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/FileOptUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/index_left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/bgtaskservice_result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/user_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="834">
+          <caret line="85" column="40" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/Logic/storagemanage_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="758">
+          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/Logic/ztcmanage_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="50" column="129" selection-start-line="50" selection-start-column="129" selection-end-line="50" selection-end-column="129" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/Logic/storemanage_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2527">
+          <caret line="133" column="53" lean-forward="true" selection-start-line="133" selection-start-column="53" selection-end-line="133" selection-end-column="53" />
+          <folding>
+            <element signature="e#24#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/StringTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="23" selection-start-line="5" selection-end-line="13" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Conf/project.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/task_upload_manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/StringUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1444">
+          <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/storage_manage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#thead#0;n#table#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/task_upload_query.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding>
+            <element signature="e#666#702#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SiteLogin/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="52" column="25" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/Logic/productmanage_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="91" column="51" lean-forward="true" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+          <folding>
+            <element signature="e#24#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskManage/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7695">
+          <caret line="418" column="47" selection-start-line="418" selection-start-column="47" selection-end-line="418" selection-end-column="47" />
+          <folding>
+            <element signature="e#24#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/Logic/ordermanage_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/task_manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4218">
+          <caret line="222" column="16" selection-start-line="222" selection-start-column="16" selection-end-line="222" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FBYYSite/templates/order_manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2280">
+          <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskManage/Logic/taskmanager_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskManage/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="35" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataManage/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="60" column="24" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="24" />
+          <folding>
+            <element signature="e#24#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TaskManage/Logic/backgroundtask_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="523" column="91" lean-forward="true" selection-start-line="523" selection-start-column="91" selection-end-line="523" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

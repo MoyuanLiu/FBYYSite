@@ -36,7 +36,7 @@ def usermanage(request,pagenum):
 @csrf_exempt
 def useredit(request,account):
     user = TbUserInfo.objects.get_user_by_account(account)
-    departmentlist = get_all_departments()
+    departments = get_all_departments()
     refererurl = request.META.get('HTTP_REFERER')
     return render(request,"user_edit.html",locals())
 

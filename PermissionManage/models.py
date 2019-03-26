@@ -27,6 +27,9 @@ class TbRoleManager(models.Manager):
             roleinfolist.append(roleinfo)
         return roleinfolist
 
+    def get_role_name_by_role_id(self,roleid):
+        return self.get(idtb_role = roleid).tb_role_name
+
 class TbRole(models.Model):
     idtb_role = models.AutoField(primary_key=True)
     tb_role_code = models.CharField(max_length=45)
@@ -35,7 +38,9 @@ class TbRole(models.Model):
     tb_role_function_list = models.CharField(max_length=500)
     tb_role_createtime = models.CharField(max_length=100)
     tb_role_default_flag = models.IntegerField()
+
     objects = TbRoleManager()
+
     class Meta:
         managed = False
         db_table = 'tb_role'

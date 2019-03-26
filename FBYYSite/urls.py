@@ -15,15 +15,14 @@ Including another URLconf
 """
 #from django.contrib import admin
 from django.urls import path,re_path
-from FileUpload import views as fuview
 from SiteLogin import views as slview
 from UserManage import views as umview
 from DataManage import views as dmview
 from PermissionManage import views as pmview
+from TaskManage import views as tmview
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('fbyysite/fileupload',fuview.upload),
     path('fbyysite/login',slview.login),
     path('fbyysite/registe',slview.registe),
     re_path(r'fbyysite/registe/ajaxstores?[^/]+',slview.registe_ajax_store),
@@ -51,7 +50,7 @@ urlpatterns = [
     re_path(r'fbyysite/datamanage/product/query/(\d+)',dmview.productquery),
     path('fbyysite/datamanage/product/upload',dmview.productupload),
     re_path(r'fbyysite/datamanage/product/upload/taskquery/(\d+)',dmview.productuploadtaskquery),
-    path('fbyysite/datamanage/product/upload/taskcancel', dmview.productuploadtaskcancel),
+    path('fbyysite/datamanage/upload/taskcancel', dmview.taskcancel),
     re_path(r'fbyysite/rolemanage/pagenum/(\d+)',pmview.rolemanage),
     re_path(r'fbyysite/permission/ajaxfunctions?[^/]+',pmview.permission_ajax_function),
     path('fbyysite/rolemanage/add/',pmview.roleadd),
@@ -67,4 +66,46 @@ urlpatterns = [
     re_path(r'fbyysite/permissionmanage/ajaxpermisssiondetail?[^/]+',pmview.user_ajax_permission),
     path('fbyysite/permissionmanage/delete/', pmview.permissiondelete),
     re_path(r'fbyysite/permissionmanage/query/(.+)',pmview.querypermission),
+    re_path(r'fbyysite/productmanage/ajaxstores?[^/]+',dmview.product_ajax_store),
+    re_path(r'fbyysite/productmanage/uploadajaxstores?[^/]+',dmview.product_upload_ajax_store),
+    re_path(r'fbyysite/datamanage/order/pagenum/(\d+)',dmview.ordermanage),
+    re_path(r'fbyysite/datamanage/storage/pagenum/(\d+)',dmview.storagemanage),
+    path(r'fbyysite/datamanage/store/',dmview.storemanage),
+    re_path(r'fbyysite/datamanage/store/storecost/pagenum/(\d+)',dmview.storecostmanage),
+    re_path(r'fbyysite/datamanage/store/storeflow/pagenum/(\d+)',dmview.storeflowmanage),
+    re_path(r'fbyysite/datamanage/store/storeinteraction/pagenum/(\d+)',dmview.storeinteractionmanage),
+    re_path(r'fbyysite/datamanage/store/storelogistic/pagenum/(\d+)',dmview.storelogisticmanage),
+    re_path(r'fbyysite/datamanage/store/storereview/pagenum/(\d+)',dmview.storereviewmanage),
+    re_path(r'fbyysite/datamanage/store/storeservice/pagenum/(\d+)',dmview.storeservicemanage),
+    re_path(r'fbyysite/datamanage/store/storetrade/pagenum/(\d+)',dmview.storetrademanage),
+    re_path(r'fbyysite/datamanage/store/storeturn/pagenum/(\d+)',dmview.storeturnmanage),
+    re_path(r'fbyysite/ztcmanage/ajaxstores?[^/]+',dmview.ztc_ajax_store),
+    re_path(r'fbyysite/datamanage/ztc/query/(\d+)',dmview.ztcquery),
+    re_path(r'fbyysite/ztcmanage/uploadajaxstores?[^/]+',dmview.ztc_upload_ajax_store),
+    re_path(r'fbyysite/datamanage/order/query/(\d+)',dmview.orderquery),
+    re_path(r'fbyysite/ordermanage/ajaxstores?[^/]+',dmview.order_ajax_store),
+    re_path(r'fbyysite/ordermanage/uploadajaxstores?[^/]+',dmview.order_upload_ajax_store),
+    re_path(r'fbyysite/datamanage/storage/query/(\d+)',dmview.storagequery),
+    re_path(r'fbyysite/datamanage/store/storecost/query/(\d+)',dmview.storecostquery),
+    re_path(r'fbyysite/datamanage/store/storeflow/query/(\d+)',dmview.storeflowquery),
+    re_path(r'fbyysite/datamanage/store/storeinteraction/query/(\d+)',dmview.storeinteractionquery),
+    re_path(r'fbyysite/datamanage/store/storelogistic/query/(\d+)',dmview.storelogisticquery),
+    re_path(r'fbyysite/datamanage/store/storereview/query/(\d+)',dmview.storereviewquery),
+    re_path(r'fbyysite/datamanage/store/storeservice/query/(\d+)',dmview.storeservicequery),
+    re_path(r'fbyysite/datamanage/store/storetrade/query/(\d+)',dmview.storetradequery),
+    re_path(r'fbyysite/datamanage/store/storeturn/query/(\d+)',dmview.storeturnquery),
+    re_path(r'fbyysite/storemanage/ajaxstores?[^/]+',dmview.store_ajax_store),
+    re_path(r'fbyysite/storemanage/uploadajaxstores?[^/]+',dmview.store_upload_ajax_store),
+    path('fbyysite/datamanage/ztc/upload',dmview.ztcupload),
+    path('fbyysite/datamanage/order/upload',dmview.orderupload),
+    path('fbyysite/datamanage/order/clickfirm/upload',dmview.orderclickfirmupload),
+    path('fbyysite/datamanage/storage/upload',dmview.storageupload),
+    path('fbyysite/datamanage/store/upload',dmview.storeupload),
+    re_path(r'fbyysite/datamanage/ztc/upload/taskquery/(\d+)',dmview.ztcuploadtaskquery),
+    re_path(r'fbyysite/datamanage/order/upload/taskquery/(\d+)',dmview.orderuploadtaskquery),
+    re_path(r'fbyysite/datamanage/storage/upload/taskquery/(\d+)',dmview.storageuploadtaskquery),
+    re_path(r'fbyysite/datamanage/store/upload/taskquery/(\d+)',dmview.storeuploadtaskquery),
+    re_path(r'fbyysite/taskmanage/pagenum/(\d+)', tmview.taskmanage),
+    path('fbyysite/taskmanage/openbgtaskservice',tmview.startbgtaskservice),
+
 ]

@@ -1,16 +1,15 @@
+from SiteLogin.models import *
 from PermissionManage.models import *
-from UserManage.models import TbUserInfo,TbDepartmentInfo,TbStoreInfo
 from django.db.models import Q
-from UserManage.Logic.usermanage_controller import get_all_departments
-from Utils.StringUtil import *
 import time
+
 
 def permission_function_by_module(modulecode):
     functions = TbFunction.objects.get_all_functions_by_module(modulecode)
     return functions
 
 def get_all_modules():
-    modules = TbModule.objects.get_all_modules()
+    modules = TbModule.objects.all()
     return modules
 
 def role_add(formdata):
@@ -153,17 +152,13 @@ def update_user_permission(updatestr):
         funccode = permissioninfo.split('|')[1]
         permissiontypecode = permissioninfo.split('|')[2]
         permissionrange = permissioninfo.split('|')[3]
-        try:
-            urpobj = TbUserRolePermissionManage.objects.get(tb_user_role_permission_manage_user_id=userid,tb_user_role_permission_manage_function_code = funccode,tb_user_role_permission_manage_permission_type_code = permissiontypecode)
-            urpobj.tb_user_role_permission_manage_permission_range = permissionrange
-            urpobj.save()
-        except:
-            TbUserRolePermissionManage.objects.create(tb_user_role_permission_manage_user_id=userid,tb_user_role_permission_manage_function_code = funccode,tb_user_role_permission_manage_permission_type_code = permissiontypecode,tb_user_role_permission_manage_permission_range=permissionrange)
+        TbUserRolePermissionManage.objects.create(tb_user_role_permission_manage_user_id=userid,tb_user_role_permission_manage_function_code = funccode,tb_user_role_permission_manage_permission_type_code = permissiontypecode,tb_user_role_permission_manage_permission_range=permissionrange)
 
 
 
 def update_permission_edit(formdata):
     update_user_role(formdata['userid'],formdata['selrole'])
+    TbUserRolePermissionManage.objects.filter(tb_user_role_permission_manage_user_id=formdata['userid']).delete()
     update_user_permission(formdata['selpermission'])
 
 def get_user_role_permission_list(userid):
@@ -177,8 +172,8 @@ def get_user_role_permission_list(userid):
             permissioninfo['tb_user_role_permission_manage_permission_type_code'] = permission.tb_user_role_permission_manage_permission_type_code
             permissioninfo['tb_user_role_permission_manage_permission_type_name'] = TbPermissionType.objects.get_permission_type_name(permission.tb_user_role_permission_manage_permission_type_code)
             permissioninfo['tb_user_role_permission_manage_permission_range'] = permission.tb_user_role_permission_manage_permission_range
-            permissioninfo['permission_info_value_str'] = userid + "|" + permissioninfo['tb_user_role_permission_manage_function_name'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_type_name'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_range']
-            permissioninfo['permission_info_text_str'] = userid + "|" + permissioninfo['tb_user_role_permission_manage_function_code'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_type_code'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_range']
+            permissioninfo['permission_info_value_str'] = userid + "|" + permissioninfo['tb_user_role_permission_manage_function_code'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_type_code'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_range']
+            permissioninfo['permission_info_text_str'] = userid + "|" + permissioninfo['tb_user_role_permission_manage_function_name'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_type_name'] + "|" + permissioninfo['tb_user_role_permission_manage_permission_range']
             permissinlist.append(permissioninfo)
         return permissinlist
     except:

@@ -1,0 +1,104 @@
+{% extends "storeturn_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% block pageination %}
+{% if storeturnlist %}
+<form id="curform" action="" hidden="hidden" method="post">
+   <div class="form-group p-2 m-2">
+            <label for="querystoreturndepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreturndepart" name="querystoreturndepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="querystoreturnstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreturnstore" name="querystoreturnstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeturnstoresourceflag">店铺来源:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.storeturnstoresourceflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="storeturnstoresource1" name="storeturnstoresource" value="无线端" >
+                    <label class="custom-control-label" for="storeturnstoresource1">无线端</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="storeturnstoresource2" name="storeturnstoresource" value="PC端">
+                    <label class="custom-control-label" for="storeturnstoresource2">PC端</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeturncaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeturncaldateflag }}
+                    </div>
+                </div>
+            {{queryform.storeturncaldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeturncaldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeturnimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeturnimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.storeturnimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeturnimportdate.errors }}&nbsp;&nbsp;
+        </div>
+</form>
+<div class="d-inline-flex p-3 container-fluid">
+<ul class="pagination">
+    {% if storeturnlist.has_previous %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreturn(1)">首页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreturn({{storeturnlist.previous_page_number}})">上一页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#" onclick="querystoreturn({{currentpage}})">{{currentpage}}</a></li>
+    {% if storeturnlist.has_next %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreturn({{storeturnlist.next_page_number}})">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreturn({{totalpages}})">尾页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+    {% endif %}
+    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+    <li class="page-item">
+        <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+    </li>
+</ul>
+</div>
+<script>
+    function querystoreturn(querypage){
+        $("#curform").attr("action","fbyysite/datamanage/store/storeturn/query/"+querypage);
+        $("#curform").submit();
+    }
+    $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   querystoreturn(jumppagenum);
+                }
+             });
+</script>
+{% endif %}
+{% endblock %}

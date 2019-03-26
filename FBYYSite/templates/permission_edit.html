@@ -43,6 +43,7 @@ function addpermission(){
     var funcnameval = $("#selfunction option:selected").text()
     var permissionval = $("#selpermissiontype option:selected").text()
     var permissionrange = $("#selrange").val()
+    permissionrange = (permissionrange+"").replace(/,/gm,';')
     var checkarr = new Array();
     checkarr[0] = funcnameval
     checkarr[1] = permissionval
@@ -178,7 +179,7 @@ function submitURP(){
             </table>
 
           </div>
-     <select class="form-control" id="selpermission" name="selpermission" multiple style="min-width:200px"  hidden>
+     <select class="form-control" id="selpermission" name="selpermission" multiple style="min-width:200px"  >
         {% for permissioninfo in permissionlist %}
          <option value={{permissioninfo.permission_info_value_str}}>
              {{permissioninfo.permission_info_text_str}}

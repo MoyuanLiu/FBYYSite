@@ -1,5 +1,6 @@
 from django.core.cache import cache
 from SiteLogin.models import *
+from PermissionManage.models import TbRole
 
 def isauthenticated(account):
     if cache.get(account) == None:

@@ -1,0 +1,104 @@
+{% extends "storeinteraction_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% block pageination %}
+{% if storecostlist %}
+<form id="curform" action="" hidden="hidden" method="post">
+   <div class="form-group p-2 m-2">
+            <label for="querystoreinteractiondepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreinteractiondepart" name="querystoreinteractiondepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="querystoreinteractionstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="querystoreinteractionstore" name="querystoreinteractionstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeinteractionstoresourceflag">店铺来源:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.storeinteractionstoresourceflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="storeinteractionstoresource1" name="storeinteractionstoresource" value="无线端" >
+                    <label class="custom-control-label" for="storeinteractionstoresource1">无线端</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="storeinteractionstoresource2" name="storeinteractionstoresource" value="PC端">
+                    <label class="custom-control-label" for="storeinteractionstoresource2">PC端</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeinteractioncaldate">统计日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeinteractioncaldateflag }}
+                    </div>
+                </div>
+            {{queryform.storeinteractioncaldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeinteractioncaldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_storeinteractionimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.storeinteractionimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.storeinteractionimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.storeinteractionimportdate.errors }}&nbsp;&nbsp;
+        </div>
+</form>
+<div class="d-inline-flex p-3 container-fluid">
+<ul class="pagination">
+    {% if storeinteractionlist.has_previous %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreinteraction(1)">首页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreinteraction({{storeinteractionlist.previous_page_number}})">上一页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#" onclick="querystoreinteraction({{currentpage}})">{{currentpage}}</a></li>
+    {% if storeinteractionlist.has_next %}
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreinteraction({{storeinteractionlist.next_page_number}})">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="#" onclick="querystoreinteraction({{totalpages}})">尾页</a></li>
+    {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+    {% endif %}
+    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+    <li class="page-item">
+        <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+    </li>
+</ul>
+</div>
+<script>
+    function querystoreinteraction(querypage){
+        $("#curform").attr("action","fbyysite/datamanage/store/storeinteraction/query/"+querypage);
+        $("#curform").submit();
+    }
+    $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   querystoreinteraction(jumppagenum);
+                }
+             });
+</script>
+{% endif %}
+{% endblock %}

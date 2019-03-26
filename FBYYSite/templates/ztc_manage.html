@@ -1,32 +1,120 @@
 {% extends "base.html" %}
+{% block style %}
+<style type="text/css">
+ tr td{
+		/* 不换行*/
+		word-break:keep-all;
+		/* 不换行*/
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		height:63px;
+	}
+        </style>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function(){
+  $("tbody tr").hover(function(){
+    var num = $(".table tbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $(".table tbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $('#uploadModal').on('show.bs.modal', function (event) {
+       $("#uploadFileLabel").text("请选择文件:仅限xlsx");
+       $("#uploadFile").empty()
+       $('#ResultFrame').attr('src', '').on('load',function(){
+    });
+    })
+
+});
+</script>
+{% endblock %}
 {% block content %}
 <body>
     <div class="container-fluid d-inline-flex d-flex justify-content-between">
         <div class="p-2">
             <h2>直通车数据列表</h2>
         </div>
-        <div class="p-2">
-            <a class="btn btn-success text-white ml-auto" href="/fbyysite/usermanage/add/"><i class="fa fa-plus-square-o fa-lg"></i>上传数据</a>
+
+        <div class="btn-group p-3 text-center">
+            <button class="btn btn-success text-white ml-auto" type="button" data-toggle="modal" data-target="#uploadModal" ><i class="fa fa-cloud-upload fa-lg"></i>上传数据</button>
+            <a class="btn btn-info text-white ml-auto" href="/fbyysite/datamanage/ztc/upload/taskquery/1"><i class="fa fa-table fa-lg"></i>查看任务列表</a>
         </div>
+
     </div>
     <hr>
-    <form id="id_queryform" action="/fbyysite/usermanage/query/1" method="post" class="form-inline">
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>请修改以下错误</strong>
+        </div>
+    {% endif %}
+    <form id="id_queryform" action="/fbyysite/datamanage/ztc/query/1" method="post" class="form-inline">
         <div class="form-group p-2 m-2">
-            <label for="id_queryusername">用户名:&nbsp;&nbsp;</label>
-            {{ queryform.queryusername }}
+            <label for="id_ztcplanname">推广计划名称:&nbsp;&nbsp;</label>
+            {{ queryform.ztcplanname }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.ztcplanname.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_ztcsearchtype">宝贝名称:&nbsp;&nbsp;</label>
+            {{ queryform.ztcproductname }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.ztcproductname.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_ztcsearchtypeflag">搜索类型:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.ztcsearchtypeflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztcsearchtypetrue" name="ztcsearchtype" value="搜索" >
+                    <label class="custom-control-label" for="ztcsearchtypetrue">搜索</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztcsearchtypefalse" name="ztcsearchtype" value="定向投放">
+                    <label class="custom-control-label" for="ztcsearchtypefalse">定向投放</label>
+                </div>
+            </div>
         </div>
         <div class="form-group p-2 m-2">
-            <label for="id_queryusernickname">用户花名:&nbsp;&nbsp;</label>
-            {{ queryform.queryusernickname }}
-        </div>
-        <div class="form-group p-2 m-2">
-            <label for="id_queryemail">用户邮箱:&nbsp;&nbsp;</label>
-            {{ queryform.queryemail }}
+            <label for="id_ztctrafficsouceflag">流量来源:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2" >
+                    <div class="input-group-text">
+                      {{ queryform.ztctrafficsouceflag }}
+                    </div>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce1" name="ztctrafficsouce" value="计算机站内" >
+                    <label class="custom-control-label" for="ztctrafficsouce1">计算机站内</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce2" name="ztctrafficsouce" value="移动站内">
+                    <label class="custom-control-label" for="ztctrafficsouce2">移动站内</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce3" name="ztctrafficsouce" value="计算机站外" >
+                    <label class="custom-control-label" for="ztctrafficsouce3">计算机站外</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline" >
+                    <input type="checkbox" class="custom-control-input" id="ztctrafficsouce4" name="ztctrafficsouce" value="移动站外" >
+                    <label class="custom-control-label" for="ztctrafficsouce4">移动站外</label>
+                </div>
+            </div>
         </div>
         <br>
         <div class="form-group p-2 m-2">
-            <label for="queryuserdepart">所在部门:&nbsp;&nbsp;</label>
-            <select class="form-control" id="queryuserdepart" name="queryuserdepart">
+            <label for="queryztcdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryztcdepart" name="queryztcdepart">
               <option value=''>请选择部门</option>
                 {% for department in departments %}
                     <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
@@ -34,112 +122,85 @@
             </select>
         </div>
         <div class="form-group p-2 m-2">
-            <label for="queryuserstore">所在店铺:&nbsp;&nbsp;</label>
-            <select class="form-control" id="queryuserstore" name="queryuserstore">
+            <label for="queryztcstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryztcstore" name="queryztcstore">
+
             </select>
         </div>
         <div class="form-group p-2 m-2">
-            <label >是否为超级管理员:&nbsp;&nbsp;</label>
-            <div class="input-group bg-light">
-                <div class="input-group-prepend mr-2">
-                    <div class="input-group-text">
-                      {{ queryform.querysuperuserwhetherflag }}
-                    </div>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline" >
-                    <input type="radio" class="custom-control-input" id="querysuperusertrue" name="querysuperuserwhether" value="1" >
-                    <label class="custom-control-label" for="querysuperusertrue">超级管理员</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline" >
-                    <input type="radio" class="custom-control-input" id="querysuperuserfalse" name="querysuperuserwhether" value="0" checked="checked">
-                    <label class="custom-control-label" for="querysuperuserfalse">非超级管理员</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group p-2 m-2">
-            <label >账号激活状态:&nbsp;&nbsp;</label>
-            <div class="input-group bg-light">
-                <div class="input-group-prepend mr-2">
-                    <div class="input-group-text">
-                      {{ queryform.queryactiveaccountwhetherflag }}
-                    </div>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input " id="queryactiveaccounttrue" name="queryactiveaccountwhether" value="1" checked="checked">
-                    <label class="custom-control-label" for="queryactiveaccounttrue">激活</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input " id="queryactiveaccountfalse" name="queryactiveaccountwhether" value="0">
-                    <label class="custom-control-label" for="queryactiveaccountfalse">非激活</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group p-2 m-2">
-            <label for="id_querycreatedate">用户创建日期:&nbsp;&nbsp;</label>
+            <label for="id_ztccaldate">统计日期:&nbsp;&nbsp;</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                      {{ queryform.querycreatedateflag }}
+                      {{ queryform.ztccaldateflag }}
                     </div>
                 </div>
-            {{queryform.querycreatedate}}
+            {{queryform.ztccaldate}}
             </div>
+            &nbsp;&nbsp;{{queryform.ztccaldate.errors}}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.ztcimportdateflag }}
+                    </div>
+                </div>
+            {{queryform.ztcimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.ztcimportdate.errors }}&nbsp;&nbsp;
         </div>
         <div class="btn-group">
             <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
             <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
-            <a class="btn btn-info" href="fbyysite/usermanage/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部用户</a>
+            <a class="btn btn-info" href="fbyysite/datamanage/ztc/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
         </div>
-        {% if queryform.errors %}
-        <div class="alert alert-danger">
-        <strong>{{queryform.error}}</strong>
-        </div>
-        {% endif %}
     </form>
     <script>
   $(".errorlist").addClass("list-group")
   $(".errorlist li").addClass("list-group-item-danger")
 
-  var depart_code = $("#queryuserdepart").val();
+  var depart_code = $("#queryztcdepart").val();
 if(depart_code===''){
-$('#queryuserstore').empty();
+$('#queryztcstore').empty();
 }else{
       $.ajax({
-        url: 'registe/ajaxstores',
+        url: '/fbyysite/ztcmanage/ajaxstores',
         data: {
           'depart_code': depart_code
         },
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-                  $('#queryuserstore').empty();
-            var content='<option value='+'Other'+'>非店铺</option>';
+                  $('#queryztcstore').empty();
+            var content='';
             $.each($.parseJSON(data), function(i, item){
                   content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
                 });
-            $('#queryuserstore').html(content)
+            $('#queryztcstore').html(content)
         },
       });
 }
-$("#queryuserdepart").change(function() {
+$("#queryztcdepart").change(function() {
       var depart_code = $(this).val();
         if(depart_code===''){
-            $('#queryuserstore').empty();
+            $('#queryztcstore').empty();
         }else{
         $.ajax({
-        url: '/fbyysite/registe/ajaxstores',
+        url: '/fbyysite/ztcmanage/ajaxstores',
         data: {
           'depart_code': depart_code
         },
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-                  $('#queryuserstore').empty();
-            var content='<option value='+'Other'+'>非店铺</option>';
+                  $('#queryztcstore').empty();
+            var content='';
             $.each($.parseJSON(data), function(i, item){
                   content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
                 });
-            $('#queryuserstore').html(content)
+            $('#queryztcstore').html(content)
         },
       });
         }  
@@ -147,72 +208,126 @@ $("#queryuserdepart").change(function() {
 
 </script>
     <hr/>
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead class="thead-light">
+    {% if ztclist %}
+    <div class="d-inline-flex table-responsive" style="width:100%;height:100%;position: relative;">
+        <table  class="table" style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
                 <tr>
-                    <th>用户名</th>
-                    <th>用户花名</th>
-                    <th>用户邮箱</th>
-                    <th>用户密码</th>
-                    <th>用户所在部门</th>
-                    <th>用户所在店铺</th>
-                    <th>激活状态</th>
-                    <th>是否具有超级管理员权限</th>
-                    <th>上次登录时间</th>
-                    <th>用户创建时间</th>
-                    <th>操作</th>
+                    <th >统计日期</th>
+                    <th >推广计划名称</th>
+                    <th >宝贝名称</th>
+                    <th >搜索类型</th>
                 </tr>
             </thead>
-            <tbody>
-            {% if userlist %}
-            {% for user in userlist %}
-            <tr>
-                <td>{{user.tb_user_info_name}}</td>
-                <td>{{user.tb_user_info_nickname}}</td>
-                <td>{{user.tb_user_info_email}}</td>
-                <td>{{user.tb_user_info_pwd}}</td>
-                <td>{{user.tb_user_info_department_name}}</td>
-                <td>{{user.tb_user_info_store_name}}</td>
-                <td>{{user.tb_user_info_status}}</td>
-                <td>{{user.tb_user_info_superuser}}</td>
-                <td>{{user.tb_user_info_last_login}}</td>
-                <td>{{user.tb_user_info_datejoined}}</td>
+            <tbody id="fixbody">
+            {% for ztc in ztclist %}
+            <tr >
+                <td>{{ztc.tb_ztc_caldate}}</td>
+                <td>{{ztc.tb_ztc_plan_name}}</td>
+                <td>{{ztc.tb_ztc_product_name}}</td>
+                <td>{{ztc.tb_ztc_search_type}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <table class="table " style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr >
+                    <th >流量来源</th>
+                    <th >展现量</th>
+                    <th >点击量</th>
+                    <th >直通车花费</th>
+                    <th >点击率</th>
+                    <th >平均点击花费(分)</th>
+                    <th >千次展现花费(分)</th>
+                    <th >点击转化率</th>
+                    <th >直接成交金额(分)</th>
+                    <th >直接成交笔数</th>
+                    <th >间接成交金额(分)</th>
+                    <th >间接成交笔数</th>
+                    <th >总成交金额(分)</th>
+                    <th >总成交笔数</th>
+                    <th >宝贝收藏数</th>
+                    <th >店铺收藏数</th>
+                    <th >总收藏数</th>
+                    <th >投入产出比</th>
+                    <th >直接购物车数</th>
+                    <th >间接购物车数</th>
+                    <th >总购物车数</th>
+                    <th >店铺代码</th>
+                    <th >部门编码</th>
+                    <th >部门编码</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+            <tbody id="unfixbody">
+            {% for ztc in ztclist %}
+            <tr >
+                <td>{{ztc.tb_ztc_traffic_source}}</td>
+                <td>{{ztc.tb_ztc_impression_count}}</td>
+                <td>{{ztc.tb_ztc_click_count}}</td>
+                <td>{{ztc.tb_ztc_cost}}</td>
+                <td>{{ztc.tb_ztc_click_percent}}</td>
+                <td>{{ztc.tb_ztc_avg_click_cost}}</td>
+                <td>{{ztc.tb_ztc_thousand_impression_cost}}</td>
+                <td>{{ztc.tb_ztc_click_turn_percent}}</td>
+                <td>{{ztc.tb_ztc_direct_deal_money}}</td>
+                <td>{{ztc.tb_ztc_direct_deal_count}}</td>
+                <td>{{ztc.tb_ztc_undirect_deal_money}}</td>
+                <td>{{ztc.tb_ztc_undirect_deal_count}}</td>
+                <td>{{ztc.tb_ztc_deal_money}}</td>
+                <td>{{ztc.tb_ztc_deal_count}}</td>
+                <td>{{ztc.tb_ztc_product_collect_count}}</td>
+                <td>{{ztc.tb_ztc_store_collect_count}}</td>
+                <td>{{ztc.tb_ztc_total_collect_count}}</td>
+                <td>{{ztc.tb_ztc_io_ratio}}</td>
+                <td>{{ztc.tb_ztc_direct_cart_count}}</td>
+                <td>{{ztc.tb_ztc_undirect_cart_count}}</td>
+                <td>{{ztc.tb_ztc_total_cart_count}}</td>
+                <td>{{ztc.tb_ztc_store_code}}</td>
+                <td>{{ztc.tb_ztc_depart_code}}</td>
                 <td>
                     <div class="btn-group">
+                        {% if ztc.tb_ztc_store_code in editpermissionstorecodelist %}
                         <a class="btn btn-primary text-white" href="/fbyysite/usermanage/edit/account/{{user.tb_user_info_email}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% else %}
+                        <a class="btn btn-primary text-white disabled" href="#" ><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% endif %}
+                        {% if ztc.tb_ztc_store_code in delpermissionstorecodelist %}
                         <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this)" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% else %}
+                        <button type="button" class="btn btn-danger text-white disabled" ><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% endif %}
+
                     </div>
                 </td>
             </tr>
             {% endfor %}
-            {% else %}
-            <div class="alert alert-danger">
-                {% block emptymsg %}<strong>当前还没有任何用户</strong>{% endblock %}
-            </div>
-            {% endif %}
+
             </tbody>
         </table>
-        {% block pageination %}
-        {% if userlist %}
+
+    </div>
+    {% block pageination %}
+
         <div class="d-inline-flex p-3 container-fluid">
                 <ul class="pagination">
-                    {% if userlist.has_previous %}
-                    <li class="page-item"><a class="page-link" href="/fbyysite/usermanage/pagenum/1">首页</a></li>
-                    <li class="page-item"><a class="page-link" href="/fbyysite/usermanage/pagenum/{{userlist.previous_page_number}}">上一页</a></li>
+                    {% if ztclist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/ztc/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/ztc/pagenum/{{ztclist.previous_page_number}}">上一页</a></li>
                     {% else %}
                     <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
                     <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
                     {% endif %}
-                    <li class="page-item active"><a class="page-link" href="/fbyysite/usermanage/pagenum/{{currentpage}}">{{currentpage}}</a></li>
-                    {% if userlist.has_next %}
-                    <li class="page-item"><a class="page-link" href="/fbyysite/usermanage/pagenum/{{userlist.next_page_number}}">下一页</a></li>
-                    <li class="page-item"><a class="page-link" href="/fbyysite/usermanage/pagenum/{{totalpages}}">尾页</a></li>
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/datamanage/ztc/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if ztclist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/ztc/pagenum/{{ztclist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/ztc/pagenum/{{totalpages}}">尾页</a></li>
                     {% else %}
                     <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
                     <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
                     {% endif %}
-                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="1" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
                     <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
                     <li class="page-item">
                             <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
@@ -224,26 +339,77 @@ $("#queryuserdepart").change(function() {
                 var jumppagenum = $("#pagenumber").val();
                 if(jumppagenum===''){
                 }else{
-                    window.location.href="/fbyysite/usermanage/pagenum/" + jumppagenum;
+                    window.location.href="/fbyysite/datamanage/ztc/pagenum/" + jumppagenum;
                 }
              });
         </script>
-        {% endif %}
         {% endblock %}
+    {% else %}
+    <div class="alert alert-danger w-100">
+        {% block emptymsg %}<strong>当前还没有任何数据</strong>{% endblock %}
     </div>
+    <div class="d-inline-flex" style="width:100%;height:100%;position: relative;">
+
+        <table class="table table-hover " style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >统计日期</th>
+                    <th >推广计划名称</th>
+                    <th >宝贝名称</th>
+                    <th >搜索类型</th>
+                </tr>
+            </thead>
+
+        </table>
+
+
+        <table class="table table-hover " style="position: absolute;overflow-x:scroll;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr class="" style="white-space:nowrap;">
+                    <th >流量来源</th>
+                    <th >展现量</th>
+                    <th >点击量</th>
+                    <th >直通车花费</th>
+                    <th >点击率</th>
+                    <th >平均点击花费(分)</th>
+                    <th >千次展现花费(分)</th>
+                    <th >点击转化率</th>
+                    <th >直接成交金额(分)</th>
+                    <th >直接成交笔数</th>
+                    <th >间接成交金额(分)</th>
+                    <th >间接成交笔数</th>
+                    <th >总成交金额(分)</th>
+                    <th >总成交笔数</th>
+                    <th >宝贝收藏数</th>
+                    <th >店铺收藏数</th>
+                    <th >总收藏数</th>
+                    <th >投入产出比</th>
+                    <th >直接购物车数</th>
+                    <th >间接购物车数</th>
+                    <th >总购物车数</th>
+                    <th >店铺代码</th>
+                    <th >部门编码</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+
+        </table>
+
+    </div>
+    {% endif %}
+
     <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <!-- 模态框头部 -->
         <div class="modal-header">
-          <h4 class="modal-title">删除用户提示</h4>
+          <h4 class="modal-title">删除数据提示</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <!-- 模态框主体 -->
         <div class="modal-body">
-
             <div class="container">
-                <p class="text-center text-justify">确定要删除当前用户吗？<br>用户名为：<strong id="delname" class="text-danger"></strong><br>花名为：<strong id="delnickname" class="text-danger"></strong></p>
+                <p class="text-center text-justify">确定要删除当前数据记录吗？<br>商品名称为：<strong id="delname" class="text-danger"></strong><br>商品货号为：<strong id="delnickname" class="text-danger"></strong></p>
             </div>
         </div>
 
@@ -256,6 +422,115 @@ $("#queryuserdepart").change(function() {
             </form>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
         </div>
+
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="uploadModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">上传数据</h4>
+          <button type="button" class="close" data-dismiss="modal" id="modalclose">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <form action="/fbyysite/datamanage/ztc/upload" method="post" enctype="multipart/form-data" target="ResultFrame" id="uploadFileForm">
+                    <div class="d-flex flex-row">
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadztcdepart">部门:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadztcdepart" name="uploadztcdepart">
+                            {% for department in departments %}
+                                <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadztcstore">店铺:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadztcstore" name="uploadztcstore">
+
+                        </select>
+                    </div>
+                        </div>
+                    <div class="custom-file mb-3">
+                        {{ uploadform.uploadFile }}
+                        <label class="custom-file-label" for="id_uploadFile" id="uploadFileLabel" >请选择文件:仅限xlsx</label>
+                        {{uploadfilename}}
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary text-white ml-auto pull-right" id="submituploadfile">上传</button>
+                        <button type="button" class="btn btn-secondary ml-auto pull-right" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+          <script>
+           var depart_code = $("#uploadztcdepart").val();
+if(depart_code===''){
+$('#uploadztcstore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/ztcmanage/uploadajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#uploadztcstore').empty();
+            var content="";
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#uploadztcstore').html(content)
+        },
+      });
+}
+$("#uploadztcdepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#uploadztcstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/productmanage/uploadajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#uploadproductstore').empty();
+            var content="";
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#uploadztcstore').html(content)
+        },
+      });
+        }  
+    });
+$("#id_uploadFile").change(function() {
+            var filename = $("#id_uploadFile").val();
+            var arr=filename.split('\\');
+         $("#uploadFileLabel").text(arr[arr.length-1])
+            $("#id_uploadfilename").val(arr[arr.length-1])
+    });
+</script>
+
+
+
+
+        <div class="modal-footer p-0">
+            <iframe name="ResultFrame" id="ResultFrame"  width="100%" height="51px" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" class="p-0">
+
+            </iframe>
+        </div>
+
 
       </div>
     </div>

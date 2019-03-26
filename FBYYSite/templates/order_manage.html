@@ -1,0 +1,725 @@
+{% extends "base.html" %}
+{% block style %}
+<style type="text/css">
+ tr td{
+		/* 不换行*/
+		word-break:keep-all;
+		/* 不换行*/
+		white-space:nowrap;
+		text-overflow: ellipsis;
+		height:63px;
+	}
+        </style>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function(){
+  $("tbody tr").hover(function(){
+    var num = $(".table tbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $(".table tbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $('#uploadModal').on('show.bs.modal', function (event) {
+       $("#uploadFileLabel").text("请选择文件:仅限xlsx");
+       $("#uploadFile").empty()
+       $('#ResultFrame').attr('src', '').on('load',function(){
+    });
+    })
+  $('#uploadclickfirmModal').on('show.bs.modal', function (event) {
+       $("#uploadclickfirmFileLabel").text("请选择文件:仅限xlsx");
+       $("#uploadclickfirmFile").empty()
+       $('#ClickFirmResultFrame').attr('src', '').on('load',function(){
+    });
+    })
+
+});
+</script>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="container-fluid d-inline-flex d-flex justify-content-between">
+        <div class="p-2">
+            <h2>万里牛订单列表</h2>
+        </div>
+
+        <div class="btn-group p-3 text-center">
+            <button class="btn btn-success text-white ml-auto" type="button" data-toggle="modal" data-target="#uploadModal" ><i class="fa fa-cloud-upload fa-lg"></i>上传数据</button>
+            <button class="btn btn-secondary text-white ml-auto" type="button" data-toggle="modal" data-target="#uploadclickfirmModal" ><i class="fa fa-cloud-upload fa-lg"></i>上传刷单</button>
+            <a class="btn btn-info text-white ml-auto" href="/fbyysite/datamanage/order/upload/taskquery/1"><i class="fa fa-table fa-lg"></i>查看任务列表</a>
+        </div>
+
+    </div>
+    <hr>
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>请修改以下错误</strong>
+        </div>
+    {% endif %}
+    <form id="id_queryform" action="/fbyysite/datamanage/order/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="id_orderid">订单ID:&nbsp;&nbsp;</label>
+            {{ queryform.orderid }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.orderid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_ordersysid">系统单号:&nbsp;&nbsp;</label>
+            {{ queryform.ordersysid }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.ordersysid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_onlineproductcode">线上商品编码:&nbsp;&nbsp;</label>
+            {{ queryform.onlineproductcode }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.onlineproductcode.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_orderdetailstatus">明细状态:&nbsp;&nbsp;</label>
+            {{ queryform.orderdetailstatus }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.orderdetailstatus.errors }}&nbsp;&nbsp;
+        <br/>
+        <div class="form-group p-2 m-2">
+            <label for="queryorderdepart">部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryorderdepart" name="queryorderdepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="queryorderstore">店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="queryorderstore" name="queryorderstore">
+
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_orderclickfirmflag">是否刷单:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend mr-2">
+                    <div class="input-group-text">
+                      {{ queryform.orderclickfirmflag }}
+                    </div>
+                </div>
+            <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="orderclickfirmtrue" name="orderclickfirm" value="1" >
+                    <label class="custom-control-label" for="orderclickfirmtrue">刷单</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" >
+                    <input type="radio" class="custom-control-input" id="orderclickfirmfalse" name="orderclickfirm" value="0">
+                    <label class="custom-control-label" for="orderclickfirmfalse">非刷单</label>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryorderdate">下单日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryorderdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryorderdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryorderdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_querypaydate">付款日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.querypaydatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.querypaydate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.querypaydate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryprintdate">打单日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryprintdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryprintdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryprintdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_querysenddate">发货日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.querysenddatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.querysenddate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.querysenddate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryoverdate">完成日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryoverdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryoverdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryoverdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_queryimportdate">导入日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.queryimportdatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.queryimportdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.queryimportdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="fbyysite/datamanage/order/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
+        </div>
+    </form>
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+
+  var depart_code = $("#queryorderdepart").val();
+if(depart_code===''){
+$('#queryorderstore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/ordermanage/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#queryorderstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#queryorderstore').html(content)
+        },
+      });
+}
+$("#queryorderdepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#queryorderstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/ordermanage/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#queryorderstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#queryorderstore').html(content)
+        },
+      });
+        }  
+    });
+
+</script>
+    <hr/>
+    {% if orderlist %}
+    <div class="d-inline-flex table-responsive" style="width:100%;height:100%;position: relative;">
+        <table  class="table" style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >店铺名称</th>
+                    <th >订单ID</th>
+                    <th >系统单号</th>
+                    <th >订单标记</th>
+                </tr>
+            </thead>
+            <tbody id="fixbody">
+            {% for order in orderlist %}
+            <tr >
+                <td>{{order.tb_order_store_name}}</td>
+                <td>{{order.tb_order_id}}</td>
+                <td>{{order.tb_order_sys_id}}</td>
+                <td>{{order.tb_order_mark}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <table class="table " style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr >
+                    <th >实付总计</th>
+                    <th >优惠总计</th>
+                    <th >仓库编码</th>
+                    <th >仓库名称</th>
+                    <th >买家留言</th>
+                    <th >备注</th>
+                    <th >打印备注</th>
+                    <th >系统订单状态</th>
+                    <th >线上订单状态</th>
+                    <th >批次流水号</th>
+                    <th >明细状态</th>
+                    <th >原订单号</th>
+                    <th >商品编码</th>
+                    <th >商品名称</th>
+                    <th >规格名称</th>
+                    <th >【线上】商品编码</th>
+                    <th >【线上】商品标题</th>
+                    <th >【线上】规格</th>
+                    <th >单价</th>
+                    <th >折后单价</th>
+                    <th >数量</th>
+                    <th >单位</th>
+                    <th >应收</th>
+                    <th >销售金额</th>
+                    <th >明细备注</th>
+                    <th >发票抬头</th>
+                    <th >开票内容</th>
+                    <th >开户银行</th>
+                    <th >银行账户</th>
+                    <th >开票税号</th>
+                    <th >开票地址</th>
+                    <th >开票电话</th>
+                    <th >开票邮箱</th>
+                    <th >快递公司</th>
+                    <th >快递单号</th>
+                    <th >快递成本</th>
+                    <th >重量</th>
+                    <th >体积</th>
+                    <th >邮费</th>
+                    <th >服务费</th>
+                    <th >帐号</th>
+                    <th >收货人</th>
+                    <th >身份证号</th>
+                    <th >手机/电话</th>
+                    <th >省</th>
+                    <th >市</th>
+                    <th >区</th>
+                    <th >详细地址</th>
+                    <th >邮编</th>
+                    <th >下单时间</th>
+                    <th >付款时间</th>
+                    <th >打单时间</th>
+                    <th >发货时间</th>
+                    <th >完成时间</th>
+                    <th >交易佣金</th>
+                    <th >信用卡佣金</th>
+                    <th >返点积分</th>
+                    <th >审单员</th>
+                    <th >打单员</th>
+                    <th >配货员</th>
+                    <th >验货员</th>
+                    <th >打包员</th>
+                    <th >称重员</th>
+                    <th >发货员</th>
+                    <th >业务员</th>
+                    <th >刷单标记</th>
+                    <th >店铺编码</th>
+                    <th >部门编码</th>
+                    <th >订单导入时间</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+            <tbody id="unfixbody">
+            {% for order in orderlist %}
+            <tr >
+                <td>{{order.tb_order_actual_pay_count}}</td>
+                <td>{{order.tb_order_benifit_count}}</td>
+                <td>{{order.tb_order_storage_code}}</td>
+                <td>{{order.tb_order_storage_name}}</td>
+                <td>{{order.tb_order_buyyer_review}}</td>
+                <td>{{order.tb_order_comment}}</td>
+                <td>{{order.tb_order_print_comment}}</td>
+                <td>{{order.tb_order_sys_order_status}}</td>
+                <td>{{order.tb_order_online_order_status}}</td>
+                <td>{{order.tb_order_patch_num}}</td>
+                <td>{{order.tb_order_detail_status}}</td>
+                <td>{{order.tb_product_buy_order_money}}</td>
+                <td>{{order.tb_order_old_order_id}}</td>
+                <td>{{order.tb_product_payers}}</td>
+                <td>{{order.tb_order_product_code}}</td>
+                <td>{{order.tb_order_product_name}}</td>
+                <td>{{order.tb_order_spec_name}}</td>
+                <td>{{order.tb_order_online_product_code}}</td>
+                <td>{{order.tb_order_online_product_title}}</td>
+                <td>{{order.tb_order_online_spec}}</td>
+                <td>{{order.tb_order_price}}</td>
+                <td>{{order.tb_order_benifit_price}}</td>
+                <td>{{order.tb_order_num}}</td>
+                <td>{{order.tb_order_unit}}</td>
+                <td>{{order.tb_order_suppose_money}}</td>
+                <td>{{order.tb_product_count_month_money}}</td>
+                <td>{{order.tb_order_sale_money}}</td>
+                <td>{{order.tb_order_detail_comment}}</td>
+                <td>{{order.tb_order_invoice_title}}</td>
+                <td>{{order.tb_order_invoice_content}}</td>
+                <td>{{order.tb_order_invoice_bank}}</td>
+                <td>{{order.tb_order_invoice_bank_account}}</td>
+                <td>{{order.tb_order_invoice_tax_number}}</td>
+                <td>{{order.tb_order_invoice_address}}</td>
+                <td>{{order.tb_order_invoice_tel}}</td>
+                <td>{{order.tb_order_invoice_email}}</td>
+                <td>{{order.tb_order_express_company}}</td>
+                <td>{{order.tb_order_express_num}}</td>
+                <td>{{order.tb_order_express_cost}}</td>
+                <td>{{order.tb_order_weight}}</td>
+                <td>{{order.tb_order_volume}}</td>
+                <td>{{order.tb_order_post_cost}}</td>
+                <td>{{order.tb_order_service_cost}}</td>
+                <td>{{order.tb_order_account}}</td>
+                <td>{{order.tb_order_receiver_name}}</td>
+                <td>{{order.tb_order_idcard_num}}</td>
+                <td>{{order.tb_order_receiver_tel}}</td>
+                <td>{{order.tb_order_receiver_province}}</td>
+                <td>{{order.tb_order_receiver_city}}</td>
+                <td>{{order.tb_order_receiver_county}}</td>
+                <td>{{order.tb_order_receiver_detail_address}}</td>
+                <td>{{order.tb_order_post_code}}</td>
+                <td>{{order.tb_order_order_time}}</td>
+                <td>{{order.tb_order_pay_time}}</td>
+                <td>{{order.tb_order_print_time}}</td>
+                <td>{{order.tb_order_send_time}}</td>
+                <td>{{order.tb_order_over_time}}</td>
+                <td>{{order.tb_order_trade_hire_money}}</td>
+                <td>{{order.tb_order_cdcard_hire_money}}</td>
+                <td>{{order.tb_order_return_score}}</td>
+                <td>{{order.tb_order_checker}}</td>
+                <td>{{order.tb_order_printer}}</td>
+                <td>{{order.tb_order_distributor}}</td>
+                <td>{{order.tb_order_surveyor}}</td>
+                <td>{{order.tb_order_packer}}</td>
+                <td>{{order.tb_order_weighter}}</td>
+                <td>{{order.tb_order_sender}}</td>
+                <td>{{order.tb_order_click_farm_flag}}</td>
+                <td>{{order.tb_order_store_code}}</td>
+                <td>{{order.tb_order_depart_code}}</td>
+                <td>{{order.tb_order_import_time}}</td>
+                <td>
+                    <div class="btn-group">
+                        {% if order.tb_order_store_code in editpermissionstorecodelist %}
+                        <a class="btn btn-primary text-white" href="/fbyysite/usermanage/edit/account/{{user.tb_user_info_email}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% else %}
+                        <a class="btn btn-primary text-white disabled" href="#" ><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% endif %}
+                        {% if order.tb_order_store_code in delpermissionstorecodelist %}
+                        <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this)" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% else %}
+                        <button type="button" class="btn btn-danger text-white disabled" ><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% endif %}
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+    {% block pageination %}
+
+        <div class="d-inline-flex p-3 container-fluid">
+                <ul class="pagination">
+                    {% if orderlist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/order/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/order/pagenum/{{orderlist.previous_page_number}}">上一页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/datamanage/order/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if orderlist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/order/pagenum/{{orderlist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/datamanage/order/pagenum/{{totalpages}}">尾页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+                    {% endif %}
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+                    <li class="page-item">
+                            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+                    </li>
+                </ul>
+        </div>
+        <script>
+            $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                    window.location.href="/fbyysite/datamanage/order/pagenum/" + jumppagenum;
+                }
+             });
+        </script>
+        {% endblock %}
+    {% else %}
+    <div class="alert alert-danger w-100">
+        {% block emptymsg %}<strong>当前还没有任何数据</strong>{% endblock %}
+    </div>
+    <div class="d-inline-flex" style="width:100%;height:100%;position: relative;">
+
+        <table class="table table-hover " style="width:60%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr>
+                    <th >店铺名称</th>
+                    <th >订单ID</th>
+                    <th >系统单号</th>
+                    <th >订单标记</th>
+                </tr>
+            </thead>
+
+        </table>
+
+
+        <table class="table table-hover " style="position: absolute;overflow-x:scroll;left:60%;display:block;width:40%;height:100%;">
+            <thead class="thead-light" style="white-space:nowrap;">
+                <tr class="" style="white-space:nowrap;">
+                    <th >实付总计</th>
+                    <th >优惠总计</th>
+                    <th >仓库编码</th>
+                    <th >仓库名称</th>
+                    <th >买家留言</th>
+                    <th >备注</th>
+                    <th >打印备注</th>
+                    <th >系统订单状态</th>
+                    <th >线上订单状态</th>
+                    <th >批次流水号</th>
+                    <th >明细状态</th>
+                    <th >原订单号</th>
+                    <th >商品编码</th>
+                    <th >商品名称</th>
+                    <th >规格名称</th>
+                    <th >【线上】商品编码</th>
+                    <th >【线上】商品标题</th>
+                    <th >【线上】规格</th>
+                    <th >单价</th>
+                    <th >折后单价</th>
+                    <th >数量</th>
+                    <th >单位</th>
+                    <th >应收</th>
+                    <th >销售金额</th>
+                    <th >明细备注</th>
+                    <th >发票抬头</th>
+                    <th >开票内容</th>
+                    <th >开户银行</th>
+                    <th >银行账户</th>
+                    <th >开票税号</th>
+                    <th >开票地址</th>
+                    <th >开票电话</th>
+                    <th >开票邮箱</th>
+                    <th >快递公司</th>
+                    <th >快递单号</th>
+                    <th >快递成本</th>
+                    <th >重量</th>
+                    <th >体积</th>
+                    <th >邮费</th>
+                    <th >服务费</th>
+                    <th >帐号</th>
+                    <th >收货人</th>
+                    <th >身份证号</th>
+                    <th >手机/电话</th>
+                    <th >省</th>
+                    <th >市</th>
+                    <th >区</th>
+                    <th >详细地址</th>
+                    <th >邮编</th>
+                    <th >下单时间</th>
+                    <th >付款时间</th>
+                    <th >打单时间</th>
+                    <th >发货时间</th>
+                    <th >完成时间</th>
+                    <th >交易佣金</th>
+                    <th >信用卡佣金</th>
+                    <th >返点积分</th>
+                    <th >审单员</th>
+                    <th >打单员</th>
+                    <th >配货员</th>
+                    <th >验货员</th>
+                    <th >打包员</th>
+                    <th >称重员</th>
+                    <th >发货员</th>
+                    <th >业务员</th>
+                    <th >刷单标记</th>
+                    <th >店铺编码</th>
+                    <th >部门编码</th>
+                    <th >订单导入时间</th>
+                    <th >操作</th>
+                </tr>
+            </thead>
+
+        </table>
+
+    </div>
+    {% endif %}
+
+    <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">删除数据提示</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <p class="text-center text-justify">确定要删除当前数据记录吗？<br>商品名称为：<strong id="delname" class="text-danger"></strong><br>商品货号为：<strong id="delnickname" class="text-danger"></strong></p>
+            </div>
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+            <form action="/fbyysite/usermanage/delete/account/" method="post">
+                <input type="hidden" id="deluseremail" name="deluseremail">
+                <input type="hidden" id="delreferer" name="delreferer">
+                <button type="submit" id="delconfirm"  class="btn btn-danger text-white" >确认删除</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="uploadModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">上传订单数据</h4>
+          <button type="button" class="close" data-dismiss="modal" id="modalclose">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <form action="/fbyysite/datamanage/order/upload" method="post" enctype="multipart/form-data" target="ResultFrame" id="uploadFileForm">
+                    <div class="d-flex flex-row">
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadorderdepart">部门:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadorderdepart" name="uploadorderdepart">
+                            {% for department in departments %}
+                                <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                        </div>
+                    <div class="custom-file mb-3">
+                        {{ uploadform.uploadFile }}
+                        <label class="custom-file-label" for="id_uploadFile" id="uploadFileLabel" >请选择文件:仅限xlsx</label>
+                        {{uploadform.uploadfilename}}
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary text-white ml-auto pull-right" id="submituploadfile">上传</button>
+                        <button type="button" class="btn btn-secondary ml-auto pull-right" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+          <script>
+$("#id_uploadFile").change(function() {
+            var filename = $("#id_uploadFile").val();
+            var arr=filename.split('\\');
+         $("#uploadFileLabel").text(arr[arr.length-1])
+            $("#id_uploadfilename").val(arr[arr.length-1])
+    });
+</script>
+
+
+
+
+        <div class="modal-footer p-0">
+            <iframe name="ResultFrame" id="ResultFrame"  width="100%" height="51px" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" class="p-0">
+
+            </iframe>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="uploadclickfirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">上传刷单数据</h4>
+          <button type="button" class="close" data-dismiss="modal" id="clickfirmmodalclose">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <div class="container">
+                <form action="/fbyysite/datamanage/order/clickfirm/upload" method="post" enctype="multipart/form-data" target="ClickFirmResultFrame" id="uploadclickfirmFileForm">
+                    <div class="d-flex flex-row">
+                    <div class="form-group p-2 m-2 form-inline">
+                        <label for="uploadorderclickfirmdepart">部门:&nbsp;&nbsp;</label>
+                        <select class="form-control" id="uploadorderclickfirmdepart" name="uploadorderclickfirmdepart">
+                            {% for department in departments %}
+                                <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                        </div>
+                    <div class="custom-file mb-3">
+                        {{ uploadclickfirmform.uploadclickfirmFile }}
+                        <label class="custom-file-label" for="id_uploadclickfirmFile" id="uploadclickfirmFileLabel" >请选择文件:仅限xlsx</label>
+                        {{uploadclickfirmform.uploadclickfirmfilename}}
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary text-white ml-auto pull-right" id="submitclickfirmuploadfile">上传</button>
+                        <button type="button" class="btn btn-secondary ml-auto pull-right" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+          <script>
+$("#id_uploadclickfirmFile").change(function() {
+            var filename = $("#id_uploadclickfirmFile").val();
+            var arr=filename.split('\\');
+         $("#uploadclickfirmFileLabel").text(arr[arr.length-1])
+            $("#id_uploadclickfirmfilename").val(arr[arr.length-1])
+    });
+</script>
+
+
+
+
+        <div class="modal-footer p-0">
+            <iframe name="ClickFirmResultFrame" id="ClickFirmResultFrame"  width="100%" height="51px" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" class="p-0">
+
+            </iframe>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

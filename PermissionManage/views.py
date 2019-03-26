@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from PermissionManage.Logic.permission_controller import *
+from UserManage.Logic.usermanage_controller import get_all_departments
 import json
 
 # Create your views here.

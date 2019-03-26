@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'SiteLogin',
     'UserManage',
     'DataManage',
-    'PermissionManage'
-
+    'PermissionManage',
+    'TaskManage'
 ]
 
 MIDDLEWARE = [
@@ -87,7 +87,8 @@ DATABASES = {
 		'USER': 'root',
 		'PASSWORD':'FBYYroot',
 		'HOST':'fbyydata',
-		'PORT':'3306'
+		'PORT':'3306',
+        'ATOMIC_REQUESTS':True
     }
 }
 
@@ -203,3 +204,5 @@ EMAIL_HOST_PASSWORD = 'semovtfxjwyebgig'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 DEFAULT_CHARSET = 'UTF-8'
+
+
