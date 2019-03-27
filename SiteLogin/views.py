@@ -22,11 +22,12 @@ def login(request):
         a = request.POST.get('email','')
         logger.info("account is %s" %a)
         p = request.POST.get('pwd','')
-        rem = request.POST.get('pwd','')
+        rem = request.POST.get('rem','')
         if logincheck(a,p,rem):
             request.session['usenname'] = a
             currentdatetime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
             login_update(a,currentdatetime)
+
             return redirect('/fbyysite/index/')
         else:
             return render(request, "login.html")

@@ -14,12 +14,21 @@
 {% block script %}
 <script>
     $(document).ready(function(){
-  $("tbody tr").hover(function(){
-    var num = $(".table tbody tr").index(this)
+  $("#fixbody tr").hover(function(){
+    var num = $("#fixbody tr").index(this)
     $("#fixbody tr").eq(num).css("background-color","#e9ecef");
     $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
     },function(){
-     var num = $(".table tbody tr").index(this)
+     var num = $("#fixbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $("#unfixbody tr").hover(function(){
+    var num = $("#unfixbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $("#unfixbody tr").index(this)
      $("#fixbody tr").eq(num).css("background-color","white");
     $("#unfixbody tr").eq(num).css("background-color","white");
   });
@@ -336,6 +345,7 @@ $("#queryorderdepart").change(function() {
                     <th >发货员</th>
                     <th >业务员</th>
                     <th >刷单标记</th>
+                    <th >下单日期</th>
                     <th >店铺编码</th>
                     <th >部门编码</th>
                     <th >订单导入时间</th>
@@ -356,9 +366,7 @@ $("#queryorderdepart").change(function() {
                 <td>{{order.tb_order_online_order_status}}</td>
                 <td>{{order.tb_order_patch_num}}</td>
                 <td>{{order.tb_order_detail_status}}</td>
-                <td>{{order.tb_product_buy_order_money}}</td>
                 <td>{{order.tb_order_old_order_id}}</td>
-                <td>{{order.tb_product_payers}}</td>
                 <td>{{order.tb_order_product_code}}</td>
                 <td>{{order.tb_order_product_name}}</td>
                 <td>{{order.tb_order_spec_name}}</td>
@@ -370,7 +378,6 @@ $("#queryorderdepart").change(function() {
                 <td>{{order.tb_order_num}}</td>
                 <td>{{order.tb_order_unit}}</td>
                 <td>{{order.tb_order_suppose_money}}</td>
-                <td>{{order.tb_product_count_month_money}}</td>
                 <td>{{order.tb_order_sale_money}}</td>
                 <td>{{order.tb_order_detail_comment}}</td>
                 <td>{{order.tb_order_invoice_title}}</td>
@@ -412,7 +419,9 @@ $("#queryorderdepart").change(function() {
                 <td>{{order.tb_order_packer}}</td>
                 <td>{{order.tb_order_weighter}}</td>
                 <td>{{order.tb_order_sender}}</td>
+                <td>{{order.tb_order_salesman}}</td>
                 <td>{{order.tb_order_click_farm_flag}}</td>
+                <td>{{order.tb_order_order_date}}</td>
                 <td>{{order.tb_order_store_code}}</td>
                 <td>{{order.tb_order_depart_code}}</td>
                 <td>{{order.tb_order_import_time}}</td>
@@ -562,6 +571,7 @@ $("#queryorderdepart").change(function() {
                     <th >发货员</th>
                     <th >业务员</th>
                     <th >刷单标记</th>
+                    <th >下单日期</th>
                     <th >店铺编码</th>
                     <th >部门编码</th>
                     <th >订单导入时间</th>

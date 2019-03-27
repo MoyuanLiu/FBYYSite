@@ -29,11 +29,13 @@ def expiretaskbyexpiredate():
 
 
 def runimporttask(taskobj):
+    print("跑导入任务")
     cf = configparser.ConfigParser()
     cf.read("Conf/project.conf", encoding='UTF-8')
     checklistdirlist = []
     taskcode = taskobj.tb_task_info_code
     if taskobj.tb_task_info_code != 'productuploadimporttask':
+        print(taskcode)
         taskchecklistconfstr = 'CSD_' + taskcode
         checklistdir = cf.get('ImportCheckServicesDir', taskchecklistconfstr)
         checklistdirlist.append(checklistdir)
@@ -503,103 +505,110 @@ def importclickfirmdata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_starttime=curtime
     taskobj.save()
     orderobjlist = []
-    for i in range(nrows):
-        if i <= tableheadrownum:
-            continue
-        orderdatequery = getdatestr(tabledata.row(i)[53].value)
-        orderidquery = tabledata.row(i)[1].value
-        orderproductcode = tabledata.row(i)[19].value
+    orderidlist = []
+    orderdate = getdatestr(tabledata.row((tableheadrownum+1))[53].value)
+    print(orderdate)
+    if TbOrder.objects.filter(tb_order_order_date=orderdate).order_by('tb_order_order_date').exists():
+        for i in range(nrows):
+            if i <= tableheadrownum:
+                continue
+            orderidlist.append(tabledata.row(i)[1].value)
         querycondition = Q()
-        querycondition.children.append(('tb_order_order_date', orderdatequery))
-        querycondition.children.append(('tb_order_id', orderidquery))
-        querycondition.children.append(('tb_order_online_product_code', orderproductcode))
+        querycondition.children.append(('tb_order_order_date', orderdate))
+        querycondition.children.append(('tb_order_id__in', orderidlist))
         try:
-            updateorder = TbOrder.objects.get(querycondition)
-            updatedata = {}
-            updatedata['tb_order_click_farm_flag'] = 1
-            updateorder.__dict__.update(updatedata)
-            updateorder.save()
-        except ObjectDoesNotExist:
+            TbOrder.objects.filter(querycondition).update(tb_order_click_farm_flag=1)
+            print('更新数据')
+        except Exception as err:
+            print(err)
+            flag = False
+
+    else:
+        for i in range(nrows):
+            if i <= tableheadrownum:
+                continue
             currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
             curorder = TbOrder(tb_order_store_name=fixStoreName(tabledata.row(i)[0].value),
-                                   tb_order_id=orderidquery, tb_order_sys_id=tabledata.row(i)[2].value,
-                                   tb_order_mark=tabledata.row(i)[3].value,
-                                   tb_order_actual_pay_count=fixNullNumber(tabledata.row(i)[4].value),
-                                   tb_order_benifit_count=fixNullNumber(tabledata.row(i)[5].value),
-                                   tb_order_storage_code=tabledata.row(i)[6].value,
-                                   tb_order_storage_name=tabledata.row(i)[7].value,
-                                   tb_order_buyyer_review=fixSymbol(tabledata.row(i)[8].value),
-                                   tb_order_comment=fixchangeline(tabledata.row(i)[9].value),
-                                   tb_order_print_comment=tabledata.row(i)[10].value,
-                                   tb_order_sys_order_status=tabledata.row(i)[11].value,
-                                   tb_order_online_order_status=tabledata.row(i)[12].value,
-                                   tb_order_patch_num=tabledata.row(i)[13].value,
-                                   tb_order_detail_status=tabledata.row(i)[14].value,
-                                   tb_order_old_order_id=tabledata.row(i)[15].value,
-                                   tb_order_product_code=tabledata.row(i)[16].value,
-                                   tb_order_product_name=tabledata.row(i)[17].value,
-                                   tb_order_spec_name=removespace(tabledata.row(i)[18].value),
-                                   tb_order_online_product_code=orderproductcode,
-                                   tb_order_online_product_title=tabledata.row(i)[20].value,
-                                   tb_order_online_spec=tabledata.row(i)[21].value,
-                                   tb_order_price=tabledata.row(i)[22].value,
-                                   tb_order_benifit_price=tabledata.row(i)[23].value,
-                                   tb_order_num=tabledata.row(i)[24].value, tb_order_unit=tabledata.row(i)[25].value,
-                                   tb_order_suppose_money=tabledata.row(i)[26].value,
-                                   tb_order_sale_money=tabledata.row(i)[27].value,
-                                   tb_order_detail_comment=tabledata.row(i)[28].value,
-                                   tb_order_invoice_title=tabledata.row(i)[29].value,
-                                   tb_order_invoice_content=tabledata.row(i)[30].value,
-                                   tb_order_invoice_bank=tabledata.row(i)[31].value,
-                                   tb_order_invoice_bank_account=tabledata.row(i)[32].value,
-                                   tb_order_invoice_tax_number=tabledata.row(i)[33].value,
-                                   tb_order_invoice_address=tabledata.row(i)[34].value,
-                                   tb_order_invoice_tel=tabledata.row(i)[35].value,
-                                   tb_order_invoice_email=tabledata.row(i)[36].value,
-                                   tb_order_express_company=tabledata.row(i)[37].value,
-                                   tb_order_express_num=tabledata.row(i)[38].value,
-                                   tb_order_express_cost=changeStrtoFloat(tabledata.row(i)[39].value),
-                                   tb_order_weight=changeStrtoFloat(tabledata.row(i)[40].value),
-                                   tb_order_volume=changeStrtoFloat(tabledata.row(i)[41].value),
-                                   tb_order_post_cost=fixNullNumber(tabledata.row(i)[42].value),
-                                   tb_order_service_cost=fixNullNumber(tabledata.row(i)[43].value),
-                                   tb_order_account=tabledata.row(i)[44].value,
-                                   tb_order_receiver_name=fixSymbol(tabledata.row(i)[45].value),
-                                   tb_order_idcard_num=tabledata.row(i)[46].value,
-                                   tb_order_receiver_tel=tabledata.row(i)[47].value,
-                                   tb_order_receiver_province=tabledata.row(i)[48].value,
-                                   tb_order_receiver_city=tabledata.row(i)[49].value,
-                                   tb_order_receiver_county=tabledata.row(i)[50].value,
-                                   tb_order_receiver_detail_address=fixSymbol(tabledata.row(i)[51].value),
-                                   tb_order_post_code=tabledata.row(i)[52].value,
-                                   tb_order_order_time=tabledata.row(i)[53].value,
-                                   tb_order_pay_time=tabledata.row(i)[54].value,
-                                   tb_order_print_time=tabledata.row(i)[55].value,
-                                   tb_order_send_time=tabledata.row(i)[56].value,
-                                   tb_order_over_time=tabledata.row(i)[57].value,
-                                   tb_order_trade_hire_money=fixNullNumber(tabledata.row(i)[58].value),
-                                   tb_order_cdcard_hire_money=fixNullNumber(tabledata.row(i)[59].value),
-                                   tb_order_return_score=changeStrtoFloat(tabledata.row(i)[60].value),
-                                   tb_order_checker=tabledata.row(i)[61].value,
-                                   tb_order_printer=tabledata.row(i)[62].value,
-                                   tb_order_distributor=tabledata.row(i)[63].value,
-                                   tb_order_surveyor=tabledata.row(i)[64].value,
-                                   tb_order_packer=tabledata.row(i)[65].value,
-                                   tb_order_weighter=tabledata.row(i)[66].value,
-                                   tb_order_sender=tabledata.row(i)[67].value,
-                                   tb_order_salesman=tabledata.row(i)[68].value,
-                                   tb_order_order_date=orderdatequery,
-                                   tb_order_store_code=getstorecodebyname(tabledata.row(i)[0].value), tb_order_depart_code=departcode,
-                                   tb_order_import_time=currenttime, tb_order_click_farm_flag=1)
+                               tb_order_id=tabledata.row(i)[1].value, tb_order_sys_id=tabledata.row(i)[2].value,
+                               tb_order_mark=tabledata.row(i)[3].value,
+                               tb_order_actual_pay_count=fixNullNumber(tabledata.row(i)[4].value),
+                               tb_order_benifit_count=fixNullNumber(tabledata.row(i)[5].value),
+                               tb_order_storage_code=tabledata.row(i)[6].value,
+                               tb_order_storage_name=tabledata.row(i)[7].value,
+                               tb_order_buyyer_review=tabledata.row(i)[8].value,
+                               tb_order_comment=fixchangeline(tabledata.row(i)[9].value),
+                               tb_order_print_comment=tabledata.row(i)[10].value,
+                               tb_order_sys_order_status=tabledata.row(i)[11].value,
+                               tb_order_online_order_status=tabledata.row(i)[12].value,
+                               tb_order_patch_num=tabledata.row(i)[13].value,
+                               tb_order_detail_status=tabledata.row(i)[14].value,
+                               tb_order_old_order_id=tabledata.row(i)[15].value,
+                               tb_order_product_code=tabledata.row(i)[16].value,
+                               tb_order_product_name=tabledata.row(i)[17].value,
+                               tb_order_spec_name=removespace(tabledata.row(i)[18].value),
+                               tb_order_online_product_code=tabledata.row(i)[19].value,
+                               tb_order_online_product_title=tabledata.row(i)[20].value,
+                               tb_order_online_spec=tabledata.row(i)[21].value,
+                               tb_order_price=tabledata.row(i)[22].value,
+                               tb_order_benifit_price=tabledata.row(i)[23].value,
+                               tb_order_num=tabledata.row(i)[24].value, tb_order_unit=tabledata.row(i)[25].value,
+                               tb_order_suppose_money=tabledata.row(i)[26].value,
+                               tb_order_sale_money=tabledata.row(i)[27].value,
+                               tb_order_detail_comment=tabledata.row(i)[28].value,
+                               tb_order_invoice_title=tabledata.row(i)[29].value,
+                               tb_order_invoice_content=tabledata.row(i)[30].value,
+                               tb_order_invoice_bank=tabledata.row(i)[31].value,
+                               tb_order_invoice_bank_account=tabledata.row(i)[32].value,
+                               tb_order_invoice_tax_number=tabledata.row(i)[33].value,
+                               tb_order_invoice_address=tabledata.row(i)[34].value,
+                               tb_order_invoice_tel=tabledata.row(i)[35].value,
+                               tb_order_invoice_email=tabledata.row(i)[36].value,
+                               tb_order_express_company=tabledata.row(i)[37].value,
+                               tb_order_express_num=tabledata.row(i)[38].value,
+                               tb_order_express_cost=changeStrtoFloat(tabledata.row(i)[39].value),
+                               tb_order_weight=changeStrtoFloat(tabledata.row(i)[40].value),
+                               tb_order_volume=changeStrtoFloat(tabledata.row(i)[41].value),
+                               tb_order_post_cost=fixNullNumber(tabledata.row(i)[42].value),
+                               tb_order_service_cost=fixNullNumber(tabledata.row(i)[43].value),
+                               tb_order_account=tabledata.row(i)[44].value,
+                               tb_order_receiver_name=tabledata.row(i)[45].value,
+                               tb_order_idcard_num=tabledata.row(i)[46].value,
+                               tb_order_receiver_tel=tabledata.row(i)[47].value,
+                               tb_order_receiver_province=tabledata.row(i)[48].value,
+                               tb_order_receiver_city=tabledata.row(i)[49].value,
+                               tb_order_receiver_county=tabledata.row(i)[50].value,
+                               tb_order_receiver_detail_address=tabledata.row(i)[51].value,
+                               tb_order_post_code=tabledata.row(i)[52].value,
+                               tb_order_order_time=tabledata.row(i)[53].value,
+                               tb_order_pay_time=tabledata.row(i)[54].value,
+                               tb_order_print_time=tabledata.row(i)[55].value,
+                               tb_order_send_time=tabledata.row(i)[56].value,
+                               tb_order_over_time=tabledata.row(i)[57].value,
+                               tb_order_trade_hire_money=fixNullNumber(tabledata.row(i)[58].value),
+                               tb_order_cdcard_hire_money=fixNullNumber(tabledata.row(i)[59].value),
+                               tb_order_return_score=changeStrtoFloat(tabledata.row(i)[60].value),
+                               tb_order_checker=tabledata.row(i)[61].value,
+                               tb_order_printer=tabledata.row(i)[62].value,
+                               tb_order_distributor=tabledata.row(i)[63].value,
+                               tb_order_surveyor=tabledata.row(i)[64].value,
+                               tb_order_packer=tabledata.row(i)[65].value,
+                               tb_order_weighter=tabledata.row(i)[66].value,
+                               tb_order_sender=tabledata.row(i)[67].value,
+                               tb_order_salesman=tabledata.row(i)[68].value,
+                               tb_order_order_date=getdatestr(tabledata.row(i)[53].value),
+                               tb_order_store_code=getstorecodebyname(tabledata.row(i)[0].value),
+                               tb_order_depart_code=departcode,
+                               tb_order_import_time=currenttime, tb_order_click_farm_flag=1)
             orderobjlist.append(curorder)
+        try:
+            TbOrder.objects.bulk_create(orderobjlist)
+            orderobjlist.clear()
+            print('提交数据')
+        except Exception as err:
+            print(err)
+            orderobjlist.clear()
+            flag=False
 
-        except:
-            flag = False
-            break
-
-    TbOrder.objects.bulk_create(orderobjlist)
-    orderobjlist.clear()
-    print('提交数据')
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         taskobj.tb_task_info_status='任务已完成'
@@ -623,45 +632,33 @@ def importstoragedata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_status = '任务进行中'
     taskobj.tb_task_info_starttime = curtime
     taskobj.save()
-
+    storageobjlist = []
+    if TbStorage.objects.filter(tb_storage_import_date=importdate).order_by('tb_storage_import_date').exists():
+        TbStorage.objects.filter(tb_storage_import_date=importdate).order_by('tb_storage_import_date').delete()
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        querycondition = Q()
-        querycondition.children.append(('tb_storage_depart_code', departcode))
-        querycondition.children.append(('tb_storage_import_date', importdate))
-        querycondition.children.append(('tb_storage_product_id', tabledata.row(i)[1].value))
-        try:
-            updateproduct = TbStorage.objects.get(querycondition)
-            updatedata = {}
-            updatedata['tb_storage_product_code'] = tabledata.row(i)[0].value
-            updatedata['tb_storage_product_id'] = tabledata.row(i)[1].value
-            updatedata['tb_storage_product_name'] = tabledata.row(i)[2].value
-            updatedata['tb_storage_spec_name'] = tabledata.row(i)[3].value
-            updatedata['tb_storage_product_num'] = extractProductNum(tabledata.row(i)[1].value)
-            updatedata['tb_storage_catalogue'] = tabledata.row(i)[6].value
-            updatedata['tb_storage_actual_stock'] = changeFloattoInt(tabledata.row(i)[7].value)
-            updatedata['tb_storage_lock_stock'] = changeFloattoInt(tabledata.row(i)[8].value)
-            updatedata['tb_storage_available_stock'] = changeFloattoInt(tabledata.row(i)[9].value)
-            updatedata['tb_storage_intransit_stock'] = changeFloattoInt(tabledata.row(i)[10].value)
-            updateproduct.__dict__.update(updatedata)
-            updateproduct.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStorage.objects.create(tb_storage_product_code=tabledata.row(i)[0].value,
-                                     tb_storage_product_id=tabledata.row(i)[1].value,
-                                     tb_storage_product_name=tabledata.row(i)[2].value,
-                                     tb_storage_spec_name=tabledata.row(i)[3].value,
-                                     tb_storage_product_num=extractProductNum(tabledata.row(i)[1].value),
-                                     tb_storage_catalogue=tabledata.row(i)[6].value,
-                                     tb_storage_actual_stock=changeFloattoInt(tabledata.row(i)[7].value),
-                                     tb_storage_lock_stock=changeFloattoInt(tabledata.row(i)[8].value),
-                                     tb_storage_available_stock=changeFloattoInt(tabledata.row(i)[9].value),
-                                     tb_storage_intransit_stock=changeFloattoInt(tabledata.row(i)[10].value),
-                                     tb_storage_import_date=importdate, tb_storage_depart_code=departcode)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storageobj = TbStorage(tb_storage_product_code=tabledata.row(i)[0].value,
+                               tb_storage_product_id=tabledata.row(i)[1].value,
+                               tb_storage_product_name=tabledata.row(i)[2].value,
+                               tb_storage_spec_name=tabledata.row(i)[3].value,
+                               tb_storage_product_num=extractProductNum(tabledata.row(i)[1].value),
+                               tb_storage_catalogue=tabledata.row(i)[6].value,
+                               tb_storage_actual_stock=changeFloattoInt(tabledata.row(i)[7].value),
+                               tb_storage_lock_stock=changeFloattoInt(tabledata.row(i)[8].value),
+                               tb_storage_available_stock=changeFloattoInt(tabledata.row(i)[9].value),
+                               tb_storage_intransit_stock=changeFloattoInt(tabledata.row(i)[10].value),
+                               tb_storage_import_date=importdate, tb_storage_depart_code=departcode)
+        storageobjlist.append(storageobj)
+    try:
+        TbStorage.objects.bulk_create(storageobjlist)
+        storageobjlist.clear()
+        print('提交数据')
+    except Exception as err:
+        print(err)
+        storageobjlist.clear()
+        flag = False
 
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())

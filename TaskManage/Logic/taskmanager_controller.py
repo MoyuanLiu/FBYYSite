@@ -37,6 +37,7 @@ def runbackgroundserver():
     while True:
         expiretaskbyexpiredate()
         runtasklist = TbTaskInfo.objects.order_by('tb_task_info_createtime').filter(runtaskcondition)[0:1]
+        print(runtasklist)
         if runtasklist:
             for runtask in runtasklist:
                 runtask.tb_task_info_status = '任务进行中'

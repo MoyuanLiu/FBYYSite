@@ -14,12 +14,21 @@
 {% block script %}
 <script>
     $(document).ready(function(){
-  $("tbody tr").hover(function(){
-    var num = $(".table tbody tr").index(this)
+  $("#fixbody tr").hover(function(){
+    var num = $("#fixbody tr").index(this)
     $("#fixbody tr").eq(num).css("background-color","#e9ecef");
     $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
     },function(){
-     var num = $(".table tbody tr").index(this)
+     var num = $("#fixbody tr").index(this)
+     $("#fixbody tr").eq(num).css("background-color","white");
+    $("#unfixbody tr").eq(num).css("background-color","white");
+  });
+  $("#unfixbody tr").hover(function(){
+    var num = $("#unfixbody tr").index(this)
+    $("#fixbody tr").eq(num).css("background-color","#e9ecef");
+    $("#unfixbody tr").eq(num).css("background-color","#e9ecef");
+    },function(){
+     var num = $("#unfixbody tr").index(this)
      $("#fixbody tr").eq(num).css("background-color","white");
     $("#unfixbody tr").eq(num).css("background-color","white");
   });

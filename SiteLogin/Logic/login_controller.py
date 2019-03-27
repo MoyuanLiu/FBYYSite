@@ -13,6 +13,8 @@ def logincheck(account,password,rem):
     if account != '':
         user = TbUserInfo.objects.get_user_by_account(account)
         if user != None:
+            print(user.tb_user_info_pwd)
+            print(password)
             if user.tb_user_info_pwd == password:
                 if rem:
                     cache.set(account, password, 14 * 24 * 60 * 60)
