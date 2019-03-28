@@ -1,6 +1,9 @@
 
 from TaskManage.Logic.backgroundtask_controller import *
 
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 def get_all_users_by_account(account):
     user = TbUserInfo.objects.get_user_by_account(account)
     if user.tb_user_info_issuperuser:
@@ -37,12 +40,12 @@ def runbackgroundserver():
     while True:
         expiretaskbyexpiredate()
         runtasklist = TbTaskInfo.objects.order_by('tb_task_info_createtime').filter(runtaskcondition)[0:1]
-        print(runtasklist)
+        logger.info(runtasklist)
         if runtasklist:
             for runtask in runtasklist:
                 runtask.tb_task_info_status = '任务进行中'
                 runtask.save()
                 runimporttask(runtask)
         else:
-            print('暂时没有任务休眠5秒')
+            logger.info('暂时没有任务休眠5秒')
             time.sleep(5)
