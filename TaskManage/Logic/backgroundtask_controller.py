@@ -8,13 +8,14 @@ import xlrd
 import operator
 from Utils.FileOptUtil import *
 from Utils.StringUtil import *
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import transaction
+import logging
 
 
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 def expiretaskbyexpiredate():
-    print("检查过期任务")
+    logger.info("检查过期任务")
     curdate = time.strftime('%Y/%m/%d', time.localtime(time.time()))
     expiretaskcondition = Q()
     expiretaskcondition.children.append(('tb_task_info_expire_date__lt', curdate))
@@ -24,18 +25,18 @@ def expiretaskbyexpiredate():
         tasksavefilepath = json.loads(expiretask.tb_task_info_content)["savepath"]
         if os.path.isfile(tasksavefilepath):
             os.remove(tasksavefilepath)
-            print("过期任务文件已移除")
+            logger.info("过期任务文件已移除")
             expiretask.save()
 
 
 def runimporttask(taskobj):
-    print("跑导入任务")
+    logger.info("跑导入任务")
     cf = configparser.ConfigParser()
     cf.read("Conf/project.conf", encoding='UTF-8')
     checklistdirlist = []
     taskcode = taskobj.tb_task_info_code
     if taskobj.tb_task_info_code != 'productuploadimporttask':
-        print(taskcode)
+        logger.info(taskcode)
         taskchecklistconfstr = 'CSD_' + taskcode
         checklistdir = cf.get('ImportCheckServicesDir', taskchecklistconfstr)
         checklistdirlist.append(checklistdir)
@@ -53,7 +54,7 @@ def runimporttask(taskobj):
         data = xlrd.open_workbook(taskpath)
         table = data.sheets()[0]
         if columncheck(table.row(tableheadrownum), checklistdirlist):
-            print('通过校验')
+            logger.info('通过校验')
             importmethoddistribute(taskobj, table, tableheadrownum)
         else:
             curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
@@ -71,15 +72,15 @@ def columncheck(tablehead, checklistdirlist):
     for th in tablehead:
         tableheadlist.append(th.value)
     for checklistdir in checklistdirlist:
-        print(readfileaslist(checklistdir))
-        print(tableheadlist)
+        logger.info(readfileaslist(checklistdir))
+        logger.info(tableheadlist)
         if operator.eq(readfileaslist(checklistdir), tableheadlist):
             flag = True
     return flag
 
 
 def importmethoddistribute(taskobj, tabledata, tableheadrownum, ):
-    print('分配处理任务')
+    logger.info('分配处理任务')
     taskcode = taskobj.tb_task_info_code
     if taskcode == 'productuploadimporttask':
         if isOldProductOrNot(tabledata, tableheadrownum):
@@ -119,93 +120,59 @@ def importproductdata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_status='任务进行中'
     taskobj.tb_task_info_starttime=curtime
     taskobj.save()
-
+    productobjlist = []
+    productcaldatestr = tabledata.row((tableheadrownum + 1))[0].value
+    if TbProduct.objects.filter(tb_caldate=productcaldatestr).order_by('tb_caldate').exists():
+        TbProduct.objects.filter(tb_caldate=productcaldatestr).order_by('tb_caldate').delete()
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        querycondition = Q()
-        querycondition.children.append(('tb_caldate', tabledata.row(i)[0].value))
-        querycondition.children.append(('tb_product_store_id', storecode))
-        querycondition.children.append(('tb_product_id', tabledata.row(i)[1].value))
-        try:
-            updateproduct = TbProduct.objects.get(querycondition)
-            updatedata = {}
-            updatedata['tb_product_name'] = tabledata.row(i)[2].value
-            updatedata['tb_product_num'] = tabledata.row(i)[3].value
-            updatedata['tb_product_product_status'] = tabledata.row(i)[4].value
-            updatedata['tb_product_product_tag'] = tabledata.row(i)[5].value
-            updatedata['tb_product_visitors'] = changeStrtoInt(tabledata.row(i)[6].value)
-            updatedata['tb_product_views'] = changeStrtoInt(tabledata.row(i)[7].value)
-            updatedata['tb_avg_stoptime'] = changeStrtoFloat(tabledata.row(i)[8].value)
-            updatedata['tb_detail_page_jump_percent'] = changeStrtoPercent(tabledata.row(i)[9].value)
-            updatedata['tb_product_collects'] = changeStrtoInt(tabledata.row(i)[10].value)
-            updatedata['tb_product_join_items'] = changeStrtoInt(tabledata.row(i)[11].value)
-            updatedata['tb_product_joins'] = changeStrtoInt(tabledata.row(i)[12].value)
-            updatedata['tb_product_order_buyyers'] = changeStrtoInt(tabledata.row(i)[13].value)
-            updatedata['tb_product_buy_order_items'] = changeStrtoInt(tabledata.row(i)[14].value)
-            updatedata['tb_product_buy_order_money'] = changeStrtoFloat(tabledata.row(i)[15].value)
-            updatedata['tb_product_order_converse_percent'] = changeStrtoPercent(tabledata.row(i)[16].value)
-            updatedata['tb_product_payers'] = changeStrtoInt(tabledata.row(i)[17].value)
-            updatedata['tb_product_pay_items'] = changeStrtoInt(tabledata.row(i)[18].value)
-            updatedata['tb_product_pay_money'] = changeStrtoFloat(tabledata.row(i)[19].value)
-            updatedata['tb_product_pay_converse_percent'] =changeStrtoPercent(tabledata.row(i)[20].value)
-            updatedata['tb_product_new_payyers'] = changeStrtoInt(tabledata.row(i)[21].value)
-            updatedata['tb_product_old_payyers'] = changeStrtoInt(tabledata.row(i)[22].value)
-            updatedata['tb_product_old_payyer_money'] = changeStrtoFloat(tabledata.row(i)[23].value)
-            updatedata['tb_product_juhuasuan_money'] = changeStrtoFloat(tabledata.row(i)[24].value)
-            updatedata['tb_product_avg_value_visitors'] = changeStrtoFloat(tabledata.row(i)[25].value)
-            updatedata['tb_product_sell_return_money'] = changeStrtoFloat(tabledata.row(i)[26].value)
-            updatedata['tb_product_compare_score'] = changeStrtoFloat(tabledata.row(i)[27].value)
-            updatedata['tb_product_count_year_money'] = changeStrtoFloat(tabledata.row(i)[28].value)
-            updatedata['tb_product_count_month_money'] = changeStrtoFloat(tabledata.row(i)[29].value)
-            updatedata['tb_product_count_month_items'] = changeStrtoInt(tabledata.row(i)[30].value)
-            updatedata['tb_product_search_into_pay_percent'] = changeStrtoPercent(tabledata.row(i)[31].value)
-            updatedata['tb_product_search_into_visitors'] = changeStrtoInt(tabledata.row(i)[32].value)
-            updatedata['tb_product_search_into_pay_buyyers'] = changeStrtoInt(tabledata.row(i)[33].value)
-            updateproduct.__dict__.update(updatedata)
-            updateproduct.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbProduct.objects.create(tb_caldate=tabledata.row(i)[0].value, tb_product_id=tabledata.row(i)[1].value,
-                                     tb_product_name=tabledata.row(i)[2].value,
-                                     tb_product_num=tabledata.row(i)[3].value,
-                                     tb_product_product_status=tabledata.row(i)[4].value,
-                                     tb_product_product_tag=tabledata.row(i)[5].value,
-                                     tb_product_visitors=changeStrtoInt(tabledata.row(i)[6].value),
-                                     tb_product_views=changeStrtoInt(tabledata.row(i)[7].value),
-                                     tb_avg_stoptime=changeStrtoFloat(tabledata.row(i)[8].value),
-                                     tb_detail_page_jump_percent=changeStrtoPercent(tabledata.row(i)[9].value),
-                                     tb_product_collects=changeStrtoInt(tabledata.row(i)[10].value),
-                                     tb_product_join_items=changeStrtoInt(tabledata.row(i)[11].value),
-                                     tb_product_joins=changeStrtoInt(tabledata.row(i)[12].value),
-                                     tb_product_order_buyyers=changeStrtoInt(tabledata.row(i)[13].value),
-                                     tb_product_buy_order_items=changeStrtoInt(tabledata.row(i)[14].value),
-                                     tb_product_buy_order_money=changeStrtoFloat(tabledata.row(i)[15].value),
-                                     tb_product_order_converse_percent=changeStrtoPercent(tabledata.row(i)[16].value),
-                                     tb_product_payers=changeStrtoInt(tabledata.row(i)[17].value),
-                                     tb_product_pay_items=changeStrtoInt(tabledata.row(i)[18].value),
-                                     tb_product_pay_money=changeStrtoFloat(tabledata.row(i)[19].value),
-                                     tb_product_pay_converse_percent=changeStrtoPercent(tabledata.row(i)[20].value),
-                                     tb_product_new_payyers=changeStrtoInt(tabledata.row(i)[21].value),
-                                     tb_product_old_payyers=changeStrtoInt(tabledata.row(i)[22].value),
-                                     tb_product_old_payyer_money=changeStrtoFloat(tabledata.row(i)[23].value),
-                                     tb_product_juhuasuan_money=changeStrtoFloat(tabledata.row(i)[24].value),
-                                     tb_product_avg_value_visitors=changeStrtoFloat(tabledata.row(i)[25].value),
-                                     tb_product_sell_return_money=changeStrtoFloat(tabledata.row(i)[26].value),
-                                     tb_product_compare_score=changeStrtoFloat(tabledata.row(i)[27].value),
-                                     tb_product_count_year_money=changeStrtoFloat(tabledata.row(i)[28].value),
-                                     tb_product_count_month_money=changeStrtoFloat(tabledata.row(i)[29].value),
-                                     tb_product_count_month_items=changeStrtoInt(tabledata.row(i)[30].value),
-                                     tb_product_store_id=storecode,
-                                     tb_product_search_into_pay_percent=changeStrtoPercent(tabledata.row(i)[31].value),
-                                     tb_product_search_into_visitors=changeStrtoInt(tabledata.row(i)[32].value),
-                                     tb_product_search_into_pay_buyyers=changeStrtoInt(tabledata.row(i)[33].value),
-                                     tb_product_depart_id=departcode,
-                                     tb_product_import_time=currenttime)
-        except:
-            flag = False
-            break
-
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        productobj = TbProduct(tb_caldate=tabledata.row(i)[0].value, tb_product_id=tabledata.row(i)[1].value,
+                                 tb_product_name=tabledata.row(i)[2].value,
+                                 tb_product_num=tabledata.row(i)[3].value,
+                                 tb_product_product_status=tabledata.row(i)[4].value,
+                                 tb_product_product_tag=tabledata.row(i)[5].value,
+                                 tb_product_visitors=changeStrtoInt(tabledata.row(i)[6].value),
+                                 tb_product_views=changeStrtoInt(tabledata.row(i)[7].value),
+                                 tb_avg_stoptime=changeStrtoFloat(tabledata.row(i)[8].value),
+                                 tb_detail_page_jump_percent=changeStrtoPercent(tabledata.row(i)[9].value),
+                                 tb_product_collects=changeStrtoInt(tabledata.row(i)[10].value),
+                                 tb_product_join_items=changeStrtoInt(tabledata.row(i)[11].value),
+                                 tb_product_joins=changeStrtoInt(tabledata.row(i)[12].value),
+                                 tb_product_order_buyyers=changeStrtoInt(tabledata.row(i)[13].value),
+                                 tb_product_buy_order_items=changeStrtoInt(tabledata.row(i)[14].value),
+                                 tb_product_buy_order_money=changeStrtoFloat(tabledata.row(i)[15].value),
+                                 tb_product_order_converse_percent=changeStrtoPercent(tabledata.row(i)[16].value),
+                                 tb_product_payers=changeStrtoInt(tabledata.row(i)[17].value),
+                                 tb_product_pay_items=changeStrtoInt(tabledata.row(i)[18].value),
+                                 tb_product_pay_money=changeStrtoFloat(tabledata.row(i)[19].value),
+                                 tb_product_pay_converse_percent=changeStrtoPercent(tabledata.row(i)[20].value),
+                                 tb_product_new_payyers=changeStrtoInt(tabledata.row(i)[21].value),
+                                 tb_product_old_payyers=changeStrtoInt(tabledata.row(i)[22].value),
+                                 tb_product_old_payyer_money=changeStrtoFloat(tabledata.row(i)[23].value),
+                                 tb_product_juhuasuan_money=changeStrtoFloat(tabledata.row(i)[24].value),
+                                 tb_product_avg_value_visitors=changeStrtoFloat(tabledata.row(i)[25].value),
+                                 tb_product_sell_return_money=changeStrtoFloat(tabledata.row(i)[26].value),
+                                 tb_product_compare_score=changeStrtoFloat(tabledata.row(i)[27].value),
+                                 tb_product_count_year_money=changeStrtoFloat(tabledata.row(i)[28].value),
+                                 tb_product_count_month_money=changeStrtoFloat(tabledata.row(i)[29].value),
+                                 tb_product_count_month_items=changeStrtoInt(tabledata.row(i)[30].value),
+                                 tb_product_store_id=storecode,
+                                 tb_product_search_into_pay_percent=changeStrtoPercent(tabledata.row(i)[31].value),
+                                 tb_product_search_into_visitors=changeStrtoInt(tabledata.row(i)[32].value),
+                                 tb_product_search_into_pay_buyyers=changeStrtoInt(tabledata.row(i)[33].value),
+                                 tb_product_depart_id=departcode,
+                                 tb_product_import_time=currenttime)
+        productobjlist.append(productobj)
+    try:
+        TbProduct.objects.bulk_create(productobjlist)
+        productobjlist.clear()
+        logger.info('提交商品数据')
+    except Exception as err:
+        logger.error(err)
+        productobjlist.clear()
+        flag = False
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         taskobj.tb_task_info_status='任务已完成'
@@ -228,64 +195,44 @@ def importoldproductdata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_status='任务进行中'
     taskobj.tb_task_info_starttime=curtime
     taskobj.save()
-
+    oldproductobjlist = []
+    oldproductcaldatestr = tabledata.row((tableheadrownum+1))[0].value
+    if TbProduct.objects.filter(tb_caldate=oldproductcaldatestr).order_by('tb_caldate').exists():
+        TbProduct.objects.filter(tb_caldate=oldproductcaldatestr).order_by('tb_caldate').delete()
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        querycondition = Q()
-        querycondition.children.append(('tb_caldate', tabledata.row(i)[0].value))
-        querycondition.children.append(('tb_product_store_id', storecode))
-        querycondition.children.append(('tb_product_id', tabledata.row(i)[1].value))
-        try:
-            updateproduct = TbProduct.objects.get(querycondition)
-            updatedata = {}
-            updatedata['tb_product_name'] = tabledata.row(i)[2].value
-            updatedata['tb_product_num'] = tabledata.row(i)[3].value
-            updatedata['tb_product_visitors'] = changeStrtoInt(tabledata.row(i)[4].value)
-            updatedata['tb_product_views'] = changeStrtoInt(tabledata.row(i)[5].value)
-            updatedata['tb_avg_stoptime'] = changeStrtoFloat(tabledata.row(i)[6].value)
-            updatedata['tb_detail_page_jump_percent'] = changeStrtoPercent(tabledata.row(i)[7].value)
-            updatedata['tb_product_collects'] = changeStrtoInt(tabledata.row(i)[8].value)
-            updatedata['tb_product_join_items'] = changeStrtoInt(tabledata.row(i)[9].value)
-            updatedata['tb_product_order_buyyers'] = changeStrtoInt(tabledata.row(i)[10].value)
-            updatedata['tb_product_buy_order_items'] = changeStrtoInt(tabledata.row(i)[11].value)
-            updatedata['tb_product_buy_order_money'] = changeStrtoFloat(tabledata.row(i)[12].value)
-            updatedata['tb_product_order_converse_percent'] = changeStrtoPercent(tabledata.row(i)[13].value)
-            updatedata['tb_product_payers'] = changeStrtoInt(tabledata.row(i)[14].value)
-            updatedata['tb_product_pay_items'] = changeStrtoInt(tabledata.row(i)[15].value)
-            updatedata['tb_product_pay_money'] = changeStrtoFloat(tabledata.row(i)[16].value)
-            updatedata['tb_product_pay_converse_percent'] = changeStrtoPercent(tabledata.row(i)[17].value)
-            updatedata['tb_product_avg_value_visitors'] = changeStrtoFloat(tabledata.row(i)[18].value)
-            updatedata['tb_product_sell_return_money'] = changeStrtoFloat(tabledata.row(i)[19].value)
-            updateproduct.__dict__.update(updatedata)
-            updateproduct.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbProduct.objects.create(tb_caldate=tabledata.row(i)[0].value, tb_product_id=tabledata.row(i)[1].value,
-                                     tb_product_name=tabledata.row(i)[2].value,
-                                     tb_product_num=tabledata.row(i)[3].value,
-                                     tb_product_visitors=changeStrtoInt(tabledata.row(i)[4].value),
-                                     tb_product_views=changeStrtoInt(tabledata.row(i)[5].value),
-                                     tb_avg_stoptime=changeStrtoFloat(tabledata.row(i)[6].value),
-                                     tb_detail_page_jump_percent=changeStrtoPercent(tabledata.row(i)[7].value),
-                                     tb_product_collects=changeStrtoInt(tabledata.row(i)[8].value),
-                                     tb_product_join_items=changeStrtoInt(tabledata.row(i)[9].value),
-                                     tb_product_order_buyyers=changeStrtoInt(tabledata.row(i)[10].value),
-                                     tb_product_buy_order_items=changeStrtoInt(tabledata.row(i)[11].value),
-                                     tb_product_buy_order_money=changeStrtoFloat(tabledata.row(i)[12].value),
-                                     tb_product_order_converse_percent=changeStrtoPercent(tabledata.row(i)[13].value),
-                                     tb_product_payers=changeStrtoInt(tabledata.row(i)[14].value),
-                                     tb_product_pay_items=changeStrtoInt(tabledata.row(i)[15].value),
-                                     tb_product_pay_money=changeStrtoFloat(tabledata.row(i)[16].value),
-                                     tb_product_pay_converse_percent=changeStrtoPercent(tabledata.row(i)[17].value),
-                                     tb_product_avg_value_visitors=changeStrtoFloat(tabledata.row(i)[18].value),
-                                     tb_product_sell_return_money=changeStrtoFloat(tabledata.row(i)[19].value),
-                                     tb_product_store_id=storecode, tb_product_depart_id=departcode,
-                                     tb_product_import_time=currenttime)
-        except:
-            flag = False
-            break
-
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        oldproductobj = TbProduct(tb_caldate=tabledata.row(i)[0].value, tb_product_id=tabledata.row(i)[1].value,
+                                 tb_product_name=tabledata.row(i)[2].value,
+                                 tb_product_num=tabledata.row(i)[3].value,
+                                 tb_product_visitors=changeStrtoInt(tabledata.row(i)[4].value),
+                                 tb_product_views=changeStrtoInt(tabledata.row(i)[5].value),
+                                 tb_avg_stoptime=changeStrtoFloat(tabledata.row(i)[6].value),
+                                 tb_detail_page_jump_percent=changeStrtoPercent(tabledata.row(i)[7].value),
+                                 tb_product_collects=changeStrtoInt(tabledata.row(i)[8].value),
+                                 tb_product_join_items=changeStrtoInt(tabledata.row(i)[9].value),
+                                 tb_product_order_buyyers=changeStrtoInt(tabledata.row(i)[10].value),
+                                 tb_product_buy_order_items=changeStrtoInt(tabledata.row(i)[11].value),
+                                 tb_product_buy_order_money=changeStrtoFloat(tabledata.row(i)[12].value),
+                                 tb_product_order_converse_percent=changeStrtoPercent(tabledata.row(i)[13].value),
+                                 tb_product_payers=changeStrtoInt(tabledata.row(i)[14].value),
+                                 tb_product_pay_items=changeStrtoInt(tabledata.row(i)[15].value),
+                                 tb_product_pay_money=changeStrtoFloat(tabledata.row(i)[16].value),
+                                 tb_product_pay_converse_percent=changeStrtoPercent(tabledata.row(i)[17].value),
+                                 tb_product_avg_value_visitors=changeStrtoFloat(tabledata.row(i)[18].value),
+                                 tb_product_sell_return_money=changeStrtoFloat(tabledata.row(i)[19].value),
+                                 tb_product_store_id=storecode, tb_product_depart_id=departcode,
+                                 tb_product_import_time=currenttime)
+        oldproductobjlist.append(oldproductobj)
+    try:
+        TbProduct.objects.bulk_create(oldproductobjlist)
+        oldproductobjlist.clear()
+        logger.info('提交旧版商品数据')
+    except Exception as err:
+        logger.error(err)
+        oldproductobjlist.clear()
+        flag = False
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         taskobj.tb_task_info_status='任务已完成'
@@ -308,74 +255,50 @@ def importztcdata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_status='任务进行中'
     taskobj.tb_task_info_starttime=curtime
     taskobj.save()
-
+    ztcobjlist = []
+    ztccaldatestr = changeExcelDate(tabledata.row((tableheadrownum+1))[0].value)
+    if TbZtc.objects.filter(tb_ztc_caldate=ztccaldatestr).order_by('tb_ztc_caldate').exists():
+        TbZtc.objects.filter(tb_ztc_caldate=ztccaldatestr).order_by('tb_ztc_caldate').delete()
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        querycondition = Q()
-        querycondition.children.append(('tb_ztc_caldate', changeExcelDate(tabledata.row(i)[0].value)))
-        querycondition.children.append(('tb_ztc_plan_name', tabledata.row(i)[1].value))
-        querycondition.children.append(('tb_ztc_product_name', tabledata.row(i)[2].value))
-        querycondition.children.append(('tb_ztc_search_type', tabledata.row(i)[3].value))
-        querycondition.children.append(('tb_ztc_traffic_source', tabledata.row(i)[4].value))
-        querycondition.children.append(('tb_ztc_store_code', storecode))
-        try:
-            updateztc = TbZtc.objects.get(querycondition)
-            updatedata = {}
-            updatedata['tb_ztc_impression_count'] = fixStoreName(tabledata.row(i)[0].value)
-            updatedata['tb_ztc_click_count'] = tabledata.row(i)[2].value
-            updatedata['tb_ztc_cost'] = tabledata.row(i)[3].value
-            updatedata['tb_ztc_click_percent'] = fixNullNumber(tabledata.row(i)[4].value)
-            updatedata['tb_ztc_avg_click_cost'] = fixNullNumber(tabledata.row(i)[5].value)
-            updatedata['tb_ztc_thousand_impression_cost'] = tabledata.row(i)[6].value
-            updatedata['tb_ztc_click_turn_percent'] = tabledata.row(i)[7].value
-            updatedata['tb_ztc_direct_deal_money'] = fixSymbol(tabledata.row(i)[8].value)
-            updatedata['tb_ztc_direct_deal_count'] = fixchangeline(tabledata.row(i)[9].value)
-            updatedata['tb_ztc_undirect_deal_money'] = tabledata.row(i)[10].value
-            updatedata['tb_ztc_undirect_deal_count'] = tabledata.row(i)[11].value
-            updatedata['tb_ztc_deal_money'] = tabledata.row(i)[12].value
-            updatedata['tb_ztc_deal_count'] = tabledata.row(i)[13].value
-            updatedata['tb_ztc_product_collect_count'] = tabledata.row(i)[14].value
-            updatedata['tb_ztc_store_collect_count'] = tabledata.row(i)[15].value
-            updatedata['tb_ztc_io_ratio'] = tabledata.row(i)[16].value
-            updatedata['tb_ztc_direct_cart_count'] = tabledata.row(i)[17].value
-            updatedata['tb_ztc_undirect_cart_count'] = removespace(tabledata.row(i)[18].value)
-            updatedata['tb_ztc_total_cart_count'] = tabledata.row(i)[19].value
-            updateztc.__dict__.update(updatedata)
-            updateztc.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbZtc.objects.create(tb_ztc_caldate=changeExcelDate(tabledata.row(i)[0].value),
-                                 tb_ztc_plan_name=tabledata.row(i)[1].value,
-                                 tb_ztc_product_name=tabledata.row(i)[2].value,
-                                 tb_ztc_search_type=tabledata.row(i)[3].value,
-                                 tb_ztc_traffic_source=tabledata.row(i)[4].value,
-                                 tb_ztc_impression_count=fixNull(tabledata.row(i)[5].value),
-                                 tb_ztc_click_count=fixNull(tabledata.row(i)[6].value),
-                                 tb_ztc_cost=fixNull(tabledata.row(i)[7].value),
-                                 tb_ztc_click_percent=fixNull(tabledata.row(i)[8].value),
-                                 tb_ztc_avg_click_cost=fixNull(tabledata.row(i)[9].value),
-                                 tb_ztc_thousand_impression_cost=fixNull(tabledata.row(i)[10].value),
-                                 tb_ztc_click_turn_percent=fixNull(tabledata.row(i)[11].value),
-                                 tb_ztc_direct_deal_money=fixNull(tabledata.row(i)[12].value),
-                                 tb_ztc_direct_deal_count=fixNull(tabledata.row(i)[13].value),
-                                 tb_ztc_undirect_deal_money=fixNull(tabledata.row(i)[14].value),
-                                 tb_ztc_undirect_deal_count=fixNull(tabledata.row(i)[15].value),
-                                 tb_ztc_deal_money=fixNull(tabledata.row(i)[16].value),
-                                 tb_ztc_deal_count=fixNull(tabledata.row(i)[17].value),
-                                 tb_ztc_product_collect_count=fixNull(tabledata.row(i)[18].value),
-                                 tb_ztc_store_collect_count=fixNull(tabledata.row(i)[19].value),
-                                 tb_ztc_total_collect_count=fixNull(tabledata.row(i)[20].value),
-                                 tb_ztc_io_ratio=fixNull(tabledata.row(i)[21].value),
-                                 tb_ztc_direct_cart_count=fixNull(tabledata.row(i)[22].value),
-                                 tb_ztc_undirect_cart_count=fixNull(tabledata.row(i)[23].value),
-                                 tb_ztc_total_cart_count=fixNull(tabledata.row(i)[24].value),
-                                 tb_ztc_store_code=storecode, tb_ztc_depart_code=departcode,
-                                 tb_ztc_import_time=currenttime)
-        except:
-            flag = False
-            break
-
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        ztcobj = TbZtc(tb_ztc_caldate=changeExcelDate(tabledata.row(i)[0].value),
+                             tb_ztc_plan_name=tabledata.row(i)[1].value,
+                             tb_ztc_product_name=tabledata.row(i)[2].value,
+                             tb_ztc_search_type=tabledata.row(i)[3].value,
+                             tb_ztc_traffic_source=tabledata.row(i)[4].value,
+                             tb_ztc_impression_count=fixNull(tabledata.row(i)[5].value),
+                             tb_ztc_click_count=fixNull(tabledata.row(i)[6].value),
+                             tb_ztc_cost=fixNull(tabledata.row(i)[7].value),
+                             tb_ztc_click_percent=fixNull(tabledata.row(i)[8].value),
+                             tb_ztc_avg_click_cost=fixNull(tabledata.row(i)[9].value),
+                             tb_ztc_thousand_impression_cost=fixNull(tabledata.row(i)[10].value),
+                             tb_ztc_click_turn_percent=fixNull(tabledata.row(i)[11].value),
+                             tb_ztc_direct_deal_money=fixNull(tabledata.row(i)[12].value),
+                             tb_ztc_direct_deal_count=fixNull(tabledata.row(i)[13].value),
+                             tb_ztc_undirect_deal_money=fixNull(tabledata.row(i)[14].value),
+                             tb_ztc_undirect_deal_count=fixNull(tabledata.row(i)[15].value),
+                             tb_ztc_deal_money=fixNull(tabledata.row(i)[16].value),
+                             tb_ztc_deal_count=fixNull(tabledata.row(i)[17].value),
+                             tb_ztc_product_collect_count=fixNull(tabledata.row(i)[18].value),
+                             tb_ztc_store_collect_count=fixNull(tabledata.row(i)[19].value),
+                             tb_ztc_total_collect_count=fixNull(tabledata.row(i)[20].value),
+                             tb_ztc_io_ratio=fixNull(tabledata.row(i)[21].value),
+                             tb_ztc_direct_cart_count=fixNull(tabledata.row(i)[22].value),
+                             tb_ztc_undirect_cart_count=fixNull(tabledata.row(i)[23].value),
+                             tb_ztc_total_cart_count=fixNull(tabledata.row(i)[24].value),
+                             tb_ztc_store_code=storecode, tb_ztc_depart_code=departcode,
+                             tb_ztc_import_time=currenttime)
+        ztcobjlist.append(ztcobj)
+    try:
+        TbZtc.objects.bulk_create(ztcobjlist)
+        ztcobjlist.clear()
+        logger.info('提交直通车数据')
+    except Exception as err:
+        logger.error(err)
+        ztcobjlist.clear()
+        flag = False
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         taskobj.tb_task_info_status='任务已完成'
@@ -396,13 +319,13 @@ def importorderdata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_status='任务进行中'
     taskobj.tb_task_info_starttime=curtime
     taskobj.save()
-
     orderobjlist = []
+    orderdate = getdatestr(tabledata.row((tableheadrownum + 1))[53].value)
+    if TbOrder.objects.filter(tb_order_order_date=orderdate).order_by('tb_order_order_date').exists():
+        TbOrder.objects.filter(tb_order_order_date=orderdate).order_by('tb_order_order_date').delete()
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        #querycondition = Q()
-        orderdatestr = getdatestr(tabledata.row(i)[53].value)
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         try:
             curorder = TbOrder(tb_order_store_name=fixStoreName(tabledata.row(i)[0].value),
@@ -472,17 +395,22 @@ def importorderdata(tabledata, tableheadrownum, taskobj):
                                tb_order_weighter=tabledata.row(i)[66].value,
                                tb_order_sender=tabledata.row(i)[67].value,
                                tb_order_salesman=tabledata.row(i)[68].value,
-                               tb_order_order_date=orderdatestr,
+                               tb_order_order_date=getdatestr(tabledata.row(i)[53].value),
                                tb_order_store_code=getstorecodebyname(tabledata.row(i)[0].value), tb_order_depart_code=departcode,
                                tb_order_import_time=currenttime)
             orderobjlist.append(curorder)
         except Exception as err:
-            print(err)
+            logger.error(err)
             flag = False
             break
-    TbOrder.objects.bulk_create(orderobjlist)
-    orderobjlist.clear()
-    print('提交数据')
+    try:
+        TbOrder.objects.bulk_create(orderobjlist)
+        orderobjlist.clear()
+        logger.info('提交万里牛订单数据')
+    except Exception as err:
+        logger.error(err)
+        orderobjlist.clear()
+        flag = False
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         taskobj.tb_task_info_status='任务已完成'
@@ -507,7 +435,6 @@ def importclickfirmdata(tabledata, tableheadrownum, taskobj):
     orderobjlist = []
     orderidlist = []
     orderdate = getdatestr(tabledata.row((tableheadrownum+1))[53].value)
-    print(orderdate)
     if TbOrder.objects.filter(tb_order_order_date=orderdate).order_by('tb_order_order_date').exists():
         for i in range(nrows):
             if i <= tableheadrownum:
@@ -518,9 +445,9 @@ def importclickfirmdata(tabledata, tableheadrownum, taskobj):
         querycondition.children.append(('tb_order_id__in', orderidlist))
         try:
             TbOrder.objects.filter(querycondition).update(tb_order_click_farm_flag=1)
-            print('更新数据')
+            logger.info('更新万里牛刷单数据')
         except Exception as err:
-            print(err)
+            logger.error(err)
             flag = False
 
     else:
@@ -603,9 +530,9 @@ def importclickfirmdata(tabledata, tableheadrownum, taskobj):
         try:
             TbOrder.objects.bulk_create(orderobjlist)
             orderobjlist.clear()
-            print('提交数据')
+            logger.info('提交万里牛刷单数据')
         except Exception as err:
-            print(err)
+            logger.error(err)
             orderobjlist.clear()
             flag=False
 
@@ -638,7 +565,6 @@ def importstoragedata(tabledata, tableheadrownum, taskobj):
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
         storageobj = TbStorage(tb_storage_product_code=tabledata.row(i)[0].value,
                                tb_storage_product_id=tabledata.row(i)[1].value,
                                tb_storage_product_name=tabledata.row(i)[2].value,
@@ -654,9 +580,9 @@ def importstoragedata(tabledata, tableheadrownum, taskobj):
     try:
         TbStorage.objects.bulk_create(storageobjlist)
         storageobjlist.clear()
-        print('提交数据')
+        logger.info('提交万里牛库存数据')
     except Exception as err:
-        print(err)
+        logger.error(err)
         storageobjlist.clear()
         flag = False
 
@@ -682,553 +608,314 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
     taskobj.tb_task_info_status='任务进行中'
     taskobj.tb_task_info_starttime=curtime
     taskobj.save()
-
+    storecostobjlist = []
+    storeflowobjlist = []
+    storeinteractionobjlist = []
+    storelogisticobjlist = []
+    storereviewobjlist = []
+    storeserviceobjlist = []
+    storetradeobjlist = []
+    storeturnobjlist = []
+    caldatestr = tabledata.row((tableheadrownum+1))[0].value
+    if TbStoreCost.objects.filter(tb_store_cost_cal_date=caldatestr).order_by('tb_store_cost_cal_date').exists():
+        TbStoreCost.objects.filter(tb_store_cost_cal_date=caldatestr).order_by('tb_store_cost_cal_date').delete()
+    if TbStoreFlow.objects.filter(tb_store_flow_calDate=caldatestr).order_by('tb_store_flow_calDate').exists():
+        TbStoreFlow.objects.filter(tb_store_flow_calDate=caldatestr).order_by('tb_store_flow_calDate').delete()
+    if TbStoreInteraction.objects.filter(tb_store_Interaction_cal_date=caldatestr).order_by('tb_store_Interaction_cal_date').exists():
+        TbStoreInteraction.objects.filter(tb_store_Interaction_cal_date=caldatestr).order_by('tb_store_Interaction_cal_date').delete()
+    if TbStoreLogistic.objects.filter(tb_store_logistic_cal_date=caldatestr).order_by('tb_store_logistic_cal_date').exists():
+        TbStoreLogistic.objects.filter(tb_store_logistic_cal_date=caldatestr).order_by('tb_store_logistic_cal_date').delete()
+    if TbStoreReview.objects.filter(tb_store_review_cal_date=caldatestr).order_by('tb_store_review_cal_date').exists():
+        TbStoreReview.objects.filter(tb_store_review_cal_date=caldatestr).order_by('tb_store_review_cal_date').delete()
+    if TbStoreService.objects.filter(tb_store_service_cal_date=caldatestr).order_by('tb_store_service_cal_date').exists():
+        TbStoreService.objects.filter(tb_store_service_cal_date=caldatestr).order_by('tb_store_service_cal_date').delete()
+    if TbStoreTrade.objects.filter(tb_store_trade_caldate=caldatestr).order_by('tb_store_trade_caldate').exists():
+        TbStoreTrade.objects.filter(tb_store_trade_caldate=caldatestr).order_by('tb_store_trade_caldate').delete()
+    if TbStoreTurn.objects.filter(tb_store_turn_caldate=caldatestr).order_by('tb_store_turn_caldate').exists():
+        TbStoreTurn.objects.filter(tb_store_turn_caldate=caldatestr).order_by('tb_store_turn_caldate').delete()
     for i in range(nrows):
         if i <= tableheadrownum:
             continue
-        # 店铺推广表
-        querystorecostcondition = Q()
-        querystorecostcondition.children.append(('tb_store_cost_cal_date', tabledata.row(i)[0].value))
-        querystorecostcondition.children.append(('tb_store_cost_store_code', storecode))
-        try:
-            updatestorecost = TbStoreCost.objects.get(querystorecostcondition)
-            updatedata = {}
-            updatedata['tb_store_cost_ztc'] = changeStrtoFloat(tabledata.row(i)[77].value)
-            updatedata['tb_store_cost_zszw'] = changeStrtoFloat(tabledata.row(i)[78].value)
-            updatedata['tb_store_cost_tbk'] = changeStrtoFloat(tabledata.row(i)[79].value)
-            updatestorecost.__dict__.update(updatedata)
-            updatestorecost.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreCost.objects.create(tb_store_cost_cal_date=tabledata.row(i)[0].value,
-                                       tb_store_cost_ztc=changeStrtoFloat(tabledata.row(i)[77].value),
-                                       tb_store_cost_zszw=changeStrtoFloat(tabledata.row(i)[78].value),
-                                       tb_store_cost_tbk=changeStrtoFloat(tabledata.row(i)[79].value),
-                                       tb_store_cost_store_code=storecode, tb_store_cost_depart_code=departcode,
-                                       tb_store_cost_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storecostobj = TbStoreCost(tb_store_cost_cal_date=tabledata.row(i)[0].value,
+                                   tb_store_cost_ztc=changeStrtoFloat(tabledata.row(i)[77].value),
+                                   tb_store_cost_zszw=changeStrtoFloat(tabledata.row(i)[78].value),
+                                   tb_store_cost_tbk=changeStrtoFloat(tabledata.row(i)[79].value),
+                                   tb_store_cost_store_code=storecode, tb_store_cost_depart_code=departcode,
+                                   tb_store_cost_import_time=currenttime)
+        storecostobjlist.append(storecostobj)
 
         # 店铺流量表
         # 店铺流量表-无线端
-        querystoreflowcondition1 = Q()
-        querystoreflowcondition1.children.append(('tb_store_flow_calDate', tabledata.row(i)[0].value))
-        querystoreflowcondition1.children.append(('tb_store_flow_store_code', storecode))
-        querystoreflowcondition1.children.append(('tb_store_flow_source', '无线端'))
-
-        try:
-            updatestoreflow1 = TbStoreFlow.objects.get(querystoreflowcondition1)
-            updatedata = {}
-            updatedata['tb_store_flow_visitors'] = changeStrtoInt(tabledata.row(i)[4].value)
-            updatedata['tb_store_flow_views'] = changeStrtoInt(tabledata.row(i)[6].value)
-            updatedata['tb_store_flow_product_visitors'] = changeStrtoInt(tabledata.row(i)[8].value)
-            updatedata['tb_store_flow_product_views'] = changeStrtoInt(tabledata.row(i)[11].value)
-            updatedata['tb_store_flow_avg_stoptime'] = changeStrtoFloat(tabledata.row(i)[14].value)
-            updatedata['tb_store_flow_jump_percent'] = changeStrtoPercent(tabledata.row(i)[17].value)
-            updatedata['tb_store_flow_views_avg'] = changeStrtoFloat(tabledata.row(i)[51].value)
-            updatedata['tb_store_flow_visitors_old'] = changeStrtoInt(tabledata.row(i)[66].value)
-            updatedata['tb_store_flow_visitors_new'] = changeStrtoInt(tabledata.row(i)[67].value)
-            updatestoreflow1.__dict__.update(updatedata)
-            updatestoreflow1.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreFlow.objects.create(tb_store_flow_calDate=tabledata.row(i)[0].value,
-                                       tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[4].value),
-                                       tb_store_flow_views=changeStrtoInt(tabledata.row(i)[6].value),
-                                       tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[8].value),
-                                       tb_store_flow_product_views=changeStrtoInt(tabledata.row(i)[11].value),
-                                       tb_store_flow_avg_stoptime=changeStrtoFloat(tabledata.row(i)[14].value),
-                                       tb_store_flow_jump_percent=changeStrtoPercent(tabledata.row(i)[17].value),
-                                       tb_store_flow_views_avg=changeStrtoFloat(tabledata.row(i)[51].value),
-                                       tb_store_flow_visitors_old=changeStrtoInt(tabledata.row(i)[66].value),
-                                       tb_store_flow_visitors_new=changeStrtoInt(tabledata.row(i)[67].value),
-                                       tb_store_flow_source='无线端',
-                                       tb_store_flow_store_code=storecode, tb_store_flow_depart_code=departcode,
-                                       tb_store_flow_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeflowobj1 = TbStoreFlow(tb_store_flow_calDate=tabledata.row(i)[0].value,
+                                   tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[4].value),
+                                   tb_store_flow_views=changeStrtoInt(tabledata.row(i)[6].value),
+                                   tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[8].value),
+                                   tb_store_flow_product_views=changeStrtoInt(tabledata.row(i)[11].value),
+                                   tb_store_flow_avg_stoptime=changeStrtoFloat(tabledata.row(i)[14].value),
+                                   tb_store_flow_jump_percent=changeStrtoPercent(tabledata.row(i)[17].value),
+                                   tb_store_flow_views_avg=changeStrtoFloat(tabledata.row(i)[51].value),
+                                   tb_store_flow_visitors_old=changeStrtoInt(tabledata.row(i)[66].value),
+                                   tb_store_flow_visitors_new=changeStrtoInt(tabledata.row(i)[67].value),
+                                   tb_store_flow_source='无线端',
+                                   tb_store_flow_store_code=storecode, tb_store_flow_depart_code=departcode,
+                                   tb_store_flow_import_time=currenttime)
+        storeflowobjlist.append(storeflowobj1)
 
         # 店铺流量表-PC端
-        querystoreflowcondition2 = Q()
-        querystoreflowcondition2.children.append(('tb_store_flow_calDate', tabledata.row(i)[0].value))
-        querystoreflowcondition2.children.append(('tb_store_flow_store_code', storecode))
-        querystoreflowcondition2.children.append(('tb_store_flow_source', 'PC端'))
-        try:
-            updatestoreflow2 = TbStoreFlow.objects.get(querystoreflowcondition2)
-            updatedata = {}
-            updatedata['tb_store_flow_visitors'] = changeStrtoInt(tabledata.row(i)[1].value)
-            updatedata['tb_store_flow_views'] = changeStrtoInt(tabledata.row(i)[2].value)
-            updatedata['tb_store_flow_product_visitors'] = changeStrtoInt(tabledata.row(i)[9].value)
-            updatedata['tb_store_flow_product_views'] = changeStrtoInt(tabledata.row(i)[12].value)
-            updatedata['tb_store_flow_avg_stoptime'] = changeStrtoFloat(tabledata.row(i)[15].value)
-            updatedata['tb_store_flow_jump_percent'] = changeStrtoPercent(tabledata.row(i)[18].value)
-            updatedata['tb_store_flow_views_avg'] = changeStrtoFloat(tabledata.row(i)[50].value)
-            updatedata['tb_store_flow_visitors_old'] = changeStrtoInt(tabledata.row(i)[68].value)
-            updatedata['tb_store_flow_visitors_new'] = changeStrtoInt(tabledata.row(i)[69].value)
-            updatestoreflow2.__dict__.update(updatedata)
-            updatestoreflow2.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreFlow.objects.create(tb_store_flow_calDate=tabledata.row(i)[0].value,
-                                       tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[1].value),
-                                       tb_store_flow_views=changeStrtoInt(tabledata.row(i)[2].value),
-                                       tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[9].value),
-                                       tb_store_flow_product_views=changeStrtoInt(tabledata.row(i)[12].value),
-                                       tb_store_flow_avg_stoptime=changeStrtoFloat(tabledata.row(i)[15].value),
-                                       tb_store_flow_jump_percent=changeStrtoPercent(tabledata.row(i)[18].value),
-                                       tb_store_flow_views_avg=changeStrtoFloat(tabledata.row(i)[50].value),
-                                       tb_store_flow_visitors_old=changeStrtoInt(tabledata.row(i)[68].value),
-                                       tb_store_flow_visitors_new=changeStrtoInt(tabledata.row(i)[69].value),
-                                       tb_store_flow_source='PC端', tb_store_flow_store_code=storecode,
-                                       tb_store_flow_depart_code=departcode, tb_store_flow_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeflowobj2 = TbStoreFlow(tb_store_flow_calDate=tabledata.row(i)[0].value,
+                                   tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[1].value),
+                                   tb_store_flow_views=changeStrtoInt(tabledata.row(i)[2].value),
+                                   tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[9].value),
+                                   tb_store_flow_product_views=changeStrtoInt(tabledata.row(i)[12].value),
+                                   tb_store_flow_avg_stoptime=changeStrtoFloat(tabledata.row(i)[15].value),
+                                   tb_store_flow_jump_percent=changeStrtoPercent(tabledata.row(i)[18].value),
+                                   tb_store_flow_views_avg=changeStrtoFloat(tabledata.row(i)[50].value),
+                                   tb_store_flow_visitors_old=changeStrtoInt(tabledata.row(i)[68].value),
+                                   tb_store_flow_visitors_new=changeStrtoInt(tabledata.row(i)[69].value),
+                                   tb_store_flow_source='PC端', tb_store_flow_store_code=storecode,
+                                   tb_store_flow_depart_code=departcode, tb_store_flow_import_time=currenttime)
+        storeflowobjlist.append(storeflowobj2)
 
         # 店铺流量表-全渠道
-        querystoreflowcondition3 = Q()
-        querystoreflowcondition3.children.append(('tb_store_flow_calDate', tabledata.row(i)[0].value))
-        querystoreflowcondition3.children.append(('tb_store_flow_store_code', storecode))
-        querystoreflowcondition3.children.append(('tb_store_flow_source', '全渠道'))
-        try:
-            updatestoreflow3 = TbStoreFlow.objects.get(querystoreflowcondition3)
-            updatedata = {}
-            updatedata['tb_store_flow_visitors'] = changeStrtoInt(tabledata.row(i)[3].value)
-            updatedata['tb_store_flow_views'] = changeStrtoInt(tabledata.row(i)[5].value)
-            updatedata['tb_store_flow_product_visitors'] = changeStrtoInt(tabledata.row(i)[7].value)
-            updatedata['tb_store_flow_product_views'] = changeStrtoInt(tabledata.row(i)[10].value)
-            updatedata['tb_store_flow_avg_stoptime'] = changeStrtoFloat(tabledata.row(i)[13].value)
-            updatedata['tb_store_flow_jump_percent'] = changeStrtoPercent(tabledata.row(i)[16].value)
-            updatedata['tb_store_flow_views_avg'] = changeStrtoFloat(tabledata.row(i)[49].value)
-            updatedata['tb_store_flow_visitors_old'] = changeStrtoInt(tabledata.row(i)[64].value)
-            updatedata['tb_store_flow_visitors_new'] = changeStrtoInt(tabledata.row(i)[65].value)
-            updatestoreflow3.__dict__.update(updatedata)
-            updatestoreflow3.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreFlow.objects.create(tb_store_flow_calDate=tabledata.row(i)[0].value,
-                                       tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[3].value),
-                                       tb_store_flow_views=changeStrtoInt(tabledata.row(i)[5].value),
-                                       tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[7].value),
-                                       tb_store_flow_product_views=changeStrtoInt(tabledata.row(i)[10].value),
-                                       tb_store_flow_avg_stoptime=changeStrtoFloat(tabledata.row(i)[13].value),
-                                       tb_store_flow_jump_percent=changeStrtoPercent(tabledata.row(i)[16].value),
-                                       tb_store_flow_views_avg=changeStrtoFloat(tabledata.row(i)[49].value),
-                                       tb_store_flow_visitors_old=changeStrtoInt(tabledata.row(i)[64].value),
-                                       tb_store_flow_visitors_new=changeStrtoInt(tabledata.row(i)[65].value),
-                                       tb_store_flow_source='全渠道', tb_store_flow_store_code=storecode,
-                                       tb_store_flow_depart_code=departcode, tb_store_flow_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeflowobj3 = TbStoreFlow(tb_store_flow_calDate=tabledata.row(i)[0].value,
+                                   tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[3].value),
+                                   tb_store_flow_views=changeStrtoInt(tabledata.row(i)[5].value),
+                                   tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[7].value),
+                                   tb_store_flow_product_views=changeStrtoInt(tabledata.row(i)[10].value),
+                                   tb_store_flow_avg_stoptime=changeStrtoFloat(tabledata.row(i)[13].value),
+                                   tb_store_flow_jump_percent=changeStrtoPercent(tabledata.row(i)[16].value),
+                                   tb_store_flow_views_avg=changeStrtoFloat(tabledata.row(i)[49].value),
+                                   tb_store_flow_visitors_old=changeStrtoInt(tabledata.row(i)[64].value),
+                                   tb_store_flow_visitors_new=changeStrtoInt(tabledata.row(i)[65].value),
+                                   tb_store_flow_source='全渠道', tb_store_flow_store_code=storecode,
+                                   tb_store_flow_depart_code=departcode, tb_store_flow_import_time=currenttime)
+        storeflowobjlist.append(storeflowobj3)
 
         # 店铺互动表-无线端
-        querystoreinteractioncondition1 = Q()
-        querystoreinteractioncondition1.children.append(('tb_store_Interaction_cal_date', tabledata.row(i)[0].value))
-        querystoreinteractioncondition1.children.append(('tb_store_Interaction_store_code', storecode))
-        querystoreinteractioncondition1.children.append(('tb_store_interaction_store_source', '无线端'))
-        try:
-            updatestoreinteraction1 = TbStoreInteraction.objects.get(querystoreinteractioncondition1)
-            updatedata = {}
-            updatedata['tb_store_Interaction_product_collect_buyyers'] = changeStrtoInt(tabledata.row(i)[20].value)
-            updatedata['tb_store_Interaction_product_collects'] = changeStrtoInt(tabledata.row(i)[23].value)
-            updatedata['tb_store_Interaction_product_adds'] = changeStrtoInt(tabledata.row(i)[26].value)
-            updatedata['tb_store_Interaction_product_add_items'] = changeStrtoInt(tabledata.row(i)[72].value)
-            updatestoreinteraction1.__dict__.update(updatedata)
-            updatestoreinteraction1.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreInteraction.objects.create(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
-                                              tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
-                                                  tabledata.row(i)[20].value),
-                                              tb_store_Interaction_product_collects=changeStrtoInt(
-                                                  tabledata.row(i)[23].value),
-                                              tb_store_Interaction_product_adds=changeStrtoInt(
-                                                  tabledata.row(i)[26].value),
-                                              tb_store_Interaction_product_add_items=changeStrtoInt(
-                                                  tabledata.row(i)[72].value), tb_store_interaction_store_source='无线端',
-                                              tb_store_Interaction_store_code=storecode,
-                                              tb_store_interaction_depart_code=departcode,
-                                              tb_store_interaction_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeinteractionobj1 = TbStoreInteraction(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
+                                          tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
+                                              tabledata.row(i)[20].value),
+                                          tb_store_Interaction_product_collects=changeStrtoInt(
+                                              tabledata.row(i)[23].value),
+                                          tb_store_Interaction_product_adds=changeStrtoInt(
+                                              tabledata.row(i)[26].value),
+                                          tb_store_Interaction_product_add_items=changeStrtoInt(
+                                              tabledata.row(i)[72].value), tb_store_interaction_store_source='无线端',
+                                          tb_store_Interaction_store_code=storecode,
+                                          tb_store_interaction_depart_code=departcode,
+                                          tb_store_interaction_import_time=currenttime)
+        storeinteractionobjlist.append(storeinteractionobj1)
 
         # 店铺互动表-PC端
-        querystoreinteractioncondition2 = Q()
-        querystoreinteractioncondition2.children.append(('tb_store_Interaction_cal_date', tabledata.row(i)[0].value))
-        querystoreinteractioncondition2.children.append(('tb_store_Interaction_store_code', storecode))
-        querystoreinteractioncondition2.children.append(('tb_store_interaction_store_source', 'PC端'))
-        try:
-            updatestoreinteraction2 = TbStoreInteraction.objects.get(querystoreinteractioncondition2)
-            updatedata = {}
-            updatedata['tb_store_Interaction_product_collect_buyyers'] = changeStrtoInt(tabledata.row(i)[21].value)
-            updatedata['tb_store_Interaction_product_collects'] = changeStrtoInt(tabledata.row(i)[24].value)
-            updatedata['tb_store_Interaction_product_adds'] = changeStrtoInt(tabledata.row(i)[27].value)
-            updatedata['tb_store_Interaction_product_add_items'] = changeStrtoInt(tabledata.row(i)[71].value)
-            updatestoreinteraction2.__dict__.update(updatedata)
-            updatestoreinteraction2.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreInteraction.objects.create(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
-                                              tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
-                                                  tabledata.row(i)[21].value),
-                                              tb_store_Interaction_product_collects=changeStrtoInt(
-                                                  tabledata.row(i)[24].value),
-                                              tb_store_Interaction_product_adds=changeStrtoInt(
-                                                  tabledata.row(i)[27].value),
-                                              tb_store_Interaction_product_add_items=changeStrtoInt(
-                                                  tabledata.row(i)[71].value), tb_store_interaction_store_source='PC端',
-                                              tb_store_Interaction_store_code=storecode,
-                                              tb_store_interaction_depart_code=departcode,
-                                              tb_store_interaction_import_time=currenttime)
-        except:
-            flag = False
-            break
+
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeinteractionobj2 = TbStoreInteraction(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
+                                          tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
+                                              tabledata.row(i)[21].value),
+                                          tb_store_Interaction_product_collects=changeStrtoInt(
+                                              tabledata.row(i)[24].value),
+                                          tb_store_Interaction_product_adds=changeStrtoInt(
+                                              tabledata.row(i)[27].value),
+                                          tb_store_Interaction_product_add_items=changeStrtoInt(
+                                              tabledata.row(i)[71].value), tb_store_interaction_store_source='PC端',
+                                          tb_store_Interaction_store_code=storecode,
+                                          tb_store_interaction_depart_code=departcode,
+                                          tb_store_interaction_import_time=currenttime)
+        storeinteractionobjlist.append(storeinteractionobj2)
 
         # 店铺互动表-全渠道
-        querystoreinteractioncondition3 = Q()
-        querystoreinteractioncondition3.children.append(('tb_store_Interaction_cal_date', tabledata.row(i)[0].value))
-        querystoreinteractioncondition3.children.append(('tb_store_Interaction_store_code', storecode))
-        querystoreinteractioncondition3.children.append(('tb_store_interaction_store_source', '全渠道'))
-        try:
-            updatestoreinteraction3 = TbStoreInteraction.objects.get(querystoreinteractioncondition3)
-            updatedata = {}
-            updatedata['tb_store_Interaction_product_collect_buyyers'] = changeStrtoInt(tabledata.row(i)[19].value)
-            updatedata['tb_store_Interaction_product_collects'] = changeStrtoInt(tabledata.row(i)[22].value)
-            updatedata['tb_store_Interaction_product_adds'] = changeStrtoInt(tabledata.row(i)[25].value)
-            updatedata['tb_store_Interaction_product_add_items'] = changeStrtoInt(tabledata.row(i)[70].value)
-            updatestoreinteraction3.__dict__.update(updatedata)
-            updatestoreinteraction3.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreInteraction.objects.create(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
-                                              tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
-                                                  tabledata.row(i)[19].value),
-                                              tb_store_Interaction_product_collects=changeStrtoInt(
-                                                  tabledata.row(i)[22].value),
-                                              tb_store_Interaction_product_adds=changeStrtoInt(
-                                                  tabledata.row(i)[25].value),
-                                              tb_store_Interaction_product_add_items=changeStrtoInt(
-                                                  tabledata.row(i)[70].value), tb_store_interaction_store_source='全渠道',
-                                              tb_store_Interaction_store_code=storecode,
-                                              tb_store_interaction_depart_code=departcode,
-                                              tb_store_interaction_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeinteractionobj3 = TbStoreInteraction(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
+                                          tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
+                                              tabledata.row(i)[19].value),
+                                          tb_store_Interaction_product_collects=changeStrtoInt(
+                                              tabledata.row(i)[22].value),
+                                          tb_store_Interaction_product_adds=changeStrtoInt(
+                                              tabledata.row(i)[25].value),
+                                          tb_store_Interaction_product_add_items=changeStrtoInt(
+                                              tabledata.row(i)[70].value), tb_store_interaction_store_source='全渠道',
+                                          tb_store_Interaction_store_code=storecode,
+                                          tb_store_interaction_depart_code=departcode,
+                                          tb_store_interaction_import_time=currenttime)
+        storeinteractionobjlist.append(storeinteractionobj3)
 
         # 店铺物流表
-        querystorelogisticcondition = Q()
-        querystorelogisticcondition.children.append(('tb_store_logistic_cal_date', tabledata.row(i)[0].value))
-        querystorelogisticcondition.children.append(('tb_store_logistic_store_code', storecode))
-        try:
-            updatestorelogistic = TbStoreLogistic.objects.get(querystorelogisticcondition)
-            updatedata = {}
-            updatedata['tb_store_logistic_pay_parent_orders'] = changeStrtoInt(tabledata.row(i)[87].value)
-            updatedata['tb_store_logistic_pay_child_orders'] = changeStrtoInt(tabledata.row(i)[34].value)
-            updatedata['tb_store_logistic_receive_packages'] = changeStrtoInt(tabledata.row(i)[88].value)
-            updatedata['tb_store_logistic_send_packages'] = changeStrtoInt(tabledata.row(i)[89].value)
-            updatedata['tb_store_logistic_dispatch_packages'] = changeStrtoInt(tabledata.row(i)[90].value)
-            updatedata['tb_store_logistic_signed_packages'] = changeStrtoInt(tabledata.row(i)[91].value)
-            updatedata['tb_store_logistic_avg_pay_sign_time'] = changeStrtoFloat(tabledata.row(i)[92].value)
-            updatestorelogistic.__dict__.update(updatedata)
-            updatestorelogistic.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreLogistic.objects.create(tb_store_logistic_cal_date=tabledata.row(i)[0].value,
-                                           tb_store_logistic_pay_parent_orders=changeStrtoInt(
-                                               tabledata.row(i)[87].value),
-                                           tb_store_logistic_pay_child_orders=changeStrtoInt(
-                                               tabledata.row(i)[34].value),
-                                           tb_store_logistic_receive_packages=changeStrtoInt(
-                                               tabledata.row(i)[88].value),
-                                           tb_store_logistic_send_packages=changeStrtoInt(tabledata.row(i)[89].value),
-                                           tb_store_logistic_dispatch_packages=changeStrtoInt(
-                                               tabledata.row(i)[90].value),
-                                           tb_store_logistic_signed_packages=changeStrtoInt(tabledata.row(i)[91].value),
-                                           tb_store_logistic_avg_pay_sign_time=changeStrtoFloat(
-                                               tabledata.row(i)[92].value),
-                                           tb_store_logistic_store_code=storecode,
-                                           tb_store_logistic_depart_code=departcode,
-                                           tb_store_logistic_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storelogisticobj = TbStoreLogistic(tb_store_logistic_cal_date=tabledata.row(i)[0].value,
+                                       tb_store_logistic_pay_parent_orders=changeStrtoInt(
+                                           tabledata.row(i)[87].value),
+                                       tb_store_logistic_pay_child_orders=changeStrtoInt(
+                                           tabledata.row(i)[34].value),
+                                       tb_store_logistic_receive_packages=changeStrtoInt(
+                                           tabledata.row(i)[88].value),
+                                       tb_store_logistic_send_packages=changeStrtoInt(tabledata.row(i)[89].value),
+                                       tb_store_logistic_dispatch_packages=changeStrtoInt(
+                                           tabledata.row(i)[90].value),
+                                       tb_store_logistic_signed_packages=changeStrtoInt(tabledata.row(i)[91].value),
+                                       tb_store_logistic_avg_pay_sign_time=changeStrtoFloat(
+                                           tabledata.row(i)[92].value),
+                                       tb_store_logistic_store_code=storecode,
+                                       tb_store_logistic_depart_code=departcode,
+                                       tb_store_logistic_import_time=currenttime)
+        storelogisticobjlist.append(storelogisticobj)
 
         # 店铺评价表
-        querystorereviewcondition = Q()
-        querystorereviewcondition.children.append(('tb_store_review_cal_date', tabledata.row(i)[0].value))
-        querystorereviewcondition.children.append(('tb_store_review_store_code', storecode))
-        try:
-            updatestorereview = TbStoreReview.objects.get(querystorereviewcondition)
-            updatedata = {}
-            updatedata['tb_store_review_reviews'] = changeStrtoInt(tabledata.row(i)[81].value)
-            updatedata['tb_store_review_picture_reviews'] = changeStrtoInt(tabledata.row(i)[82].value)
-            updatedata['tb_store_review_positive_reviews'] = changeStrtoInt(tabledata.row(i)[83].value)
-            updatedata['tb_store_review_critical_reviews'] = changeStrtoInt(tabledata.row(i)[84].value)
-            updatedata['tb_store_review_positive_reviews_old'] = changeStrtoInt(tabledata.row(i)[85].value)
-            updatedata['tb_store_review_critical_reviews_old'] = changeStrtoInt(tabledata.row(i)[86].value)
-            updatedata['tb_store_review_description_score'] = changeStrtoFloat(tabledata.row(i)[93].value)
-            updatedata['tb_store_review_logistics_score'] = changeStrtoFloat(tabledata.row(i)[94].value)
-            updatedata['tb_store_review_attitude_score'] = changeStrtoFloat(tabledata.row(i)[95].value)
-            updatestorereview.__dict__.update(updatedata)
-            updatestorereview.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreReview.objects.create(tb_store_review_cal_date=tabledata.row(i)[0].value,
-                                         tb_store_review_reviews=changeStrtoInt(tabledata.row(i)[81].value),
-                                         tb_store_review_picture_reviews=changeStrtoInt(tabledata.row(i)[82].value),
-                                         tb_store_review_positive_reviews=changeStrtoInt(tabledata.row(i)[83].value),
-                                         tb_store_review_critical_reviews=changeStrtoInt(tabledata.row(i)[84].value),
-                                         tb_store_review_positive_reviews_old=changeStrtoInt(
-                                             tabledata.row(i)[85].value),
-                                         tb_store_review_critical_reviews_old=changeStrtoInt(
-                                             tabledata.row(i)[86].value),
-                                         tb_store_review_description_score=changeStrtoFloat(tabledata.row(i)[93].value),
-                                         tb_store_review_logistics_score=changeStrtoFloat(tabledata.row(i)[94].value),
-                                         tb_store_review_attitude_score=changeStrtoFloat(tabledata.row(i)[95].value),
-                                         tb_store_review_store_code=storecode, tb_store_logistic_depart_code=departcode,
-                                         tb_store_logistic_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storereviewobj = TbStoreReview(tb_store_review_cal_date=tabledata.row(i)[0].value,
+                                     tb_store_review_reviews=changeStrtoInt(tabledata.row(i)[81].value),
+                                     tb_store_review_picture_reviews=changeStrtoInt(tabledata.row(i)[82].value),
+                                     tb_store_review_positive_reviews=changeStrtoInt(tabledata.row(i)[83].value),
+                                     tb_store_review_critical_reviews=changeStrtoInt(tabledata.row(i)[84].value),
+                                     tb_store_review_positive_reviews_old=changeStrtoInt(
+                                         tabledata.row(i)[85].value),
+                                     tb_store_review_critical_reviews_old=changeStrtoInt(
+                                         tabledata.row(i)[86].value),
+                                     tb_store_review_description_score=changeStrtoFloat(tabledata.row(i)[93].value),
+                                     tb_store_review_logistics_score=changeStrtoFloat(tabledata.row(i)[94].value),
+                                     tb_store_review_attitude_score=changeStrtoFloat(tabledata.row(i)[95].value),
+                                     tb_store_review_store_code=storecode, tb_store_logistic_depart_code=departcode,
+                                     tb_store_logistic_import_time=currenttime)
+        storereviewobjlist.append(storereviewobj)
 
         # 店铺服务表
-        querystoreservicecondition = Q()
-        querystoreservicecondition.children.append(('tb_store_service_cal_date', tabledata.row(i)[0].value))
-        querystoreservicecondition.children.append(('tb_store_service_store_code', storecode))
-
-        try:
-            updatestoreservice = TbStoreService.objects.get(querystoreservicecondition)
-            updatedata = {}
-            updatedata['tb_store_service_success_return_money'] = changeStrtoFloat(tabledata.row(i)[80].value)
-            updatedata['tb_store_service_pay_buyyers_old_money'] = changeStrtoFloat(tabledata.row(i)[76].value)
-            updatestoreservice.__dict__.update(updatedata)
-            updatestoreservice.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreService.objects.create(tb_store_service_cal_date=tabledata.row(i)[0].value,
-                                          tb_store_service_success_return_money=changeStrtoFloat(
-                                              tabledata.row(i)[80].value),
-                                          tb_store_service_pay_buyyers_old_money=changeStrtoFloat(
-                                              tabledata.row(i)[76].value), tb_store_service_store_code=storecode,
-                                          tb_store_service_depart_code=departcode,
-                                          tb_store_service_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeserviceobj = TbStoreService(tb_store_service_cal_date=tabledata.row(i)[0].value,
+                                      tb_store_service_success_return_money=changeStrtoFloat(
+                                          tabledata.row(i)[80].value),
+                                      tb_store_service_pay_buyyers_old_money=changeStrtoFloat(
+                                          tabledata.row(i)[76].value), tb_store_service_store_code=storecode,
+                                      tb_store_service_depart_code=departcode,
+                                      tb_store_service_import_time=currenttime)
+        storeserviceobjlist.append(storeserviceobj)
 
         # 店铺交易表-无线端
-        querystoretradecondition1 = Q()
-        querystoretradecondition1.children.append(('tb_store_trade_caldate', tabledata.row(i)[0].value))
-        querystoretradecondition1.children.append(('tb_store_trade_store_code', storecode))
-        querystoretradecondition1.children.append(('tb_store_trade_store_source', '无线端'))
-        try:
-            updatestoretrade1 = TbStoreTrade.objects.get(querystoretradecondition1)
-            updatedata = {}
-            updatedata['tb_store_trade_pay_money'] = changeStrtoFloat(tabledata.row(i)[30].value)
-            updatedata['tb_store_trade_pay_buyyers'] = changeStrtoInt(tabledata.row(i)[33].value)
-            updatedata['tb_store_trade_pay_childorders'] = changeStrtoInt(tabledata.row(i)[34].value)
-            updatedata['tb_store_trade_pay_items'] = changeStrtoInt(tabledata.row(i)[39].value)
-            updatedata['tb_store_trade_order_money'] = changeStrtoFloat(tabledata.row(i)[42].value)
-            updatedata['tb_store_trade_order_buyyers'] = changeStrtoInt(tabledata.row(i)[45].value)
-            updatedata['tb_store_trade_order_items'] = changeStrtoInt(tabledata.row(i)[48].value)
-            updatedata['tb_store_trade_buyyers_avg_money'] = changeStrtoFloat(tabledata.row(i)[60].value)
-            updatedata['tb_store_trade_uv'] = changeStrtoFloat(tabledata.row(i)[63].value)
-            updatedata['tb_store_trade_pay_buyyers_old'] = changeStrtoInt(tabledata.row(i)[75].value)
-            updatedata['tb_store_trade_pay_products'] = changeStrtoInt(tabledata.row(i)[101].value)
-            updatestoretrade1.__dict__.update(updatedata)
-            updatestoretrade1.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreTrade.objects.create(tb_store_trade_caldate=tabledata.row(i)[0].value,
-                                        tb_store_trade_pay_money=changeStrtoFloat(tabledata.row(i)[30].value),
-                                        tb_store_trade_pay_buyyers=changeStrtoInt(tabledata.row(i)[33].value),
-                                        tb_store_trade_pay_childorders=changeStrtoInt(tabledata.row(i)[34].value),
-                                        tb_store_trade_pay_items=changeStrtoInt(tabledata.row(i)[39].value),
-                                        tb_store_trade_order_money=changeStrtoFloat(tabledata.row(i)[42].value),
-                                        tb_store_trade_order_buyyers=changeStrtoInt(tabledata.row(i)[45].value),
-                                        tb_store_trade_order_items=changeStrtoInt(tabledata.row(i)[48].value),
-                                        tb_store_trade_buyyers_avg_money=changeStrtoFloat(tabledata.row(i)[60].value),
-                                        tb_store_trade_uv=changeStrtoFloat(tabledata.row(i)[63].value),
-                                        tb_store_trade_pay_buyyers_old=changeStrtoInt(tabledata.row(i)[75].value),
-                                        tb_store_trade_pay_products=changeStrtoInt(tabledata.row(i)[101].value),
-                                        tb_store_trade_store_source='无线端',
-                                        tb_store_trade_store_code=storecode, tb_store_trade_depart_code=departcode,
-                                        tb_store_trade_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storetradeobj1 = TbStoreTrade(tb_store_trade_caldate=tabledata.row(i)[0].value,
+                                    tb_store_trade_pay_money=changeStrtoFloat(tabledata.row(i)[30].value),
+                                    tb_store_trade_pay_buyyers=changeStrtoInt(tabledata.row(i)[33].value),
+                                    tb_store_trade_pay_childorders=changeStrtoInt(tabledata.row(i)[34].value),
+                                    tb_store_trade_pay_items=changeStrtoInt(tabledata.row(i)[39].value),
+                                    tb_store_trade_order_money=changeStrtoFloat(tabledata.row(i)[42].value),
+                                    tb_store_trade_order_buyyers=changeStrtoInt(tabledata.row(i)[45].value),
+                                    tb_store_trade_order_items=changeStrtoInt(tabledata.row(i)[48].value),
+                                    tb_store_trade_buyyers_avg_money=changeStrtoFloat(tabledata.row(i)[60].value),
+                                    tb_store_trade_uv=changeStrtoFloat(tabledata.row(i)[63].value),
+                                    tb_store_trade_pay_buyyers_old=changeStrtoInt(tabledata.row(i)[75].value),
+                                    tb_store_trade_pay_products=changeStrtoInt(tabledata.row(i)[101].value),
+                                    tb_store_trade_store_source='无线端',
+                                    tb_store_trade_store_code=storecode, tb_store_trade_depart_code=departcode,
+                                    tb_store_trade_import_time=currenttime)
+        storetradeobjlist.append(storetradeobj1)
 
         # 店铺交易表-PC端
-        querystoretradecondition2 = Q()
-        querystoretradecondition2.children.append(('tb_store_trade_caldate', tabledata.row(i)[0].value))
-        querystoretradecondition2.children.append(('tb_store_trade_store_code', storecode))
-        querystoretradecondition2.children.append(('tb_store_trade_store_source', 'PC端'))
-        try:
-            updatestoretrade2 = TbStoreTrade.objects.get(querystoretradecondition2)
-            updatedata = {}
-            updatedata['tb_store_trade_pay_money'] = changeStrtoFloat(tabledata.row(i)[29].value)
-            updatedata['tb_store_trade_pay_buyyers'] = changeStrtoInt(tabledata.row(i)[32].value)
-            updatedata['tb_store_trade_pay_childorders'] = changeStrtoInt(tabledata.row(i)[35].value)
-            updatedata['tb_store_trade_pay_items'] = changeStrtoInt(tabledata.row(i)[38].value)
-            updatedata['tb_store_trade_order_money'] = changeStrtoFloat(tabledata.row(i)[41].value)
-            updatedata['tb_store_trade_order_buyyers'] = changeStrtoInt(tabledata.row(i)[44].value)
-            updatedata['tb_store_trade_order_items'] = changeStrtoInt(tabledata.row(i)[47].value)
-            updatedata['tb_store_trade_buyyers_avg_money'] = changeStrtoFloat(tabledata.row(i)[59].value)
-            updatedata['tb_store_trade_uv'] = changeStrtoFloat(tabledata.row(i)[62].value)
-            updatedata['tb_store_trade_pay_buyyers_old'] = changeStrtoInt(tabledata.row(i)[74].value)
-            updatedata['tb_store_trade_pay_products'] = changeStrtoInt(tabledata.row(i)[100].value)
-            updatestoretrade2.__dict__.update(updatedata)
-            updatestoretrade2.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreTrade.objects.create(tb_store_trade_caldate=tabledata.row(i)[0].value,
-                                        tb_store_trade_pay_money=changeStrtoFloat(tabledata.row(i)[29].value),
-                                        tb_store_trade_pay_buyyers=changeStrtoInt(tabledata.row(i)[32].value),
-                                        tb_store_trade_pay_childorders=changeStrtoInt(tabledata.row(i)[35].value),
-                                        tb_store_trade_pay_items=changeStrtoInt(tabledata.row(i)[38].value),
-                                        tb_store_trade_order_money=changeStrtoFloat(tabledata.row(i)[41].value),
-                                        tb_store_trade_order_buyyers=changeStrtoInt(tabledata.row(i)[44].value),
-                                        tb_store_trade_order_items=changeStrtoInt(tabledata.row(i)[47].value),
-                                        tb_store_trade_buyyers_avg_money=changeStrtoFloat(tabledata.row(i)[59].value),
-                                        tb_store_trade_uv=changeStrtoFloat(tabledata.row(i)[62].value),
-                                        tb_store_trade_pay_buyyers_old=changeStrtoInt(tabledata.row(i)[74].value),
-                                        tb_store_trade_pay_products=changeStrtoInt(tabledata.row(i)[100].value),
-                                        tb_store_trade_store_source='PC端', tb_store_trade_store_code=storecode,
-                                        tb_store_trade_depart_code=departcode, tb_store_trade_import_time=currenttime)
-        except:
-            flag = False
-            break
 
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storetradeobj2 = TbStoreTrade(tb_store_trade_caldate=tabledata.row(i)[0].value,
+                                    tb_store_trade_pay_money=changeStrtoFloat(tabledata.row(i)[29].value),
+                                    tb_store_trade_pay_buyyers=changeStrtoInt(tabledata.row(i)[32].value),
+                                    tb_store_trade_pay_childorders=changeStrtoInt(tabledata.row(i)[35].value),
+                                    tb_store_trade_pay_items=changeStrtoInt(tabledata.row(i)[38].value),
+                                    tb_store_trade_order_money=changeStrtoFloat(tabledata.row(i)[41].value),
+                                    tb_store_trade_order_buyyers=changeStrtoInt(tabledata.row(i)[44].value),
+                                    tb_store_trade_order_items=changeStrtoInt(tabledata.row(i)[47].value),
+                                    tb_store_trade_buyyers_avg_money=changeStrtoFloat(tabledata.row(i)[59].value),
+                                    tb_store_trade_uv=changeStrtoFloat(tabledata.row(i)[62].value),
+                                    tb_store_trade_pay_buyyers_old=changeStrtoInt(tabledata.row(i)[74].value),
+                                    tb_store_trade_pay_products=changeStrtoInt(tabledata.row(i)[100].value),
+                                    tb_store_trade_store_source='PC端', tb_store_trade_store_code=storecode,
+                                    tb_store_trade_depart_code=departcode, tb_store_trade_import_time=currenttime)
+        storetradeobjlist.append(storetradeobj2)
         # 店铺交易表-全渠道
-        querystoretradecondition3 = Q()
-        querystoretradecondition3.children.append(('tb_store_trade_caldate', tabledata.row(i)[0].value))
-        querystoretradecondition3.children.append(('tb_store_trade_store_code', storecode))
-        querystoretradecondition3.children.append(('tb_store_trade_store_source', '全渠道'))
-        try:
-            updatestoretrade3 = TbStoreTrade.objects.get(querystoretradecondition3)
-            updatedata = {}
-            updatedata['tb_store_trade_pay_money'] = changeStrtoFloat(tabledata.row(i)[28].value)
-            updatedata['tb_store_trade_pay_buyyers'] = changeStrtoInt(tabledata.row(i)[31].value)
-            updatedata['tb_store_trade_pay_childorders'] = changeStrtoInt(tabledata.row(i)[34].value)
-            updatedata['tb_store_trade_pay_items'] = changeStrtoInt(tabledata.row(i)[37].value)
-            updatedata['tb_store_trade_order_money'] = changeStrtoFloat(tabledata.row(i)[40].value)
-            updatedata['tb_store_trade_order_buyyers'] = changeStrtoInt(tabledata.row(i)[43].value)
-            updatedata['tb_store_trade_order_items'] = changeStrtoInt(tabledata.row(i)[46].value)
-            updatedata['tb_store_trade_buyyers_avg_money'] = changeStrtoFloat(tabledata.row(i)[58].value)
-            updatedata['tb_store_trade_uv'] = changeStrtoFloat(tabledata.row(i)[61].value)
-            updatedata['tb_store_trade_pay_buyyers_old'] = changeStrtoInt(tabledata.row(i)[73].value)
-            updatedata['tb_store_trade_pay_products'] = changeStrtoInt(tabledata.row(i)[99].value)
-            updatestoretrade3.__dict__.update(updatedata)
-            updatestoretrade3.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreTrade.objects.create(tb_store_trade_caldate=tabledata.row(i)[0].value,
-                                        tb_store_trade_pay_money=changeStrtoFloat(tabledata.row(i)[28].value),
-                                        tb_store_trade_pay_buyyers=changeStrtoInt(tabledata.row(i)[31].value),
-                                        tb_store_trade_pay_childorders=changeStrtoInt(tabledata.row(i)[34].value),
-                                        tb_store_trade_pay_items=changeStrtoInt(tabledata.row(i)[37].value),
-                                        tb_store_trade_order_money=changeStrtoFloat(tabledata.row(i)[40].value),
-                                        tb_store_trade_order_buyyers=changeStrtoInt(tabledata.row(i)[43].value),
-                                        tb_store_trade_order_items=changeStrtoInt(tabledata.row(i)[46].value),
-                                        tb_store_trade_buyyers_avg_money=changeStrtoFloat(tabledata.row(i)[58].value),
-                                        tb_store_trade_uv=changeStrtoFloat(tabledata.row(i)[61].value),
-                                        tb_store_trade_pay_buyyers_old=changeStrtoInt(tabledata.row(i)[73].value),
-                                        tb_store_trade_pay_products=changeStrtoInt(tabledata.row(i)[99].value),
-                                        tb_store_trade_store_source='全渠道', tb_store_trade_store_code=storecode,
-                                        tb_store_trade_depart_code=departcode, tb_store_trade_import_time=currenttime)
-        except:
-            flag = False
-            break
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storetradeobj3 = TbStoreTrade(tb_store_trade_caldate=tabledata.row(i)[0].value,
+                                    tb_store_trade_pay_money=changeStrtoFloat(tabledata.row(i)[28].value),
+                                    tb_store_trade_pay_buyyers=changeStrtoInt(tabledata.row(i)[31].value),
+                                    tb_store_trade_pay_childorders=changeStrtoInt(tabledata.row(i)[34].value),
+                                    tb_store_trade_pay_items=changeStrtoInt(tabledata.row(i)[37].value),
+                                    tb_store_trade_order_money=changeStrtoFloat(tabledata.row(i)[40].value),
+                                    tb_store_trade_order_buyyers=changeStrtoInt(tabledata.row(i)[43].value),
+                                    tb_store_trade_order_items=changeStrtoInt(tabledata.row(i)[46].value),
+                                    tb_store_trade_buyyers_avg_money=changeStrtoFloat(tabledata.row(i)[58].value),
+                                    tb_store_trade_uv=changeStrtoFloat(tabledata.row(i)[61].value),
+                                    tb_store_trade_pay_buyyers_old=changeStrtoInt(tabledata.row(i)[73].value),
+                                    tb_store_trade_pay_products=changeStrtoInt(tabledata.row(i)[99].value),
+                                    tb_store_trade_store_source='全渠道', tb_store_trade_store_code=storecode,
+                                    tb_store_trade_depart_code=departcode, tb_store_trade_import_time=currenttime)
+        storetradeobjlist.append(storetradeobj3)
 
         # 店铺转化表-无线端
-        querystoreturncondition1 = Q()
-        querystoreturncondition1.children.append(('tb_store_turn_caldate', tabledata.row(i)[0].value))
-        querystoreturncondition1.children.append(('tb_store_turn_store_code', storecode))
-        querystoreturncondition1.children.append(('tb_store_turn_store_source', '无线端'))
-        try:
-            updatestoreturn1 = TbStoreTurn.objects.get(querystoreturncondition1)
-            updatedata = {}
-            updatedata['tb_store_turn_order_turn_percent'] = changeStrtoPercent(tabledata.row(i)[54].value)
-            updatedata['tb_store_turn_pay_turn_percent'] = changeStrtoPercent(tabledata.row(i)[57].value)
-            updatedata['tb_store_turn_order_pay_turn_percent'] = changeStrtoPercent(tabledata.row(i)[98].value)
-            updatedata['tb_store_turn_collect_buyyers'] = changeStrtoInt(tabledata.row(i)[104].value)
-            updatestoreturn1.__dict__.update(updatedata)
-            updatestoreturn1.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreTurn.objects.create(tb_store_turn_caldate=tabledata.row(i)[0].value,
-                                       tb_store_turn_order_turn_percent=changeStrtoPercent(tabledata.row(i)[54].value),
-                                       tb_store_turn_pay_turn_percent=changeStrtoPercent(tabledata.row(i)[57].value),
-                                       tb_store_turn_order_pay_turn_percent=changeStrtoPercent(
-                                           tabledata.row(i)[98].value),
-                                       tb_store_turn_collect_buyyers=changeStrtoInt(tabledata.row(i)[104].value),
-                                       tb_store_turn_store_source='无线端',
-                                       tb_store_turn_store_code=storecode, tb_store_turn_depart_code=departcode,
-                                       tb_store_turn_import_time=currenttime)
-        except:
-            flag = False
-            break
-
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeturnobj1 = TbStoreTurn(tb_store_turn_caldate=tabledata.row(i)[0].value,
+                                   tb_store_turn_order_turn_percent=changeStrtoPercent(tabledata.row(i)[54].value),
+                                   tb_store_turn_pay_turn_percent=changeStrtoPercent(tabledata.row(i)[57].value),
+                                   tb_store_turn_order_pay_turn_percent=changeStrtoPercent(
+                                       tabledata.row(i)[98].value),
+                                   tb_store_turn_collect_buyyers=changeStrtoInt(tabledata.row(i)[104].value),
+                                   tb_store_turn_store_source='无线端',
+                                   tb_store_turn_store_code=storecode, tb_store_turn_depart_code=departcode,
+                                   tb_store_turn_import_time=currenttime)
+        storeturnobjlist.append(storeturnobj1)
         # 店铺转化表 - PC端
-        querystoreturncondition2 = Q()
-        querystoreturncondition2.children.append(('tb_store_turn_caldate', tabledata.row(i)[0].value))
-        querystoreturncondition2.children.append(('tb_store_turn_store_code', storecode))
-        querystoreturncondition2.children.append(('tb_store_turn_store_source', 'PC端'))
-        try:
-            updatestoreturn2 = TbStoreTurn.objects.get(querystoreturncondition2)
-            updatedata = {}
-            updatedata['tb_store_turn_order_turn_percent'] = changeStrtoPercent(tabledata.row(i)[53].value)
-            updatedata['tb_store_turn_pay_turn_percent'] = changeStrtoPercent(tabledata.row(i)[56].value)
-            updatedata['tb_store_turn_order_pay_turn_percent'] = changeStrtoPercent(tabledata.row(i)[97].value)
-            updatedata['tb_store_turn_collect_buyyers'] = changeStrtoInt(tabledata.row(i)[103].value)
-            updatestoreturn2.__dict__.update(updatedata)
-            updatestoreturn2.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreTurn.objects.create(tb_store_turn_caldate=tabledata.row(i)[0].value,
-                                       tb_store_turn_order_turn_percent=changeStrtoPercent(tabledata.row(i)[53].value),
-                                       tb_store_turn_pay_turn_percent=changeStrtoPercent(tabledata.row(i)[56].value),
-                                       tb_store_turn_order_pay_turn_percent=changeStrtoPercent(
-                                           tabledata.row(i)[97].value),
-                                       tb_store_turn_collect_buyyers=changeStrtoInt(tabledata.row(i)[103].value),
-                                       tb_store_turn_store_source='PC端',
-                                       tb_store_turn_store_code=storecode, tb_store_turn_depart_code=departcode,
-                                       tb_store_turn_import_time=currenttime)
-        except:
-            flag = False
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeturnobj2 = TbStoreTurn(tb_store_turn_caldate=tabledata.row(i)[0].value,
+                                   tb_store_turn_order_turn_percent=changeStrtoPercent(tabledata.row(i)[53].value),
+                                   tb_store_turn_pay_turn_percent=changeStrtoPercent(tabledata.row(i)[56].value),
+                                   tb_store_turn_order_pay_turn_percent=changeStrtoPercent(
+                                       tabledata.row(i)[97].value),
+                                   tb_store_turn_collect_buyyers=changeStrtoInt(tabledata.row(i)[103].value),
+                                   tb_store_turn_store_source='PC端',
+                                   tb_store_turn_store_code=storecode, tb_store_turn_depart_code=departcode,
+                                   tb_store_turn_import_time=currenttime)
+        storeturnobjlist.append(storeturnobj2)
 
-        querystoreturncondition3 = Q()
-        querystoreturncondition3.children.append(('tb_store_turn_caldate', tabledata.row(i)[0].value))
-        querystoreturncondition3.children.append(('tb_store_turn_store_code', storecode))
-        querystoreturncondition3.children.append(('tb_store_turn_store_source', '全渠道'))
-        try:
-            updatestoreturn3 = TbStoreTurn.objects.get(querystoreturncondition3)
-            updatedata = {}
-            updatedata['tb_store_turn_order_turn_percent'] = changeStrtoPercent(tabledata.row(i)[52].value)
-            updatedata['tb_store_turn_pay_turn_percent'] = changeStrtoPercent(tabledata.row(i)[55].value)
-            updatedata['tb_store_turn_order_pay_turn_percent'] = changeStrtoPercent(tabledata.row(i)[96].value)
-            updatedata['tb_store_turn_collect_buyyers'] = changeStrtoInt(tabledata.row(i)[102].value)
-            updatestoreturn3.__dict__.update(updatedata)
-            updatestoreturn3.save()
-        except ObjectDoesNotExist:
-            currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-            TbStoreTurn.objects.create(tb_store_turn_caldate=tabledata.row(i)[0].value,
-                                       tb_store_turn_order_turn_percent=changeStrtoPercent(tabledata.row(i)[52].value),
-                                       tb_store_turn_pay_turn_percent=changeStrtoPercent(tabledata.row(i)[55].value),
-                                       tb_store_turn_order_pay_turn_percent=changeStrtoPercent(
-                                           tabledata.row(i)[96].value),
-                                       tb_store_turn_collect_buyyers=changeStrtoInt(tabledata.row(i)[102].value),
-                                       tb_store_turn_store_source='全渠道',
-                                       tb_store_turn_store_code=storecode, tb_store_turn_depart_code=departcode,
-                                       tb_store_turn_import_time=currenttime)
-        except:
-            flag = False
-            break
+        # 店铺转化表 - 全渠道
+        currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        storeturnobj3 = TbStoreTurn(tb_store_turn_caldate=tabledata.row(i)[0].value,
+                                   tb_store_turn_order_turn_percent=changeStrtoPercent(tabledata.row(i)[52].value),
+                                   tb_store_turn_pay_turn_percent=changeStrtoPercent(tabledata.row(i)[55].value),
+                                   tb_store_turn_order_pay_turn_percent=changeStrtoPercent(
+                                       tabledata.row(i)[96].value),
+                                   tb_store_turn_collect_buyyers=changeStrtoInt(tabledata.row(i)[102].value),
+                                   tb_store_turn_store_source='全渠道',
+                                   tb_store_turn_store_code=storecode, tb_store_turn_depart_code=departcode,
+                                   tb_store_turn_import_time=currenttime)
+        storeturnobjlist.append(storeturnobj3)
+    try:
+        TbStoreCost.objects.bulk_create(storecostobjlist)
+        TbStoreFlow.objects.bulk_create(storeflowobjlist)
+        TbStoreInteraction.objects.bulk_create(storeinteractionobjlist)
+        TbStoreLogistic.objects.bulk_create(storelogisticobjlist)
+        TbStoreReview.objects.bulk_create(storereviewobjlist)
+        TbStoreService.objects.bulk_create(storeserviceobjlist)
+        TbStoreTrade.objects.bulk_create(storetradeobjlist)
+        TbStoreTurn.objects.bulk_create(storeturnobjlist)
+
+        storecostobjlist.clear()
+        storeflowobjlist.clear()
+        storeinteractionobjlist.clear()
+        storelogisticobjlist.clear()
+        storereviewobjlist.clear()
+        storeserviceobjlist.clear()
+        storetradeobjlist.clear()
+        storeturnobjlist.clear()
+
+        logger.info('提交店铺数据')
+    except Exception as err:
+        logger.error(err)
+        storecostobjlist.clear()
+        storeflowobjlist.clear()
+        storeinteractionobjlist.clear()
+        storelogisticobjlist.clear()
+        storereviewobjlist.clear()
+        storeserviceobjlist.clear()
+        storetradeobjlist.clear()
+        storeturnobjlist.clear()
+        flag = False
 
     if flag:
         curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
