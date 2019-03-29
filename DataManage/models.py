@@ -202,6 +202,8 @@ class TbZtc(models.Model):
     tb_ztc_store_code = models.CharField(max_length=45)
     tb_ztc_depart_code = models.CharField(max_length=45)
     tb_ztc_import_time = models.CharField(max_length=100)
+    tb_ztc_product_type = models.CharField(max_length=45, blank=True, null=True)
+    tb_ztc_product_id = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False

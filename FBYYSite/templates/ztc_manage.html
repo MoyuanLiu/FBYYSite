@@ -225,7 +225,8 @@ $("#queryztcdepart").change(function() {
                     <th >统计日期</th>
                     <th >推广计划名称</th>
                     <th >宝贝名称</th>
-                    <th >搜索类型</th>
+                    <th >宝贝类型</th>
+                    <th >宝贝id</th>
                 </tr>
             </thead>
             <tbody id="fixbody">
@@ -234,7 +235,8 @@ $("#queryztcdepart").change(function() {
                 <td>{{ztc.tb_ztc_caldate}}</td>
                 <td>{{ztc.tb_ztc_plan_name}}</td>
                 <td>{{ztc.tb_ztc_product_name}}</td>
-                <td>{{ztc.tb_ztc_search_type}}</td>
+                <td>{{ztc.tb_ztc_product_type}}</td>
+                <td>{{ztc.tb_ztc_product_id}}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -242,6 +244,7 @@ $("#queryztcdepart").change(function() {
         <table class="table " style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:60%;display:block;width:40%;height:100%;">
             <thead class="thead-light" style="white-space:nowrap;">
                 <tr >
+                    <th >搜索类型</th>
                     <th >流量来源</th>
                     <th >展现量</th>
                     <th >点击量</th>
@@ -265,13 +268,14 @@ $("#queryztcdepart").change(function() {
                     <th >总购物车数</th>
                     <th >店铺代码</th>
                     <th >部门编码</th>
-                    <th >部门编码</th>
+                    <th >导入时间</th>
                     <th >操作</th>
                 </tr>
             </thead>
             <tbody id="unfixbody">
             {% for ztc in ztclist %}
             <tr >
+                <td>{{ztc.tb_ztc_search_type}}</td>
                 <td>{{ztc.tb_ztc_traffic_source}}</td>
                 <td>{{ztc.tb_ztc_impression_count}}</td>
                 <td>{{ztc.tb_ztc_click_count}}</td>
@@ -295,6 +299,7 @@ $("#queryztcdepart").change(function() {
                 <td>{{ztc.tb_ztc_total_cart_count}}</td>
                 <td>{{ztc.tb_ztc_store_code}}</td>
                 <td>{{ztc.tb_ztc_depart_code}}</td>
+                <td>{{ztc.tb_ztc_import_time}}</td>
                 <td>
                     <div class="btn-group">
                         {% if ztc.tb_ztc_store_code in editpermissionstorecodelist %}
@@ -365,7 +370,8 @@ $("#queryztcdepart").change(function() {
                     <th >统计日期</th>
                     <th >推广计划名称</th>
                     <th >宝贝名称</th>
-                    <th >搜索类型</th>
+                    <th >宝贝类型</th>
+                    <th >宝贝id</th>
                 </tr>
             </thead>
 
@@ -375,6 +381,7 @@ $("#queryztcdepart").change(function() {
         <table class="table table-hover " style="position: absolute;overflow-x:scroll;left:60%;display:block;width:40%;height:100%;">
             <thead class="thead-light" style="white-space:nowrap;">
                 <tr class="" style="white-space:nowrap;">
+                    <th >搜索类型</th>
                     <th >流量来源</th>
                     <th >展现量</th>
                     <th >点击量</th>
@@ -398,6 +405,7 @@ $("#queryztcdepart").change(function() {
                     <th >总购物车数</th>
                     <th >店铺代码</th>
                     <th >部门编码</th>
+                    <th >导入时间</th>
                     <th >操作</th>
                 </tr>
             </thead>

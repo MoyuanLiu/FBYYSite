@@ -1,6 +1,10 @@
 from django.core.cache import cache
 from SiteLogin.models import *
 from PermissionManage.models import TbRole
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 def isauthenticated(account):
     if cache.get(account) == None:
@@ -13,8 +17,8 @@ def logincheck(account,password,rem):
     if account != '':
         user = TbUserInfo.objects.get_user_by_account(account)
         if user != None:
-            print(user.tb_user_info_pwd)
-            print(password)
+            logger.info(user.tb_user_info_pwd)
+            logger.info(password)
             if user.tb_user_info_pwd == password:
                 if rem:
                     cache.set(account, password, 14 * 24 * 60 * 60)

@@ -252,6 +252,7 @@ def importztcdata(tabledata, tableheadrownum, taskobj):
     taskfilename = json.loads(taskobj.tb_task_info_content)["savepathname"]
     departcode = taskfilename.split('-')[0].upper()
     storecode = taskfilename.split('-')[1].upper()
+    #print(storecode)
     curtime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
     taskobj.tb_task_info_status='任务进行中'
     taskobj.tb_task_info_starttime=curtime
@@ -264,31 +265,34 @@ def importztcdata(tabledata, tableheadrownum, taskobj):
         if i <= tableheadrownum:
             continue
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
+        #print(i)
         ztcobj = TbZtc(tb_ztc_caldate=changeExcelDate(tabledata.row(i)[0].value),
                              tb_ztc_plan_name=tabledata.row(i)[1].value,
                              tb_ztc_product_name=tabledata.row(i)[2].value,
-                             tb_ztc_search_type=tabledata.row(i)[3].value,
-                             tb_ztc_traffic_source=tabledata.row(i)[4].value,
-                             tb_ztc_impression_count=fixNull(tabledata.row(i)[5].value),
-                             tb_ztc_click_count=fixNull(tabledata.row(i)[6].value),
-                             tb_ztc_cost=fixNull(tabledata.row(i)[7].value),
-                             tb_ztc_click_percent=fixNull(tabledata.row(i)[8].value),
-                             tb_ztc_avg_click_cost=fixNull(tabledata.row(i)[9].value),
-                             tb_ztc_thousand_impression_cost=fixNull(tabledata.row(i)[10].value),
-                             tb_ztc_click_turn_percent=fixNull(tabledata.row(i)[11].value),
-                             tb_ztc_direct_deal_money=fixNull(tabledata.row(i)[12].value),
-                             tb_ztc_direct_deal_count=fixNull(tabledata.row(i)[13].value),
-                             tb_ztc_undirect_deal_money=fixNull(tabledata.row(i)[14].value),
-                             tb_ztc_undirect_deal_count=fixNull(tabledata.row(i)[15].value),
-                             tb_ztc_deal_money=fixNull(tabledata.row(i)[16].value),
-                             tb_ztc_deal_count=fixNull(tabledata.row(i)[17].value),
-                             tb_ztc_product_collect_count=fixNull(tabledata.row(i)[18].value),
-                             tb_ztc_store_collect_count=fixNull(tabledata.row(i)[19].value),
-                             tb_ztc_total_collect_count=fixNull(tabledata.row(i)[20].value),
-                             tb_ztc_io_ratio=fixNull(tabledata.row(i)[21].value),
-                             tb_ztc_direct_cart_count=fixNull(tabledata.row(i)[22].value),
-                             tb_ztc_undirect_cart_count=fixNull(tabledata.row(i)[23].value),
-                             tb_ztc_total_cart_count=fixNull(tabledata.row(i)[24].value),
+                             tb_ztc_product_type=tabledata.row(i)[3].value,
+                             tb_ztc_product_id=tabledata.row(i)[4].value,
+                             tb_ztc_search_type=tabledata.row(i)[5].value,
+                             tb_ztc_traffic_source=tabledata.row(i)[6].value,
+                             tb_ztc_impression_count=fixNullNumber(tabledata.row(i)[7].value),
+                             tb_ztc_click_count=fixNullNumber(tabledata.row(i)[8].value),
+                             tb_ztc_cost=fixNullNumber(tabledata.row(i)[9].value),
+                             tb_ztc_click_percent=fixNullNumber(tabledata.row(i)[10].value),
+                             tb_ztc_avg_click_cost=fixNullNumber(tabledata.row(i)[11].value),
+                             tb_ztc_thousand_impression_cost=fixNullNumber(tabledata.row(i)[12].value),
+                             tb_ztc_click_turn_percent=fixNullNumber(tabledata.row(i)[13].value),
+                             tb_ztc_direct_deal_money=fixNullNumber(tabledata.row(i)[14].value),
+                             tb_ztc_direct_deal_count=fixNullNumber(tabledata.row(i)[15].value),
+                             tb_ztc_undirect_deal_money=fixNullNumber(tabledata.row(i)[16].value),
+                             tb_ztc_undirect_deal_count=fixNullNumber(tabledata.row(i)[17].value),
+                             tb_ztc_deal_money=fixNullNumber(tabledata.row(i)[18].value),
+                             tb_ztc_deal_count=fixNullNumber(tabledata.row(i)[19].value),
+                             tb_ztc_product_collect_count=fixNullNumber(tabledata.row(i)[20].value),
+                             tb_ztc_store_collect_count=fixNullNumber(tabledata.row(i)[21].value),
+                             tb_ztc_total_collect_count=fixNullNumber(tabledata.row(i)[22].value),
+                             tb_ztc_io_ratio=fixNullNumber(tabledata.row(i)[23].value),
+                             tb_ztc_direct_cart_count=fixNullNumber(tabledata.row(i)[24].value),
+                             tb_ztc_undirect_cart_count=fixNullNumber(tabledata.row(i)[25].value),
+                             tb_ztc_total_cart_count=fixNullNumber(tabledata.row(i)[26].value),
                              tb_ztc_store_code=storecode, tb_ztc_depart_code=departcode,
                              tb_ztc_import_time=currenttime)
         ztcobjlist.append(ztcobj)
@@ -297,6 +301,7 @@ def importztcdata(tabledata, tableheadrownum, taskobj):
         ztcobjlist.clear()
         logger.info('提交直通车数据')
     except Exception as err:
+        #print(err)
         logger.error(err)
         ztcobjlist.clear()
         flag = False
