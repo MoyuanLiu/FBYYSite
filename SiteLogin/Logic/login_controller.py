@@ -38,8 +38,11 @@ def user_permission_check(account):
 
 def get_user_role_name(account):
     user = TbUserInfo.objects.get_user_by_account(account)
-    roleid = TbUserRole.objects.get_user_role_by_user_id(user.idtb_user_info).tb_user_role_roleid
-    return TbRole.objects.get_role_name_by_role_id(roleid)
+    try:
+        roleid = TbUserRole.objects.get(tb_user_role_userid=user.idtb_user_info).tb_user_role_roleid
+        return TbRole.objects.get_role_name_by_role_id(roleid)
+    except:
+        return ''
 
 def get_all_modules():
     return TbModule.objects.get_all_modules_list()
@@ -49,17 +52,26 @@ def get_all_functions():
 
 def get_user_modules(account):
     user = TbUserInfo.objects.get_user_by_account(account)
+    resultlist = []
     if user != None:
         userid = user.idtb_user_info
         roleid = TbUserRole.objects.get_user_role_by_user_id(userid).tb_user_role_roleid
         roleobj = TbRole.objects.get(idtb_role=roleid)
-        return TbModule.objects.filter(tb_module_code__in=eval(roleobj.tb_role_module_list))
+        rolemoduleliststr = roleobj.tb_role_module_list
+        if rolemoduleliststr!="":
+            resultlist = TbModule.objects.filter(tb_module_code__in=eval(roleobj.tb_role_module_list))
+        return resultlist
+
 
 
 def get_user_functions(account):
     user = TbUserInfo.objects.get_user_by_account(account)
+    resultlist = []
     if user != None:
         userid = user.idtb_user_info
         roleid = TbUserRole.objects.get_user_role_by_user_id(userid).tb_user_role_roleid
         roleobj = TbRole.objects.get(idtb_role=roleid)
-        return TbFunction.objects.filter(tb_function_code__in=eval(roleobj.tb_role_function_list))
+        rolefunctionliststr = roleobj.tb_role_function_list
+        if rolefunctionliststr!= "":
+            resultlist = TbFunction.objects.filter(tb_function_code__in=eval(roleobj.tb_role_function_list))
+        return resultlist
