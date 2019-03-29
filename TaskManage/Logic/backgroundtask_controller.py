@@ -33,7 +33,9 @@ def expiretaskbyexpiredate():
 def runimporttask(taskobj):
     logger.info("跑导入任务")
     cf = configparser.ConfigParser()
-    cf.read(os.path.join(BASE_DIR,"Conf/project.conf"), encoding='UTF-8')
+    cf.read(os.path.join(BASE_DIR,"Conf\project.conf"), encoding='UTF-8')
+    print(BASE_DIR)
+    print(os.path.join(BASE_DIR, "Conf\project.conf"))
     checklistdirlist = []
     taskcode = taskobj.tb_task_info_code
     if taskobj.tb_task_info_code != 'productuploadimporttask':
@@ -103,8 +105,8 @@ def importmethoddistribute(taskobj, tabledata, tableheadrownum, ):
 def isOldProductOrNot(tabledata, tableheadrownum):
     flag = False
     cf = configparser.ConfigParser()
-    cf.read("../Conf/project.conf", encoding='UTF-8')
-    oldproductchecklistdir = cf.get('ImportCheckServicesDir', 'CSD_oldproductuploadimporttask')
+    cf.read(os.path.join(BASE_DIR, "Conf\project.conf"), encoding='UTF-8')
+    oldproductchecklistdir = os.path.join(BASE_DIR,cf.get('ImportCheckServicesDir', 'CSD_oldproductuploadimporttask'))
     oldproductchecklist = readfileaslist(oldproductchecklistdir)
     if operator.eq(oldproductchecklist, tabledata.row(tableheadrownum)):
         flag = True
