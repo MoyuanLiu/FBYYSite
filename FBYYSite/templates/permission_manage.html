@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block style %}
 <style type="text/css">
- tr td{
+td{
+        height:63px;
 		/* 不换行*/
 		word-break:keep-all;
 		/* 不换行*/
 		white-space:nowrap;
 		text-overflow: ellipsis;
-		height:63px;
+		overflow:hidden;
 	}
 	ul {list-style-type:none;}
         </style>
@@ -341,18 +342,15 @@ $("#selrolemodule").change(function() {
             <tr >
                 <td >{{user.tb_user_info_role_name}}</td>
                 <td>
-                     <ul>
-                        {% for modulename in user.tb_user_info_module_name_list%}
-                        <li>{{modulename}}</li>
-                        {% endfor %}
-                    </ul>
+                    {% for modulename in user.tb_user_info_module_name_list%}
+                    {{modulename}}&#13;
+                    {% endfor %}
+
                 </td>
                 <td>
-                    <ul>
-                        {% for funcname in user.tb_user_info_function_name_list%}
-                        <li>{{funcname}}</li>
-                        {% endfor %}
-                    </ul>
+                    {% for funcname in user.tb_user_info_function_name_list%}
+                    {{funcname}}&#13;
+                    {% endfor %}
                 </td>
                 <td>
                     <div class="btn-group">
