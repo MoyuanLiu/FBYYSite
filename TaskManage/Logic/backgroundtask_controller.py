@@ -34,8 +34,8 @@ def runimporttask(taskobj):
     logger.info("跑导入任务")
     cf = configparser.ConfigParser()
     cf.read(os.path.join(BASE_DIR,"Conf\project.conf"), encoding='UTF-8')
-    print(BASE_DIR)
-    print(os.path.join(BASE_DIR, "Conf\project.conf"))
+    #print(BASE_DIR)
+    #print(os.path.join(BASE_DIR, "Conf\project.conf"))
     checklistdirlist = []
     taskcode = taskobj.tb_task_info_code
     if taskobj.tb_task_info_code != 'productuploadimporttask':
@@ -627,10 +627,10 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
     caldatestr = tabledata.row((tableheadrownum+1))[0].value
     if TbStoreCost.objects.filter(tb_store_cost_cal_date=caldatestr).order_by('tb_store_cost_cal_date').exists():
         TbStoreCost.objects.filter(tb_store_cost_cal_date=caldatestr).order_by('tb_store_cost_cal_date').delete()
-    if TbStoreFlow.objects.filter(tb_store_flow_calDate=caldatestr).order_by('tb_store_flow_calDate').exists():
-        TbStoreFlow.objects.filter(tb_store_flow_calDate=caldatestr).order_by('tb_store_flow_calDate').delete()
-    if TbStoreInteraction.objects.filter(tb_store_Interaction_cal_date=caldatestr).order_by('tb_store_Interaction_cal_date').exists():
-        TbStoreInteraction.objects.filter(tb_store_Interaction_cal_date=caldatestr).order_by('tb_store_Interaction_cal_date').delete()
+    if TbStoreFlow.objects.filter(tb_store_flow_caldate=caldatestr).order_by('tb_store_flow_caldate').exists():
+        TbStoreFlow.objects.filter(tb_store_flow_caldate=caldatestr).order_by('tb_store_flow_caldate').delete()
+    if TbStoreInteraction.objects.filter(tb_store_interaction_cal_date=caldatestr).order_by('tb_store_interaction_cal_date').exists():
+        TbStoreInteraction.objects.filter(tb_store_interaction_cal_date=caldatestr).order_by('tb_store_interaction_cal_date').delete()
     if TbStoreLogistic.objects.filter(tb_store_logistic_cal_date=caldatestr).order_by('tb_store_logistic_cal_date').exists():
         TbStoreLogistic.objects.filter(tb_store_logistic_cal_date=caldatestr).order_by('tb_store_logistic_cal_date').delete()
     if TbStoreReview.objects.filter(tb_store_review_cal_date=caldatestr).order_by('tb_store_review_cal_date').exists():
@@ -656,7 +656,7 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
         # 店铺流量表
         # 店铺流量表-无线端
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-        storeflowobj1 = TbStoreFlow(tb_store_flow_calDate=tabledata.row(i)[0].value,
+        storeflowobj1 = TbStoreFlow(tb_store_flow_caldate=tabledata.row(i)[0].value,
                                    tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[4].value),
                                    tb_store_flow_views=changeStrtoInt(tabledata.row(i)[6].value),
                                    tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[8].value),
@@ -673,7 +673,7 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
 
         # 店铺流量表-PC端
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-        storeflowobj2 = TbStoreFlow(tb_store_flow_calDate=tabledata.row(i)[0].value,
+        storeflowobj2 = TbStoreFlow(tb_store_flow_caldate=tabledata.row(i)[0].value,
                                    tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[1].value),
                                    tb_store_flow_views=changeStrtoInt(tabledata.row(i)[2].value),
                                    tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[9].value),
@@ -689,7 +689,7 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
 
         # 店铺流量表-全渠道
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-        storeflowobj3 = TbStoreFlow(tb_store_flow_calDate=tabledata.row(i)[0].value,
+        storeflowobj3 = TbStoreFlow(tb_store_flow_caldate=tabledata.row(i)[0].value,
                                    tb_store_flow_visitors=changeStrtoInt(tabledata.row(i)[3].value),
                                    tb_store_flow_views=changeStrtoInt(tabledata.row(i)[5].value),
                                    tb_store_flow_product_visitors=changeStrtoInt(tabledata.row(i)[7].value),
@@ -705,16 +705,16 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
 
         # 店铺互动表-无线端
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-        storeinteractionobj1 = TbStoreInteraction(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
-                                          tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
+        storeinteractionobj1 = TbStoreInteraction(tb_store_interaction_cal_date=tabledata.row(i)[0].value,
+                                          tb_store_interaction_product_collect_buyyers=changeStrtoInt(
                                               tabledata.row(i)[20].value),
-                                          tb_store_Interaction_product_collects=changeStrtoInt(
+                                          tb_store_interaction_product_collects=changeStrtoInt(
                                               tabledata.row(i)[23].value),
-                                          tb_store_Interaction_product_adds=changeStrtoInt(
+                                          tb_store_interaction_product_adds=changeStrtoInt(
                                               tabledata.row(i)[26].value),
-                                          tb_store_Interaction_product_add_items=changeStrtoInt(
+                                          tb_store_interaction_product_add_items=changeStrtoInt(
                                               tabledata.row(i)[72].value), tb_store_interaction_store_source='无线端',
-                                          tb_store_Interaction_store_code=storecode,
+                                          tb_store_interaction_store_code=storecode,
                                           tb_store_interaction_depart_code=departcode,
                                           tb_store_interaction_import_time=currenttime)
         storeinteractionobjlist.append(storeinteractionobj1)
@@ -722,32 +722,32 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
         # 店铺互动表-PC端
 
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-        storeinteractionobj2 = TbStoreInteraction(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
-                                          tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
+        storeinteractionobj2 = TbStoreInteraction(tb_store_interaction_cal_date=tabledata.row(i)[0].value,
+                                          tb_store_interaction_product_collect_buyyers=changeStrtoInt(
                                               tabledata.row(i)[21].value),
-                                          tb_store_Interaction_product_collects=changeStrtoInt(
+                                          tb_store_interaction_product_collects=changeStrtoInt(
                                               tabledata.row(i)[24].value),
-                                          tb_store_Interaction_product_adds=changeStrtoInt(
+                                          tb_store_interaction_product_adds=changeStrtoInt(
                                               tabledata.row(i)[27].value),
-                                          tb_store_Interaction_product_add_items=changeStrtoInt(
+                                          tb_store_interaction_product_add_items=changeStrtoInt(
                                               tabledata.row(i)[71].value), tb_store_interaction_store_source='PC端',
-                                          tb_store_Interaction_store_code=storecode,
+                                          tb_store_interaction_store_code=storecode,
                                           tb_store_interaction_depart_code=departcode,
                                           tb_store_interaction_import_time=currenttime)
         storeinteractionobjlist.append(storeinteractionobj2)
 
         # 店铺互动表-全渠道
         currenttime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-        storeinteractionobj3 = TbStoreInteraction(tb_store_Interaction_cal_date=tabledata.row(i)[0].value,
-                                          tb_store_Interaction_product_collect_buyyers=changeStrtoInt(
+        storeinteractionobj3 = TbStoreInteraction(tb_store_interaction_cal_date=tabledata.row(i)[0].value,
+                                          tb_store_interaction_product_collect_buyyers=changeStrtoInt(
                                               tabledata.row(i)[19].value),
-                                          tb_store_Interaction_product_collects=changeStrtoInt(
+                                          tb_store_interaction_product_collects=changeStrtoInt(
                                               tabledata.row(i)[22].value),
-                                          tb_store_Interaction_product_adds=changeStrtoInt(
+                                          tb_store_interaction_product_adds=changeStrtoInt(
                                               tabledata.row(i)[25].value),
-                                          tb_store_Interaction_product_add_items=changeStrtoInt(
+                                          tb_store_interaction_product_add_items=changeStrtoInt(
                                               tabledata.row(i)[70].value), tb_store_interaction_store_source='全渠道',
-                                          tb_store_Interaction_store_code=storecode,
+                                          tb_store_interaction_store_code=storecode,
                                           tb_store_interaction_depart_code=departcode,
                                           tb_store_interaction_import_time=currenttime)
         storeinteractionobjlist.append(storeinteractionobj3)
@@ -786,8 +786,8 @@ def importstoredata(tabledata, tableheadrownum, taskobj):
                                      tb_store_review_description_score=changeStrtoFloat(tabledata.row(i)[93].value),
                                      tb_store_review_logistics_score=changeStrtoFloat(tabledata.row(i)[94].value),
                                      tb_store_review_attitude_score=changeStrtoFloat(tabledata.row(i)[95].value),
-                                     tb_store_review_store_code=storecode, tb_store_logistic_depart_code=departcode,
-                                     tb_store_logistic_import_time=currenttime)
+                                     tb_store_review_store_code=storecode, tb_store_review_depart_code=departcode,
+                                     tb_store_review_import_time=currenttime)
         storereviewobjlist.append(storereviewobj)
 
         # 店铺服务表

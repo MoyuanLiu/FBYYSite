@@ -176,7 +176,6 @@
                     <th >任务ID</th>
                     <th >任务名称</th>
                     <th >用户花名</th>
-                    <th >任务上传文件名</th>
                     <th >任务存储文件名</th>
                 </tr>
             </thead>
@@ -186,9 +185,7 @@
                 <td >{{task.idtb_task_info}}</td>
                 <td>{{task.tb_task_info_name}}</td>
                 <td>{{task.tb_task_info_content.taskusernickname}}</td>
-                <td>{{task.tb_task_info_content.fileuploadname}}</td>
                 <td>{{task.tb_task_info_content.savepathname}}</td>
-
             </tr>
             {% endfor %}
             </tbody>
@@ -196,6 +193,7 @@
         <table class="table " style="position: absolute;overflow-x:scroll;overflow-y:hidden;left:60%;display:block;width:40%;height:100%;">
             <thead class="thead-light" style="white-space:nowrap;">
                 <tr >
+                    <th >任务上传文件名</th>
                     <th >任务状态</th>
                     <th >任务创建时间</th>
                     <th >任务取消时间</th>
@@ -208,6 +206,7 @@
             <tbody id="unfixbody">
             {% for task in alltasklist %}
             <tr >
+                <td>{{task.tb_task_info_content.fileuploadname}}</td>
                 <td>{{task.tb_task_info_status}}</td>
                 <td>{{task.tb_task_info_createtime}}</td>
                 <td>{{task.tb_task_info_canceltime}}</td>
