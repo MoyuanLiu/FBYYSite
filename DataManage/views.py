@@ -19,10 +19,10 @@ import os
 @csrf_exempt
 def ztcmanage(request,pagenum):
     account = request.session['usenname']
-    querypermission = get_permission_by_account(account, 'ztcmanage', 'query')
-    editpermission = get_permission_by_account(account, 'ztcmanage', 'edit')
-    delpermission = get_permission_by_account(account, 'ztcmanage', 'del')
-    uploadpermission = get_permission_by_account(account, 'ztcmanage', 'upload')
+    querypermission = get_permission_by_account(account, 'ztcdatamanage', 'query')
+    editpermission = get_permission_by_account(account, 'ztcdatamanage', 'edit')
+    delpermission = get_permission_by_account(account, 'ztcdatamanage', 'del')
+    uploadpermission = get_permission_by_account(account, 'ztcdatamanage', 'upload')
     ztclist = get_ztc_data_by_permission(querypermission)
     paginator = Paginator(ztclist, 8)
     totalpages = paginator.num_pages
@@ -46,11 +46,11 @@ def ztcmanage(request,pagenum):
 def ztcquery(request,pagenum):
     if request.method == 'POST':
         account = request.session['usenname']
-        querypermission = get_permission_by_account(account, 'ztcmanage', 'query')
+        querypermission = get_permission_by_account(account, 'ztcdatamanage', 'query')
         departments = querypermission['departlist']
         queryform = ZTCQueryForm(request.POST)
-        editpermission = get_permission_by_account(account, 'ztcmanage', 'edit')
-        delpermission = get_permission_by_account(account, 'ztcmanage', 'del')
+        editpermission = get_permission_by_account(account, 'ztcdatamanage', 'edit')
+        delpermission = get_permission_by_account(account, 'ztcdatamanage', 'del')
         editpermissionstorecodelist = get_permission_store_code_list(editpermission['storelist'])
         delpermissionstorecodelist = get_permission_store_code_list(delpermission['storelist'])
         if queryform.is_valid():
@@ -118,7 +118,7 @@ def ztc_ajax_store(request):
         departcode = request.GET.get('depart_code', None)
         if departcode:
             account = request.session['usenname']
-            querypermission = get_permission_by_account(account, 'ztcmanage', 'query')
+            querypermission = get_permission_by_account(account, 'ztcdatamanage', 'query')
             data = get_store_by_department(departcode,querypermission['storelist'])
             result = serializers.serialize('json', data)
             return JsonResponse(result, safe=False)
@@ -130,7 +130,7 @@ def ztc_upload_ajax_store(request):
         departcode = request.GET.get('depart_code', None)
         if departcode:
             account = request.session['usenname']
-            uploadpermission = get_permission_by_account(account, 'ztcmanage', 'upload')
+            uploadpermission = get_permission_by_account(account, 'ztcdatamanage', 'upload')
             data = get_store_by_department(departcode,uploadpermission['storelist'])
             result = serializers.serialize('json', data)
             return JsonResponse(result, safe=False)
