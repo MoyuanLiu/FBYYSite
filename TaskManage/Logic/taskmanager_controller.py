@@ -32,6 +32,7 @@ def get_current_user(account):
     return TbUserInfo.objects.get_user_by_account(account)
 
 def runbackgroundserver():
+    logger.info("线程启动")
     gettaskconditionlist=[]
     gettaskconditionlist.append('任务未完成')
     gettaskconditionlist.append('任务进行中')

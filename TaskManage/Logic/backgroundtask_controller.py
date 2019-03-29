@@ -9,6 +9,7 @@ import operator
 from Utils.FileOptUtil import *
 from Utils.StringUtil import *
 import logging
+from FBYYSite.settings_production import BASE_DIR
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -32,19 +33,19 @@ def expiretaskbyexpiredate():
 def runimporttask(taskobj):
     logger.info("跑导入任务")
     cf = configparser.ConfigParser()
-    cf.read("Conf/project.conf", encoding='UTF-8')
+    cf.read(os.path.join(BASE_DIR,"Conf/project.conf"), encoding='UTF-8')
     checklistdirlist = []
     taskcode = taskobj.tb_task_info_code
     if taskobj.tb_task_info_code != 'productuploadimporttask':
         logger.info(taskcode)
         taskchecklistconfstr = 'CSD_' + taskcode
-        checklistdir = cf.get('ImportCheckServicesDir', taskchecklistconfstr)
+        checklistdir = os.path.join(BASE_DIR,cf.get('ImportCheckServicesDir', taskchecklistconfstr))
         checklistdirlist.append(checklistdir)
     else:
         taskchecklistconfstr1 = 'CSD_' + taskcode
         taskchecklistconfstr2 = 'CSD_old' + taskcode
-        checklistdir = cf.get('ImportCheckServicesDir', taskchecklistconfstr1)
-        oldchecklistdir = cf.get('ImportCheckServicesDir', taskchecklistconfstr2)
+        checklistdir = os.path.join(BASE_DIR,cf.get('ImportCheckServicesDir', taskchecklistconfstr1))
+        oldchecklistdir = os.path.join(BASE_DIR,cf.get('ImportCheckServicesDir', taskchecklistconfstr2))
         checklistdirlist.append(checklistdir)
         checklistdirlist.append(oldchecklistdir)
     taskpath = json.loads(taskobj.tb_task_info_content)["savepath"]
