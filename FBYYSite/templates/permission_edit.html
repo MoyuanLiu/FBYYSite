@@ -179,7 +179,7 @@ function submitURP(){
             </table>
 
           </div>
-     <select class="form-control" id="selpermission" name="selpermission" multiple style="min-width:200px"  >
+     <select class="form-control" id="selpermission" name="selpermission" multiple style="min-width:200px" hidden >
         {% for permissioninfo in permissionlist %}
          <option value={{permissioninfo.permission_info_value_str}}>
              {{permissioninfo.permission_info_text_str}}
