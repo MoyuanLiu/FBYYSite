@@ -16,6 +16,7 @@ from SiteLogin.views import logout
 @csrf_exempt
 def usermanage(request,pagenum):
         userlist = TbUserInfo.objects.all()
+        userlist = user_list(userlist)
         paginator = Paginator(userlist, 8)
         totalpages = paginator.num_pages
         queryform = UserQueryForm()
@@ -29,7 +30,6 @@ def usermanage(request,pagenum):
         except EmptyPage:
             currentpage = totalpages
             userlist = paginator.page(currentpage)
-        userlist = user_list(userlist)
         return render(request,"user_manage.html",locals())
 
 
@@ -66,7 +66,7 @@ def userdel(request):
 
 @csrf_exempt
 def useradd(request):
-    departmentlist = get_all_departments()
+    departments = get_all_departments()
     if request.method == 'GET':
         form = UserAddForm()
         return render(request,"user_add.html",locals())

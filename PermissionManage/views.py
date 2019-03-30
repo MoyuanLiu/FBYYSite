@@ -117,6 +117,7 @@ def rolequery(request,pagenum):
 @csrf_exempt
 def permissionmanage(request,pagenum):
     userlist = get_all_users()
+    userlist = user_role_list(userlist)
     paginator = Paginator(userlist, 8)
     totalpages = paginator.num_pages
     queryform = PermissionQueryForm()
@@ -133,7 +134,6 @@ def permissionmanage(request,pagenum):
     except EmptyPage:
         currentpage = totalpages
         userlist = paginator.page(currentpage)
-    userlist = user_role_list(userlist)
     return render(request, "permission_manage.html", locals())
 
 @csrf_exempt
