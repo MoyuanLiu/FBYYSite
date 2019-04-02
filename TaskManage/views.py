@@ -35,6 +35,7 @@ def taskmanage(request,pagenum):
 @csrf_exempt
 def startbgtaskservice(request):
     #p = Process(target=runbackgroundserver)
+    logger.info("开启后台进程！！！")
     if threadlist:
         savebgthreadobj = threadlist[-1]
         if savebgthreadobj.isAlive():
