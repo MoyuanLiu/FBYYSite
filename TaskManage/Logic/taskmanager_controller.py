@@ -50,3 +50,27 @@ def runbackgroundserver():
         else:
             logger.info('暂时没有任务休眠5秒')
             time.sleep(5)
+
+def task_query(formdata):
+    condition = Q()
+    if formdata['taskcreatedatewhetherflag']:
+        condition.children.append(('tb_task_info_createtime__contains', formdata['taskcreatedate'].strftime('%Y/%m/%d')))
+    if formdata['taskexpiredateewhetherflag']:
+        condition.children.append(('tb_task_info_expire_date', formdata['taskexpiredate'].strftime('%Y/%m/%d')))
+    if formdata['taskcanceldatewhetherflag']:
+        condition.children.append(('tb_task_info_canceltime__contains', formdata['taskcanceldate'].strftime('%Y/%m/%d')))
+    if formdata['taskstartdateewhetherflag']:
+        condition.children.append(('tb_task_info_starttime__contains', formdata['taskstartdate'].strftime('%Y/%m/%d')))
+    if formdata['taskenddateewhetherflag']:
+        condition.children.append(('tb_task_info_endtime__contains', formdata['taskenddate'].strftime('%Y/%m/%d')))
+
+
+    if formdata['taskid'] != '' and formdata['taskid']:
+        condition.children.append(('idtb_task_info', int(formdata['taskid'])))
+    if formdata['taskuploadfilename'] != '' and formdata['taskuploadfilename']:
+        condition.children.append(('tb_task_info_content__contains', formdata['taskuploadfilename']))
+    if formdata['taskuserid'] != '' and formdata['taskuserid']:
+        condition.children.append(('tb_task_info_user_id', formdata['taskuserid']))
+
+    query_tasklist = TbTaskInfo.objects.filter(condition)
+    return query_tasklist

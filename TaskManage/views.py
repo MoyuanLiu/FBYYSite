@@ -16,21 +16,23 @@ threadlist=[]
 def taskmanage(request,pagenum):
     account = request.session['usenname']
     curuser = get_current_user(account)
-    alltasklist = get_task_list_by_user(account)
-    paginator = Paginator(alltasklist, 8)
+    tasklist = get_task_list_by_user(account)
+    paginator = Paginator(tasklist, 8)
     totalpages = paginator.num_pages
     queryform = AllTaskQueryForm()
     currentpage = pagenum
     users = get_all_users_by_account(account)
+    userid = curuser.idtb_user_info
+    issuperuserflag = curuser.tb_user_info_issuperuser
     try:
-        alltasklist = paginator.page(currentpage)
+        tasklist = paginator.page(currentpage)
     except PageNotAnInteger:
         currentpage = 1
-        alltasklist = paginator.page(currentpage)
+        tasklist = paginator.page(currentpage)
     except EmptyPage:
         currentpage = totalpages
-        alltasklist = paginator.page(currentpage)
-    alltasklist = task_info_list(alltasklist)
+        tasklist = paginator.page(currentpage)
+    tasklist = task_info_list(tasklist)
     return render(request, "task_manage.html", locals())
 @csrf_exempt
 def startbgtaskservice(request):
@@ -67,6 +69,33 @@ def startbgtaskservice(request):
         except:
             alertmsg = 'error'
         return render(request, "bgtaskservice_result.html", locals())
+
+@csrf_exempt
+def taskquery(request,pagenum):
+    if request.method == 'POST':
+        queryform = AllTaskQueryForm(request.POST)
+        account = request.session['usenname']
+        curuser = get_current_user(account)
+        users = get_all_users_by_account(account)
+        issuperuserflag = curuser.tb_user_info_issuperuser
+        if queryform.is_valid():
+            cd = queryform.cleaned_data
+            tasklist = task_query(cd)
+            paginator = Paginator(tasklist, 8)
+            totalpages = paginator.num_pages
+            currentpage = pagenum
+            try:
+                tasklist = paginator.page(currentpage)
+            except PageNotAnInteger:
+                currentpage = 1
+                tasklist = paginator.page(currentpage)
+            except EmptyPage:
+                currentpage = totalpages
+                tasklist = paginator.page(currentpage)
+            tasklist = task_info_list(tasklist)
+            return render(request,'task_query.html',locals())
+        else:
+            return render(request,'task_query.html',locals())
 
 
 

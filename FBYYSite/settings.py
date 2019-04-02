@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'UserManage',
     'DataManage',
     'PermissionManage',
-    'TaskManage'
+    'TaskManage',
+    'ReportManage'
 ]
 
 MIDDLEWARE = [

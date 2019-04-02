@@ -1,0 +1,148 @@
+{% extends "task_manage.html" %}
+
+{% block emptymsg %}<strong>没有符合查询条件的数据，请检查查询条件！！</strong>{% endblock %}
+
+{% if tasklist %}
+<form id="id_queryform" action="/fbyysite/taskmanage/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="id_taskid">任务ID:&nbsp;&nbsp;</label>
+            {{ queryform.taskid }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.taskid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_taskuploadfilename">任务上传文件名称:&nbsp;&nbsp;</label>
+            {{ queryform.taskuploadfilename }}
+        </div>
+
+        &nbsp;&nbsp;{{ queryform.taskuploadfilename.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="seltaskstatus">任务状态:&nbsp;&nbsp;</label>
+            <select class="form-control" id="seltaskstatus" name="seltaskstatus">
+                <option value=''>请选择</option>
+                <option value='任务未完成'>任务未完成</option>
+                <option value='任务进行中'>任务进行中</option>
+                <option value='任务已完成'>任务已完成</option>
+                <option value='任务已取消'>任务已取消</option>
+                <option value='任务已失败'>任务已失败</option>
+                <option value='文件已过期'>任务已过期</option>
+            </select>
+        </div>
+        {% if issuperuserflag %}
+           <div class="form-group p-2 m-2">
+            <label for="seltaskstatus">创建用户:&nbsp;&nbsp;</label>
+            <select class="form-control" id="taskuserid" name="taskuserid">
+                <option value=''>请选择</option>
+                {% for user in users%}
+                <option value={{user.idtb_user_info}}>{{user.tb_user_info_nickname}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% else %}
+        <input type="hidden" value={{userid}} id="taskuserid" name="taskuserid">
+        {% endif %}
+        <div class="form-group p-2 m-2">
+            <label for="id_taskcreatedate">创建日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.taskcreatedatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.taskcreatedate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.taskcreatedate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_taskexpiredate">过期日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.taskexpiredateewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.taskexpiredate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.taskexpiredate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_taskexpiredate">取消日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.taskcanceldatewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.taskcanceldate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.taskcanceldate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_taskexpiredate">开始日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.taskstartdateewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.taskstartdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.taskstartdate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="id_taskexpiredate">结束日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.taskenddateewhetherflag }}
+                    </div>
+                </div>
+            {{queryform.taskenddate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.taskenddate.errors }}&nbsp;&nbsp;
+        </div>
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="/fbyysite/taskmanage/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部数据</a>
+        </div>
+    </form>
+{% block pageination %}
+<div class="d-inline-flex p-3 container-fluid">
+    <ul class="pagination">
+        {% if tasklist.has_previous %}
+        <li class="page-item"><a class="page-link" href="#" onclick="querytask(1)">首页</a></li>
+        <li class="page-item"><a class="page-link" href="#" onclick="querytask({{tasklist.previous_page_number}})">上一页</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+        {% endif %}
+        <li class="page-item active"><a class="page-link" href="#" onclick="querytask({{currentpage}})">{{currentpage}}</a></li>
+        {% if alltasklist.has_next %}
+        <li class="page-item"><a class="page-link" href="#" onclick="querytask({{tasklist.next_page_number}})">下一页</a></li>
+        <li class="page-item"><a class="page-link" href="#" onclick="querytask({{totalpages}})">尾页</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+        {% endif %}
+        <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+        <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+        <li class="page-item">
+            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+        </li>
+    </ul>
+</div>
+<script>
+    function querytask(querypage){
+        $("#curform").attr("action","/fbyysite/taskmanage/query/"+querypage);
+        $("#curform").submit();
+    }
+      $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                   querytask(jumppagenum);
+                }
+             });
+</script>
+{% endblock %}
+{% endif %}

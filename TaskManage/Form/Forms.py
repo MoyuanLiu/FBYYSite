@@ -8,7 +8,6 @@ class AllTaskQueryForm(forms.Form):
     taskcanceldatewhetherflag = forms.BooleanField(required=False, widget=forms.CheckboxInput())
     taskstartdateewhetherflag = forms.BooleanField(required=False, widget=forms.CheckboxInput())
     taskenddateewhetherflag = forms.BooleanField(required=False, widget=forms.CheckboxInput())
-    taskuseridflag = forms.BooleanField(required=False, widget=forms.CheckboxInput())
     taskuserid = forms.CharField(required=False)
     seltaskstatus = forms.CharField(required=False)
     taskcreatedate = forms.DateField(required=False, widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': '任务创建日期:年/月/日'}))
