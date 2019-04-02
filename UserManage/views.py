@@ -211,7 +211,11 @@ def accountemailchangeconfirm(request,tocken):
         renew_user_eamil(cd)
         return
 
-
+@csrf_exempt
 def renew_user_eamil(formdata):
     user = TbUserInfo.objects.get_user_by_id(formdata['userid'])
     user.tb_user_info_email = formdata['email']
+
+@csrf_exempt
+def user_cal(request):
+    return

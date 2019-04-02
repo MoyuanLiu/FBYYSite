@@ -61,7 +61,9 @@
         </div>
 
         <div class="btn-group p-3 text-center">
+            {% if issuperuserflag %}
             <button class="btn btn-success text-white ml-auto" type="button" data-toggle="modal" data-target="#openModal" ><i class="fa fa-rocket fa-lg"></i>开启后台任务服务</button>
+            {% endif %}
             <a class="btn btn-info text-white ml-auto" href="/fbyysite/taskmanage/visualshow/{{userid}}"><i class="bar-chart fa-lg"></i>查看任务统计</a>
         </div>
 
@@ -97,6 +99,19 @@
                 <option value='文件已过期'>任务已过期</option>
             </select>
         </div>
+        {% if issuperuserflag %}
+           <div class="form-group p-2 m-2">
+            <label for="seltaskstatus">创建用户:&nbsp;&nbsp;</label>
+            <select class="form-control" id="taskuserid" name="taskuserid">
+                <option value=''>请选择</option>
+                {% for user in users%}
+                <option value={{user.idtb_user_info}}>{{user.tb_user_info_nickname}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% else %}
+        <input type="hidden" value={{userid}} id="taskuserid" name="taskuserid">
+        {% endif %}
         <div class="form-group p-2 m-2">
             <label for="id_taskcreatedate">创建日期:&nbsp;&nbsp;</label>
             <div class="input-group ">
@@ -168,7 +183,7 @@
   $(".errorlist li").addClass("list-group-item-danger")
 </script>
     <hr/>
-    {% if alltasklist %}
+    {% if tasklist %}
     <div class="d-inline-flex table-responsive" style="width:100%;height:100%;position: relative;">
         <table  class="table" style="width:60%;height:100%;">
             <thead class="thead-light" style="white-space:nowrap;">
@@ -180,7 +195,7 @@
                 </tr>
             </thead>
             <tbody id="fixbody">
-            {% for task in alltasklist %}
+            {% for task in tasklist %}
             <tr >
                 <td >{{task.idtb_task_info}}</td>
                 <td>{{task.tb_task_info_name}}</td>
@@ -204,7 +219,7 @@
                 </tr>
             </thead>
             <tbody id="unfixbody">
-            {% for task in alltasklist %}
+            {% for task in tasklist %}
             <tr >
                 <td>{{task.tb_task_info_content.fileuploadname}}</td>
                 <td>{{task.tb_task_info_status}}</td>
@@ -235,16 +250,16 @@
 
         <div class="d-inline-flex p-3 container-fluid">
                 <ul class="pagination">
-                    {% if alltasklist.has_previous %}
+                    {% if tasklist.has_previous %}
                     <li class="page-item"><a class="page-link" href="/fbyysite/taskmanage/pagenum/1">首页</a></li>
-                    <li class="page-item"><a class="page-link" href="/fbyysite/taskmanage/pagenum/{{alltasklist.previous_page_number}}">上一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/taskmanage/pagenum/{{tasklist.previous_page_number}}">上一页</a></li>
                     {% else %}
                     <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
                     <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
                     {% endif %}
                     <li class="page-item active"><a class="page-link" href="/fbyysite/taskmanage/pagenum/{{currentpage}}">{{currentpage}}</a></li>
-                    {% if alltasklist.has_next %}
-                    <li class="page-item"><a class="page-link" href="/fbyysite/taskmanage/pagenum/{{alltasklist.next_page_number}}">下一页</a></li>
+                    {% if tasklist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/taskmanage/pagenum/{{tasklist.next_page_number}}">下一页</a></li>
                     <li class="page-item"><a class="page-link" href="/fbyysite/taskmanage/pagenum/{{totalpages}}">尾页</a></li>
                     {% else %}
                     <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>

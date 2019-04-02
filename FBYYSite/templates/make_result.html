@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    {% ifequal alertmsg 'success'%}
+        <div class="container-fluid alert alert-success">
+            <strong>报表制作成功</strong>
+            <text>{{alertdetail}}</text>
+        </div>
+    {% endifequal %}
+    {% ifequal alertmsg 'warning'%}
+        <div class="container-fluid alert alert-warning">
+            <strong>校验未通过</strong>
+            <text>{{alertdetail}}</text>
+        </div>
+    {% endifequal %}
+    {% ifequal alertmsg 'fail'%}
+        <div class="container-fluid alert alert-danger">
+            <strong>报表制作失败</strong>
+            <text>{{alertdetail}}</text>
+        </div>
+    {% endifequal %}
+
+
+    <script>
+    setTimeout(function(){ window.parent.$('#modalclose').click(); }, 1500)
+    </script>
+<!--
+$(setTimeout(function(){
+
+        // $(window.parent.document).find('#GetResultBtn').click();     //两种写法都可以，下面的那种简洁一点
+        window.parent.$('#modalclose').click();
+    }, 3000);
+    );
+-->
+</body>
+{% endblock %}

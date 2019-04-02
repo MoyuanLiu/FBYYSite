@@ -20,6 +20,7 @@ from UserManage import views as umview
 from DataManage import views as dmview
 from PermissionManage import views as pmview
 from TaskManage import views as tmview
+from ReportManage import views as rmview
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
@@ -106,6 +107,10 @@ urlpatterns = [
     re_path(r'fbyysite/datamanage/storage/upload/taskquery/(\d+)',dmview.storageuploadtaskquery),
     re_path(r'fbyysite/datamanage/store/upload/taskquery/(\d+)',dmview.storeuploadtaskquery),
     re_path(r'fbyysite/taskmanage/pagenum/(\d+)', tmview.taskmanage),
+    re_path(r'fbyysite/taskmanage/query/(\d+)',tmview.taskquery),
     path('fbyysite/taskmanage/openbgtaskservice',tmview.startbgtaskservice),
-
+    path('fbyysite/usermanage/visualshow/',umview.user_cal),
+    re_path(r'fbyysite/reportmanage/cts/pagenum/(\d+)',rmview.ctsmanage),
+    re_path(r'fbyysite/reportmanage/cts/query/(\d+)',rmview.ctsquery),
+    path('fbyysite/reportmanage/cts/make',rmview.ctsmake),
 ]
