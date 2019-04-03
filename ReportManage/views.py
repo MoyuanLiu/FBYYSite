@@ -58,13 +58,13 @@ def kckmanage(request,pagenum):
     addpermission = get_permission_by_account(account, 'kcklistmanage', 'add')
     departments = querypermission['departlist']
     kcklist = get_kcklist_by_permission(querypermission)
+    kcklist = kck_info_list(kcklist)
     paginator = Paginator(kcklist, 8)
     totalpages = paginator.num_pages
     queryform = KckQueryForm()
     currentpage = pagenum
     editpermissionstorecodelist = get_permission_store_code_list(editpermission['storelist'])
     delpermissionstorecodelist = get_permission_store_code_list(delpermission['storelist'])
-    kcklist = kck_info_list(kcklist)
     try:
         kcklist = paginator.page(currentpage)
     except PageNotAnInteger:
@@ -73,7 +73,6 @@ def kckmanage(request,pagenum):
     except EmptyPage:
         currentpage = totalpages
         kcklist = paginator.page(currentpage)
-
     return render(request, "kcklist_manage.html", locals())
 
 @csrf_exempt
@@ -151,6 +150,7 @@ def kckquery(request,pagenum):
         if queryform.is_valid():
             cd = queryform.cleaned_data
             kcklist = kck_query(cd)
+            kcklist = kck_info_list(kcklist)
             paginator = Paginator(kcklist, 8)
             totalpages = paginator.num_pages
             currentpage = pagenum
@@ -167,6 +167,7 @@ def kckquery(request,pagenum):
         else:
             departments = querypermission['departlist']
             kcklist = get_kck_data_by_permission(querypermission)
+            kcklist = kck_info_list(kcklist)
             paginator = Paginator(kcklist, 8)
             totalpages = paginator.num_pages
             currentpage = pagenum

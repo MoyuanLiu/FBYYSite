@@ -70,7 +70,7 @@ def roleeditcheck(request):
         if form.is_valid():
             cd = form.cleaned_data
             update_role_edit(cd)
-            return redirect(request.POST.get('refererurl'))
+            return redirect("fbyysite/rolemanage/pagenum/1")
         else:
             role = get_role_by_id(request.POST.get('roleid'))
             modules = get_all_modules()
@@ -113,6 +113,8 @@ def rolequery(request,pagenum):
             return render(request,'role_query.html',locals())
         else:
             return render(request,'role_query.html',locals())
+    else:
+        return redirect("fbyysite/rolemanage/pagenum/1")
 
 @csrf_exempt
 def permissionmanage(request,pagenum):
@@ -224,4 +226,6 @@ def querypermission(request,pagenum):
             return render(request, "permission_query.html", locals())
         else:
             return render(request, "permission_query.html", locals())
+    else:
+        return redirect("fbyysite/permissionmanage/pagenum/1")
 

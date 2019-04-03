@@ -161,7 +161,7 @@ $("#kckseldepart").change(function() {
             {% for kck in kcklist %}
             <tr>
                 <td>{{kck.idtb_kck}}</td>
-                <td><a href={{ kck.tb_kck_product_link}} >{{kck.tb_kck_product_id}}</a></td>
+                <td><a href="{{ kck.tb_kck_product_link }}" target="blank">{{kck.tb_kck_product_id}}</a></td>
                 <td>{{kck.tb_kck_product_color_num}}</td>
                 <td>{{kck.tb_kck_product_category}}</td>
                 <td>{{kck.tb_kck_product_shelf_date}}</td>
@@ -187,7 +187,7 @@ $("#kckseldepart").change(function() {
             </tbody>
         </table>
         {% block pageination %}
-        {% if kcklist %}
+        {% if kckinfolist %}
         <div class="d-inline-flex p-3 container-fluid">
                 <ul class="pagination">
                     {% if kcklist.has_previous %}
