@@ -68,3 +68,35 @@ def update_kck_edit(formdata):
 def kck_del(kckid):
     deluser = TbKck.objects.get(idtb_kck=int(kckid))
     deluser.delete()
+
+def kck_query(formdata):
+    condition = Q()
+    if formdata['kckshelfdateflag']:
+        condition.children.append(('tb_kck_product_shelf_date', formdata['kckshelfdate'].strftime('%Y-%m-%d')))
+    if formdata['kckproductid'] != '':
+        condition.children.append(('tb_kck_product_id', formdata['kckproductid']))
+    if formdata['kckproductcolornum'] != '':
+        condition.children.append(('tb_kck_product_color_num', formdata['kckproductcolornum']))
+    if formdata['kckseldepart'] != '':
+        condition.children.append(('tb_kck_depart_code', formdata['kckseldepart']))
+    if formdata['kckselstore'] != '':
+        condition.children.append(('tb_kck_store_code', formdata['kckselstore']))
+    query_kcklist = TbKck.objects.filter(condition)
+    return query_kcklist
+
+def get_kck_data_by_permission(querypermissiondict):
+    departcodelist = []
+    storecodelist = []
+    for departobj in querypermissiondict['departlist']:
+        departcodelist.append(departobj.tb_department_info_code)
+    for storeobj in querypermissiondict['storelist']:
+        storecodelist.append(storeobj.tb_store_code)
+    condition = Q()
+    if departcodelist:
+        condition.children.append(('tb_ztc_depart_code__in', departcodelist))
+    if storecodelist:
+        condition.children.append(('tb_ztc_store_code__in', storecodelist))
+    if condition.children:
+        return TbKck.objects.filter(condition)
+    else:
+        return TbKck.objects.all()

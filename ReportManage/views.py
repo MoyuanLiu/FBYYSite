@@ -136,3 +136,46 @@ def kckdel(request):
         kck = TbKck.objects.get(idtb_kck=int(request.POST.get('delkckid')))
         kck_del(kck.idtb_kck)
         return redirect(refererurl)
+
+@csrf_exempt
+def kckquery(request,pagenum):
+    if request.method == 'POST':
+        account = request.session['usenname']
+        querypermission = get_permission_by_account(account, 'kcklistmanage', 'query')
+        departments = querypermission['departlist']
+        queryform = KckQueryForm(request.POST)
+        editpermission = get_permission_by_account(account, 'kcklistmanage', 'edit')
+        delpermission = get_permission_by_account(account, 'kcklistmanage', 'del')
+        editpermissionstorecodelist = get_permission_store_code_list(editpermission['storelist'])
+        delpermissionstorecodelist = get_permission_store_code_list(delpermission['storelist'])
+        if queryform.is_valid():
+            cd = queryform.cleaned_data
+            kcklist = kck_query(cd)
+            paginator = Paginator(kcklist, 8)
+            totalpages = paginator.num_pages
+            currentpage = pagenum
+            try:
+                kcklist = paginator.page(currentpage)
+            except PageNotAnInteger:
+                currentpage = 1
+                kcklist = paginator.page(currentpage)
+            except EmptyPage:
+                currentpage = totalpages
+                kcklist = paginator.page(currentpage)
+            kcklist = kck_info_list(kcklist)
+            return render(request,'kck_query.html',locals())
+        else:
+            departments = querypermission['departlist']
+            kcklist = get_kck_data_by_permission(querypermission)
+            paginator = Paginator(kcklist, 8)
+            totalpages = paginator.num_pages
+            currentpage = pagenum
+            try:
+                kcklist = paginator.page(currentpage)
+            except PageNotAnInteger:
+                currentpage = 1
+                kcklist = paginator.page(currentpage)
+            except EmptyPage:
+                currentpage = totalpages
+                kcklist = paginator.page(currentpage)
+            return render(request, 'kck_query.html', locals())

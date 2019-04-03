@@ -119,4 +119,6 @@ urlpatterns = [
     path('fbyysite/reportmanage/kck/edit/kckeditcheck',rmview.kckeditcheck),
     re_path(r'fbyysite/reportmanage/kck/edit/(.+)',rmview.kckedit),
     path('fbyysite/reportmanage/kck/delete',rmview.kckdel),
+    re_path(r'fbyysite/reportmanage/kck/query/(\d+)',rmview.kckquery),
+
 ]
