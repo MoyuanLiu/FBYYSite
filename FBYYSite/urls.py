@@ -113,4 +113,10 @@ urlpatterns = [
     re_path(r'fbyysite/reportmanage/cts/pagenum/(\d+)',rmview.ctsmanage),
     re_path(r'fbyysite/reportmanage/cts/query/(\d+)',rmview.ctsquery),
     path('fbyysite/reportmanage/cts/make',rmview.ctsmake),
+    re_path(r'fbyysite/reportmanage/kck/pagenum/(\d+)',rmview.kckmanage),
+    re_path(r'fbyysite/reportmanage/kck/ajaxstores?[^/]+',rmview.kck_ajax_store),
+    path('fbyysite/reportmanage/kck/add/',rmview.kckadd),
+    path('fbyysite/reportmanage/kck/edit/kckeditcheck',rmview.kckeditcheck),
+    re_path(r'fbyysite/reportmanage/kck/edit/(.+)',rmview.kckedit),
+    path('fbyysite/reportmanage/kck/delete',rmview.kckdel),
 ]

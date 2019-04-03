@@ -1,4 +1,3 @@
-
 from TaskManage.Logic.backgroundtask_controller import *
 
 logging.basicConfig(level=logging.DEBUG)

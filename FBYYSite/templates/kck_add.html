@@ -1,0 +1,107 @@
+{% extends "registe.html" %}
+{% block title %}添加开车款{% endblock %}
+{% block content %}
+{% block main %}
+<div class="container" style="margin-top:100px; width:40em;">
+    {% if form.errors %}
+        <p class="text-danger">
+            请修改以下标出的错误
+        </p>
+    {% endif %}
+  <form action="" method="post">
+    <!-- {% csrf_token %} -->
+    <div class="form-group">
+      {{ form.kckproductid.errors }}
+      <label for="id_kckproductid">宝贝ID:</label>
+      {{ form.kckproductid }}
+    </div>
+    <div class="form-group">
+      {{ form.kckproductcolornum.errors }}
+      <label for="id_kckproductcolornum">货号(到色):</label>
+      {{ form.kckproductcolornum }}
+
+    </div>
+    <div class="form-group">
+      {{ form.kckproductcategory.errors }}
+      <label for="id_kckproductcategory">类目:</label>
+      {{ form.kckproductcategory }}
+
+    </div>
+    <div class="form-group">
+      {{ form.kckshelfdate.errors }}
+      <label for="id_kckshelfdate">上架日期:</label>
+      {{ form.kckshelfdate }}
+    </div>
+
+    <div class="form-group">
+      {{ form.kckseldepart.errors }}
+      <label for="kckseldepart">所在部门:</label>
+      <select class="form-control" id="kckseldepart" name="kckseldepart">
+        <option value=''>请选择部门</option>
+        {% for department in departments %}
+        <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      {{ form.kckselstore.errors }}
+      <label for="kckselstore">所在店铺:</label>
+      <select class="form-control" id="kckselstore" name="kckselstore">
+      </select>
+    </div>
+    <input type="submit" class="btn btn-primary" value="添加新款开车">
+    <a href="/fbyysite/reportmanage/kck/pagenum/1" class="btn btn-secondary" role="button">取消</a>
+  </form>
+  <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+
+  var depart_code = $("#kckseldepart").val();
+if(kckseldepart===''){
+$('#kckselstore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/reportmanage/kck/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#kckselstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#selstore').html(content)
+        },
+      });
+}
+$("#kckseldepart").change(function() {
+      var depart_code = $(this).val();
+      if(depart_code===''){
+            $('#kckselstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/reportmanage/kck/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#selstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#kckselstore').html(content)
+        },
+      });
+        }
+    });
+
+</script>
+</div>
+{% endblock %}
+{% endblock %}

@@ -44,23 +44,18 @@ def createctsdata(formdata):
 
     for record in tempres:
         product_num = record.tb_order_product_code
-        #print(product_num)
         if product_num[:-1] in reskeylist:
-            #print('已存在')
             res[product_num[:-1]]=res[product_num[:-1]]+1
         else:
             reskeylist.append(product_num[:-1])
             res[product_num[:-1]]=1
     reskeylist.clear()
-    #print(tempres)
-    #print(len(res.keys()))
     tbctslist=[]
     for cts in res.keys():
         curcts = TbCts(tb_cts_product_num=cts,
               tb_cts_sell_count=res[cts],
               tb_cts_cal_date=formdata['ctsmakedate'],
               tb_cts_cal_depart=formdata['ctsmakedepart'])
-        #print("%s:%s" %(cts,res[cts]))
         tbctslist.append(curcts)
     res.clear()
     try:

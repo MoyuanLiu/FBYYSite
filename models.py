@@ -118,6 +118,20 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class TbCck(models.Model):
+    idtb_cck = models.AutoField(primary_key=True)
+    tb_cck_product_id = models.CharField(max_length=45)
+    tb_cck_product_color_num = models.CharField(max_length=45)
+    tb_cck_product_category = models.CharField(max_length=45)
+    tb_cck_product_shelf_date = models.CharField(max_length=45)
+    tb_cck_store_id = models.CharField(max_length=45)
+    tb_cck_depart_id = models.CharField(max_length=45)
+
+    class Meta:
+        managed = False
+        db_table = 'tb_cck'
+
+
 class TbCharactorInfo(models.Model):
     idtb_charactor_info = models.AutoField(primary_key=True)
     tb_charactor_info_name = models.CharField(max_length=45, blank=True, null=True)

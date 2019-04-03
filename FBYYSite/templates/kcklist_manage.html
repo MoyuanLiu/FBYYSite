@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+{% block style %}
+<style>
+    ul {list-style-type:none;}
+</style>
+{% endblock %}
+{% block script %}
+<script>
+    function delconfirm(obj){
+        var tr = $(obj).parent().parent().parent();
+        var kckid = tr.children("td:nth-child(1)").text();
+        var kckproductid = tr.children("td:nth-child(2)").text();
+        var kckproductcolornum = tr.children("td:nth-child(3)").text();
+        $("#delitemid").val(kckid);
+        $("#delproductid").text(kckproductid);
+        $("#delproductcolornum").text(kckproductcolornum);
+        $("#delreferer").val(window.location.href);
+    }
+</script>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="container-fluid d-inline-flex d-flex justify-content-between">
+        <div class="p-2">
+            <h2>开车款列表</h2>
+        </div>
+        <div class="btn-group p-3 text-center">
+            <a class="btn btn-success text-white ml-auto" href="/fbyysite/reportmanage/kck/add/"><i class="fa fa-plus-square-o fa-lg"></i>添加新款开车</a>
+            <a class="btn btn-info text-white ml-auto" href="/fbyysite/reportmanage/kck/missquery/1"><i class="fa fa-search fa-lg"></i>遗漏查询</a>
+        </div>
+    </div>
+    <hr>
+    {% if queryform.errors %}
+        <div class="container-fluid alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>请修改以下错误</strong>
+        </div>
+        {% endif %}
+    <br>
+    <form id="id_queryform" action="/fbyysite/reportmanage/kck/query/1" method="post" class="form-inline">
+        <div class="form-group p-2 m-2">
+            <label for="id_kckproductid">宝贝id:&nbsp;&nbsp;</label>
+            {{ queryform.kckproductid }}
+        </div>
+         &nbsp;&nbsp;{{ queryform.kckproductid.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_kckproductcolornum">货号（到色）:&nbsp;&nbsp;</label>
+            {{ queryform.kckproductcolornum }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.kckproductcolornum.errors }}&nbsp;&nbsp;
+        <div class="form-group p-2 m-2">
+            <label for="id_kckproductcategory">用户邮箱:&nbsp;&nbsp;</label>
+            {{ queryform.kckproductcategory }}
+        </div>
+        &nbsp;&nbsp;{{ queryform.kckproductcategory.errors }}&nbsp;&nbsp;
+        <br>
+        <div class="form-group p-2 m-2">
+            <label for="kckseldepart">所在部门:&nbsp;&nbsp;</label>
+            <select class="form-control" id="kckseldepart" name="kckseldepart">
+              <option value=''>请选择部门</option>
+                {% for department in departments %}
+                    <option value={{ department.tb_department_info_code }}>{{ department.tb_department_info_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group p-2 m-2">
+            <label for="kckselstore">所在店铺:&nbsp;&nbsp;</label>
+            <select class="form-control" id="kckselstore" name="kckselstore">
+            </select>
+        </div>
+
+
+        <div class="form-group p-2 m-2">
+            <label for="id_kckshelfdate">上架日期:&nbsp;&nbsp;</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      {{ queryform.kckshelfdateflag }}
+                    </div>
+                </div>
+                    {{queryform.kckshelfdate}}
+            </div>
+            &nbsp;&nbsp;{{ queryform.kckshelfdate.errors }}
+        </div>
+        <div class="btn-group">
+            <button id="btnquery" type="submit" class="btn btn-primary"><i class="fa fa-search fa-lg"></i>查询</button>
+            <button type="reset" class="btn btn-secondary"><i class="fa fa-remove fa-lg"></i>重置</button>
+            <a class="btn btn-info" href="fbyysite/reportmanage/kck/pagenum/1"><i class="fa fa-user-circle fa-lg"></i>显示全部开车款</a>
+        </div>
+    </form>
+    <br>
+
+    <script>
+  $(".errorlist").addClass("list-group")
+  $(".errorlist li").addClass("list-group-item-danger")
+  $(".list-group").removeClass("errorlist")
+
+  var depart_code = $("#kckseldepart").val();
+if(depart_code===''){
+$('#kckselstore').empty();
+}else{
+      $.ajax({
+        url: '/fbyysite/reportmanage/kck/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#kckselstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#kckselstore').html(content)
+        },
+      });
+}
+$("#kckseldepart").change(function() {
+      var depart_code = $(this).val();
+        if(depart_code===''){
+            $('#kckselstore').empty();
+        }else{
+        $.ajax({
+        url: '/fbyysite/reportmanage/kck/ajaxstores',
+        data: {
+          'depart_code': depart_code
+        },
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+                  $('#kckselstore').empty();
+            var content='';
+            $.each($.parseJSON(data), function(i, item){
+                  content+='<option value='+item.fields.tb_store_code+'>'+item.fields.tb_store_code+'</option>'
+                });
+            $('#kckselstore').html(content)
+        },
+      });
+        }  
+    });
+
+</script>
+    <hr/>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>开车款id</th>
+                    <th>宝贝id</th>
+                    <th>货号(到色)</th>
+                    <th>类目</th>
+                    <th>上架日期</th>
+                    <th>所在店铺</th>
+                    <th>所属部门</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if kcklist %}
+            {% for kck in kcklist %}
+            <tr>
+                <td>{{kck.idtb_kck}}</td>
+                <td><a href={{ kck.tb_kck_product_link}} >{{kck.tb_kck_product_id}}</a></td>
+                <td>{{kck.tb_kck_product_color_num}}</td>
+                <td>{{kck.tb_kck_product_category}}</td>
+                <td>{{kck.tb_kck_product_shelf_date}}</td>
+                <td>{{kck.tb_kck_store_code}}</td>
+                <td>{{kck.tb_kck_depart_code}}</td>
+                <td>
+                    <div class="btn-group">
+                        {% if kck.tb_kck_store_code in editpermissionstorecodelist %}
+                        <a class="btn btn-primary text-white" href="/fbyysite/reportmanage/kck/edit/{{kck.idtb_kck}}"><i class="fa fa-edit fa-lg"></i>修改</a>
+                        {% endif %}
+                        {% if kck.tb_kck_store_code in delpermissionstorecodelist %}
+                        <button type="button" class="btn btn-danger text-white" onclick="delconfirm(this)" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o fa-lg"></i>删除</button>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-danger">
+                {% block emptymsg %}<strong>当前还没有任何用户</strong>{% endblock %}
+            </div>
+            {% endif %}
+            </tbody>
+        </table>
+        {% block pageination %}
+        {% if kcklist %}
+        <div class="d-inline-flex p-3 container-fluid">
+                <ul class="pagination">
+                    {% if kcklist.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/reportmanage/kck/pagenum/1">首页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/reportmanage/kck/pagenum/{{kcklist.previous_page_number}}">上一页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="/fbyysite/reportmanage/kck/pagenum/{{currentpage}}">{{currentpage}}</a></li>
+                    {% if kcklist.has_next %}
+                    <li class="page-item"><a class="page-link" href="/fbyysite/reportmanage/kck/pagenum/{{kcklist.next_page_number}}">下一页</a></li>
+                    <li class="page-item"><a class="page-link" href="/fbyysite/reportmanage/kck/pagenum/{{totalpages}}">尾页</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">尾页</a></li>
+                    {% endif %}
+                    <li class="page-item"><input id="pagenumber" type="number" class="form-control"  min="1" max="{{totalpages}}" value="{{currentpage}}" onkeyup="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}" onafterpaste="if(this.value>{{totalpages}}){this.value=''}else{if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}}"></li>
+                    <li class="page-item"><button type="button" class="btn" id="btnjumppage">跳转</button></li>
+                    <li class="page-item">
+                            <span class="form-control alert-success" >当前结果共有{{totalpages}}页</span>
+                    </li>
+                </ul>
+        </div>
+        <script>
+            $("#btnjumppage").on('click',function(){
+                var jumppagenum = $("#pagenumber").val();
+                if(jumppagenum===''){
+                }else{
+                    window.location.href="/fbyysite/reportmanage/kck/pagenum/" + jumppagenum;
+                }
+             });
+        </script>
+        {% endif %}
+        {% endblock %}
+    </div>
+    <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">删除开车款提示</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+
+            <div class="container">
+                <p class="text-center text-justify">确定要删除当前开车款吗？<br>宝贝ID为：<strong id="delproductid" class="text-danger"></strong><br>货号为：<strong id="delproductcolornum" class="text-danger"></strong></p>
+            </div>
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+            <form action="/fbyysite/reportmanage/kck/delete" method="post">
+                <input type="hidden" id="delitemid" name="delkckid">
+                <input type="hidden" id="delreferer" name="delreferer">
+                <button type="submit" id="delconfirm"  class="btn btn-danger text-white" >确认删除</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
