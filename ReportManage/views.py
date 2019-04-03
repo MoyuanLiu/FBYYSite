@@ -64,7 +64,7 @@ def kckmanage(request,pagenum):
     currentpage = pagenum
     editpermissionstorecodelist = get_permission_store_code_list(editpermission['storelist'])
     delpermissionstorecodelist = get_permission_store_code_list(delpermission['storelist'])
-
+    kcklist = kck_info_list(kcklist)
     try:
         kcklist = paginator.page(currentpage)
     except PageNotAnInteger:
@@ -73,7 +73,7 @@ def kckmanage(request,pagenum):
     except EmptyPage:
         currentpage = totalpages
         kcklist = paginator.page(currentpage)
-    kcklist = kck_info_list(kcklist)
+
     return render(request, "kcklist_manage.html", locals())
 
 @csrf_exempt
@@ -120,7 +120,7 @@ def kckeditcheck(request):
         if form.is_valid():
             cd = form.cleaned_data
             update_kck_edit(cd)
-            return redirect(request.POST.get('refererurl'))
+            return redirect('fbyysite/reportmanage/kck/pagenum/1')
         else:
             account = request.session['usenname']
             editpermission = get_permission_by_account(account, 'kcklistmanage', 'edit')
@@ -154,6 +154,7 @@ def kckquery(request,pagenum):
             paginator = Paginator(kcklist, 8)
             totalpages = paginator.num_pages
             currentpage = pagenum
+            kcklist = kck_info_list(kcklist)
             try:
                 kcklist = paginator.page(currentpage)
             except PageNotAnInteger:
@@ -162,7 +163,6 @@ def kckquery(request,pagenum):
             except EmptyPage:
                 currentpage = totalpages
                 kcklist = paginator.page(currentpage)
-            kcklist = kck_info_list(kcklist)
             return render(request,'kck_query.html',locals())
         else:
             departments = querypermission['departlist']
@@ -170,6 +170,7 @@ def kckquery(request,pagenum):
             paginator = Paginator(kcklist, 8)
             totalpages = paginator.num_pages
             currentpage = pagenum
+            kcklist = kck_info_list(kcklist)
             try:
                 kcklist = paginator.page(currentpage)
             except PageNotAnInteger:
@@ -179,3 +180,5 @@ def kckquery(request,pagenum):
                 currentpage = totalpages
                 kcklist = paginator.page(currentpage)
             return render(request, 'kck_query.html', locals())
+    else:
+        redirect("fbyysite/reportmanage/kck/pagenum/1")

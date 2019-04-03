@@ -47,7 +47,7 @@ def usereditcheck(request):
         if form.is_valid():
             cd = form.cleaned_data
             update_user_edit(cd)
-            return redirect(request.POST.get('refererurl'))
+            return redirect('fbyysite/usermanage/pagenum/1')
         else:
             user = TbUserInfo.objects.get_user_by_id(request.POST.get('userid'))
             departmentlist = get_all_departments()
@@ -101,6 +101,8 @@ def userquery(request,pagenum):
             return render(request,'user_query.html',locals())
         else:
             return render(request,'user_query.html',locals())
+    else:
+        return redirect('fbyysite/usermanage/pagenum/1')
 
 @csrf_exempt
 def accountmanage(request):

@@ -77,6 +77,8 @@ def kck_query(formdata):
         condition.children.append(('tb_kck_product_id', formdata['kckproductid']))
     if formdata['kckproductcolornum'] != '':
         condition.children.append(('tb_kck_product_color_num', formdata['kckproductcolornum']))
+    if formdata['kckproductcategory'] != '':
+        condition.children.append(('tb_kck_product_category', formdata['kckproductcategory']))
     if formdata['kckseldepart'] != '':
         condition.children.append(('tb_kck_depart_code', formdata['kckseldepart']))
     if formdata['kckselstore'] != '':
