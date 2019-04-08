@@ -70,5 +70,17 @@ def eamil_change_check(formdata):
     else:
         return False
 
+def caluserstore(allusers):
+    userstorekeylist = []
+    userstoredict={}
+    for user in allusers:
+        if user.tb_user_info_store_code in userstorekeylist:
+            userstoredict[user.tb_user_info_store_code] = userstoredict[user.tb_user_info_store_code] + 1
+        else:
+            userstorekeylist.append(user.tb_user_info_store_code)
+            userstoredict[user.tb_user_info_store_code] = 1
+    userstorekeylist.clear()
+    return userstoredict
+
 
 

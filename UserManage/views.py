@@ -220,4 +220,10 @@ def renew_user_eamil(formdata):
 
 @csrf_exempt
 def user_cal(request):
-    return
+    allusers = TbUserInfo.objects.all()
+    usercount = allusers.count()
+    userstoredict = caluserstore(allusers)
+    userstores = list(userstoredict.keys())
+    print(userstores)
+    storeusers = list(userstoredict.values())
+    return render(request,'user_cal.html',locals())

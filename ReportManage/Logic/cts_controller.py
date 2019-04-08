@@ -67,3 +67,32 @@ def createctsdata(formdata):
         tbctslist.clear()
         flag = False
     return flag
+
+def get_cts_data_by_permission(querypermissiondict):
+    departcodelist = []
+    for departobj in querypermissiondict['departlist']:
+        departcodelist.append(departobj.tb_department_info_code)
+    condition = Q()
+    if departcodelist:
+        condition.children.append(('tb_cts_cal_depart__in', departcodelist))
+    if condition.children:
+        return TbCts.objects.filter(condition).order_by('-tb_cts_cal_date')
+    else:
+        return TbCts.objects.all().order_by('-tb_cts_cal_date')
+
+
+def cts_query(formdata):
+    condition = Q()
+    if formdata['ctscaldateflag']:
+        condition.children.append(
+            ('tb_cts_cal_date__contains', formdata['ctscaldate'].strftime('%Y-%m-%d')))
+    if formdata['ctsproductnum'] != '':
+        condition.children.append(('tb_cts_product_num', formdata['ctsproductnum']))
+    if formdata['ctscaldepart'] != '':
+        condition.children.append(('tb_cts_cal_depart', formdata['ctscaldepart']))
+    if formdata['ctssellcountmax'] != '':
+        condition.children.append(('tb_cts_sell_count____lte', formdata['ctssellcountmax']))
+    if formdata['ctssellcountmin'] != '':
+        condition.children.append(('tb_cts_sell_count____gte', formdata['ctssellcountmin']))
+    query_ctslist = TbCts.objects.filter(condition).order_by('-tb_cts_cal_date')
+    return query_ctslist
