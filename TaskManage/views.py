@@ -14,7 +14,7 @@ threadlist=[]
 # Create your views here.
 @csrf_exempt
 def taskmanage(request,pagenum):
-    account = request.session['usenname']
+    account = request.session['username']
     curuser = get_current_user(account)
     tasklist = get_task_list_by_user(account)
     paginator = Paginator(tasklist, 8)

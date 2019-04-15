@@ -14,7 +14,9 @@ from django.core import serializers
 # Create your views here.
 @csrf_exempt
 def ctsmanage(request,pagenum):
-    ctslist = TbCts.objects.all().order_by('-tb_cts_cal_date')
+    account = request.session['usenname']
+    querypermission = get_permission_by_account(account, 'ctsmanage', 'query')
+    ctslist = get_cts_data_by_permission(querypermission)
     paginator = Paginator(ctslist, 8)
     totalpages = paginator.num_pages
     queryform = CtsQueryForm()
@@ -30,9 +32,46 @@ def ctsmanage(request,pagenum):
         currentpage = totalpages
         ctslist = paginator.page(currentpage)
     return render(request, "cts_manage.html", locals())
+
 @csrf_exempt
 def ctsquery(request,pagenum):
-    return
+    if request.method == 'POST':
+        account = request.session['usenname']
+        querypermission = get_permission_by_account(account, 'ctsmanage', 'query')
+        departments = querypermission['departlist']
+        queryform = CtsQueryForm(request.POST)
+        if queryform.is_valid():
+            cd = queryform.cleaned_data
+            ctslist = cts_query(cd)
+            paginator = Paginator(ctslist, 8)
+            totalpages = paginator.num_pages
+            currentpage = pagenum
+            try:
+                ctslist = paginator.page(currentpage)
+            except PageNotAnInteger:
+                currentpage = 1
+                ctslist = paginator.page(currentpage)
+            except EmptyPage:
+                currentpage = totalpages
+                ctslist = paginator.page(currentpage)
+            return render(request,'cts_query.html',locals())
+        else:
+            departments = querypermission['departlist']
+            ctslist = get_cts_data_by_permission(querypermission)
+            paginator = Paginator(ctslist, 8)
+            totalpages = paginator.num_pages
+            currentpage = pagenum
+            try:
+                ctslist = paginator.page(currentpage)
+            except PageNotAnInteger:
+                currentpage = 1
+                ctslist = paginator.page(currentpage)
+            except EmptyPage:
+                currentpage = totalpages
+                ctslist = paginator.page(currentpage)
+            return render(request, 'cts_query.html', locals())
+    else:
+        redirect("fbyysite/reportmanage/cts/pagenum/1")
 
 @csrf_exempt
 def ctsmake(request):
