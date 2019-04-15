@@ -21,6 +21,8 @@
 		fill: white;
 		text-anchor: middle;
 	}
+
+
 </style>
 {% endblock %}
 {% block script %}
@@ -45,7 +47,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="card text-center" style="width:300px;height:300px">
+                            <div class="card text-center" style="width:390px;height:327px">
                                 <div class="card-body m-auto " >
                                     <h2 class="card-title">当前用户总数：</h2><br/>
                                     <h1 class="display-1"><strong class="text-danger font-weight-bold">{{usercount}}</strong><small class="small">人</small></h1>
@@ -53,15 +55,24 @@
                             </div>
                         </td>
                         <td>
-                            <div class="card text-center" style="width:350px;height:300px">
+                            <div class="card text-center" >
                                 <div id="userstorepic" class="card-body m-auto " style="justify-content: center;">
                                     <h6 class="card-title">用户店铺分布图：</h6>
                                  </div>
                             </div>
                         </td>
-                        <td>
-                            <div class="card text-center" style="width:350px;height:300px">
-                                <div id="userrolepic" class="card-body m-auto " style="justify-content: center;">
+                        <td rowspan="2">
+                            <div class="card text-center" style="width:792px;height:662px">
+                                <div id="userstructurepic" class="card-body m-auto" style="justify-content: center;">
+                                    <h6 class="card-title">用户架构图：</h6>
+                                 </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <div class="card text-center" >
+                                <div id="userrolepic" class="card-body m-auto" style="justify-content: center;">
                                     <h6 class="card-title">用户角色占比图：</h6>
                                  </div>
                             </div>
@@ -156,7 +167,102 @@
 	        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
 	        .call(yAxis);
 
-	
+    var piewidth = 350;
+	var pieheight = 250;
+    var userrolesvg = d3.select("#userrolepic")
+	    .append("svg")
+	    .attr("width",piewidth)
+	    .attr("height",pieheight);
+    var userroleset = {{roleusers|safe}}
+    var pie = d3.layout.pie();
+    var piedata = pie(userroleset)
+    var outerRadius = 100;
+    var innerRadius = 50;
+    var arc = d3.svg.arc()
+        .innerRadius(innerRadius)
+        .outerRadius(outerRadius)
+    var arcs = userrolesvg.selectAll("g")
+        .data(piedata)
+        .enter()
+        .append("g")
+        .attr("transform","translate("+(piewidth/2)+","+(pieheight/2)+")");
+    var color = d3.scale.category20();
+    arcs.append("path")
+        .attr("fill",function(d,i){
+            return color(i);
+        })
+        .attr("d",function(d){
+            return arc(d);
+        });
+    arcs.append("text")
+        .attr("transform",function(d){
+            return "translate(" + arc.centroid(d) + ")";
+        })
+        .attr("text-anchor","middle")
+        .text(function(d){
+            return d.value;
+        });
+
+    var nodes = {{nodes|safe}}
+    var edges = {{edges|safe}}
+    var structurewidth = 800;
+	var structureheight = 600;
+	 var userstructuresvg = d3.select("#userstructurepic")
+	    .append("svg")
+	    .attr("width",structurewidth)
+	    .attr("height",structureheight);
+	var force = d3.layout.force()
+	    .nodes(nodes)
+	    .links(edges)
+	    .size([structurewidth,structureheight])
+	    .linkDistance(100)
+	    .charge([-400])
+
+	force.start()
+
+	var svg_edges = userstructuresvg.selectAll("line")
+	    .data(edges)
+	    .enter()
+	    .append("line")
+	    .attr("class", "link")
+	    .style("stroke","#ccc")
+        .style("stroke-width",1);
+
+	var color = d3.scale.category20();
+	var svg_nodes = userstructuresvg.selectAll("circle")
+	    .data(nodes)
+	    .enter()
+	    .append("circle")
+	    .attr("r",20)
+	    .style("fill",function(d,i){
+         return color(d.group);
+        })
+	    .call(force.drag);
+
+	var svg_texts = userstructuresvg.selectAll("text")
+     .data(nodes)
+     .enter()
+     .append("text")
+     .style("fill", "black")
+     .attr("dx", 20)
+     .attr("dy", 8)
+     .text(function(d){
+        return d.name;
+     });
+
+	force.on("tick", function () {
+        svg_edges.attr("x1",function(d){return d.source.x;})
+            .attr("y1", function (d){return d.source.y;})
+            .attr("x2",function(d){return d.target.x;})
+            .attr("y2",function(d){return d.target.y;});
+
+        svg_nodes.attr("cx",function(d){ return d.x; })
+            .attr("cy",function(d){ return d.y; });
+
+        svg_texts.attr("x", function(d){ return d.x; })
+            .attr("y", function(d){ return d.y; });
+    });
+
 </script>
 
 </body>

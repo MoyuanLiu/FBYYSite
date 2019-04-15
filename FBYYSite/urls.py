@@ -40,7 +40,7 @@ urlpatterns = [
     path('fbyysite/usermanage/add/',umview.useradd),
     re_path(r'fbyysite/usermanage/query/(\d+)',umview.userquery),
     path('fbyysite/logout',slview.logout),
-    path('fbyysite/accountmanage',umview.accountmanage),
+    path('fbyysite/accountmanage',slview.requires_login(umview.accountmanage)),
     path('fbyysite/accountpswchange',umview.accountpwdchange),
     path('fbyysite/accountemailchange',umview.accountemailchange),
     re_path('fbyysite/pwdchange/confirm/(.*)',umview.accountpwdchangeconfirm),

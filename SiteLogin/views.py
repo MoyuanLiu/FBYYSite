@@ -24,7 +24,7 @@ def login(request):
         p = request.POST.get('pwd','')
         rem = request.POST.get('rem','')
         if logincheck(a,p,rem):
-            request.session['usenname'] = a
+            request.session['username'] = a
             currentdatetime = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
             login_update(a,currentdatetime)
 
@@ -73,7 +73,7 @@ def registe_ajax_store(request):
 
 @csrf_exempt
 def index(request):
-    username = request.session.get('usenname')
+    username = request.session.get('username')
     if user_permission_check(username):
         return render(request, "index.html",{'rolename':'超级管理员'})
     else:
@@ -88,7 +88,7 @@ def about(request):
 @csrf_exempt
 def requires_login(view):
     def new_view(request, *args, **kwargs):
-        username = request.session.get('usenname')
+        username = request.session.get('username')
         if not isauthenticated(username):
             return HttpResponseRedirect('/fbyysite/login')
         return view(request, *args, **kwargs)
@@ -122,7 +122,7 @@ def tmpjump(request,flag):
 
 @csrf_exempt
 def index_left(request):
-    username = request.session.get('usenname')
+    username = request.session.get('username')
     if user_permission_check(username):
         modulelist = get_all_modules()
         functionlist = get_all_functions()
@@ -139,7 +139,7 @@ def index_content(request):
 
 @csrf_exempt
 def logout(request):
-    cache.delete(request.session.get('usenname'),None)
+    cache.delete(request.session.get('username'),None)
     #print(request.session.get('usenname'))
     cursessionkey = request.session.session_key
     request.session.delete(cursessionkey)

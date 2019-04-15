@@ -1,6 +1,7 @@
 from UserManage.models import *
 from django.db.models import Q
 import time
+from PermissionManage.models import TbRole
 
 def get_all_departments():
     departments = TbDepartmentInfo.objects.get_all_departments()
@@ -81,6 +82,33 @@ def caluserstore(allusers):
             userstoredict[user.tb_user_info_store_code] = 1
     userstorekeylist.clear()
     return userstoredict
+
+def caluserrole(allusers):
+    userrolekeylist = []
+    userroledict = {}
+    for user in allusers:
+        rolename = get_user_role_name(user)
+        if rolename in userrolekeylist:
+            userroledict[rolename] = userroledict[rolename] + 1
+        else:
+            userrolekeylist.append(rolename)
+            userroledict[rolename] = 1
+    userrolekeylist.clear()
+    return userroledict
+
+def get_user_role_name(userobj):
+    if userobj.tb_user_info_issuperuser == 1:
+        return '超级管理员'
+    else:
+        roleid = TbUserRole.objects.get_user_role_by_user_id(int(userobj.idtb_user_info)).tb_user_role_roleid
+        return TbRole.objects.get_role_name_by_role_id(roleid)
+
+def renew_user_eamil(formdata):
+    user = TbUserInfo.objects.get_user_by_id(formdata['userid'])
+    user.tb_user_info_email = formdata['email']
+    user.save()
+
+
 
 
 
