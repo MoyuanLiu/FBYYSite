@@ -154,7 +154,6 @@ def kckquery(request,pagenum):
             paginator = Paginator(kcklist, 8)
             totalpages = paginator.num_pages
             currentpage = pagenum
-            kcklist = kck_info_list(kcklist)
             try:
                 kcklist = paginator.page(currentpage)
             except PageNotAnInteger:
@@ -171,7 +170,6 @@ def kckquery(request,pagenum):
             paginator = Paginator(kcklist, 8)
             totalpages = paginator.num_pages
             currentpage = pagenum
-            kcklist = kck_info_list(kcklist)
             try:
                 kcklist = paginator.page(currentpage)
             except PageNotAnInteger:
